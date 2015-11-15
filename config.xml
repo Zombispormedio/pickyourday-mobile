@@ -2,10 +2,10 @@
 <widget id="com.ionicframework.pickyourdaymobile114463" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>pickyourday-mobile</name>
   <description>&#xD;
-        An Ionic Framework and Cordova project.&#xD;
+        An Customer Application&#xD;
     </description>
   <author email="hi@ionicframework" href="http://ionicframework.com/">&#xD;
-      Ionic Framework Team&#xD;
+      Kenovi Team
     </author>
   <content src="index.html"/>
   <access origin="*"/>

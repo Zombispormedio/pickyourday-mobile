@@ -1,4 +1,12 @@
 {
   "name": "pickyourday-mobile",
-  "app_id": "3fd23643"
+  "app_id": "3fd23643",
+  "gulpStartupTasks": [
+    "sass",
+    "watch"
+  ],
+  "watchPatterns": [
+    "www/**/*",
+    "!www/lib/**/*"
+  ]
 }

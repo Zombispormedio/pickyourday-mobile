@@ -1,18 +1,18 @@
 // Ionic Starter App
 
-var adminCtrl = {};
-var adminFtry = {};
-var adminFiltr = {};
-var adminDrctv = {};
+var pydmCtrl = {};
+var pydmFtry = {};
+var pydmFiltr = {};
+var pydmDrctv = {};
 
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 angular.module('starter', ['ionic'])
-  .controller(adminCtrl)
-  .factory(adminFtry)
-  .filter(adminFiltr)
-  .directive(adminDrctv)
+  .controller(pydmCtrl)
+  .factory(pydmFtry)
+  .filter(pydmFiltr)
+  .directive(pydmDrctv)
 
   .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
 
@@ -22,11 +22,36 @@ angular.module('starter', ['ionic'])
         url: "/login",
         onEnter: function ($rootScope) {
           if (getJSONLocal("user")) {            
-            $rootScope.go("app");
+            $rootScope.go("app.dashboard");
           }
         },
         templateUrl: 'app/login/main.html',
         controller: 'LoginCtrl'
+
+      })
+
+      .state("app", {
+        url: "/",
+        onEnter: function ($rootScope) {
+          if (!getJSONLocal("user")) {            
+            $rootScope.go("login");
+          }
+        },
+        abstract: true,
+        templateUrl: 'app/menu/main.html',
+        controller: 'MenuCtrl'
+
+      })
+
+      .state("app.dashboard", {
+        url: "/dashboard",
+        onEnter: function ($rootScope) {
+          if (!getJSONLocal("user")) {            
+            $rootScope.go("login");
+          }
+        },
+        templateUrl: 'app/dashboard/main.html',
+        controller: 'DashboardCtrl'
 
       })
 
@@ -38,7 +63,12 @@ angular.module('starter', ['ionic'])
 
 
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $rootScope, $state) {
+
+  $rootScope.go = function(state, params){
+    $state.go(state, params);
+  }
+
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)

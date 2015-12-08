@@ -1,4 +1,4 @@
-adminFtry.AuthInterceptor = function($q, $location){
+pydmFtry.AuthInterceptor = function($q, $location){
     return {
         request: function(config){
             config.headers = config.headers || {};

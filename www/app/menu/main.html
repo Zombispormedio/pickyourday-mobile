@@ -1,0 +1,32 @@
+<ion-side-menus>
+	<ion-side-menu-content>
+		<ui-view name="content"></ui-view>
+	</ion-side-menu-content>
+	<ion-side-menu side="left" id="menu">
+
+		<div class="row cabecera">
+	  		<div class="col"> Pick your day </div>
+		</div>
+		<a nav-clear menu-close ui-sref="app.home" class="item item-icon-left pointer">
+			<i class="icon ion-calendar"></i>Home
+		</a>
+		<a nav-clear menu-close ui-sref="app.clients.list" class="item item-icon-left pointer">
+			<i class="icon ion-ios-people"></i> My Clients
+		</a>
+		<a nav-clear menu-close ui-sref="app.product.list" class="item item-icon-left pointer">
+			<i class="icon ion-ios-home-outline"></i> Product
+		</a>
+		
+		<a nav-clear menu-close ui-sref="app.contact.detail" class="item item-icon-left pointer">
+			<i class="icon ion-email"></i> Contact Sonneil
+		</a>
+		<a nav-clear menu-close ng-click="openSendClientModal()" class="item item-icon-left pointer">
+			<i class="icon ion-paper-airplane"></i> Send a Client
+		</a>
+		<a nav-clear menu-close ui-sref="app.profile.detail" class="item item-icon-left pointer">
+			<i class="icon ion-person"></i> Your Account
+		</a>
+		
+	</ion-side-menu>
+
+</ion-side-menus>

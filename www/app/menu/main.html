@@ -1,14 +1,16 @@
 <ion-side-menus>
 	<ion-side-menu-content>
-		<ui-view name="content"></ui-view>
+		<ui-view name="content">
+		</ui-view>
 	</ion-side-menu-content>
+
 	<ion-side-menu side="left" id="menu">
 
 		<div class="row cabecera">
 	  		<div class="col"> Pick your day </div>
 		</div>
-		<a nav-clear menu-close ui-sref="app.home" class="item item-icon-left pointer">
-			<i class="icon ion-calendar"></i>Home
+		<a nav-clear menu-close ui-sref="app.dashboard" class="item item-icon-left pointer">
+			<i class="icon ion-calendar"></i>Dashboard
 		</a>
 		<a nav-clear menu-close ui-sref="app.clients.list" class="item item-icon-left pointer">
 			<i class="icon ion-ios-people"></i> My Clients

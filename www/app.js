@@ -31,7 +31,7 @@ angular.module('starter', ['ionic'])
       })
 
       .state("app", {
-        url: "/",
+        url: "",
         onEnter: function ($rootScope) {
           if (!getJSONLocal("user")) {            
             $rootScope.go("login");
@@ -50,9 +50,12 @@ angular.module('starter', ['ionic'])
             $rootScope.go("login");
           }
         },
-        templateUrl: 'app/dashboard/main.html',
-        controller: 'DashboardCtrl'
-
+        views: {
+          'content': {
+            templateUrl: 'app/dashboard/main.html',
+            controller: 'DashboardCtrl'
+          }
+        }
       })
 
     $urlRouterProvider.otherwise("/login");

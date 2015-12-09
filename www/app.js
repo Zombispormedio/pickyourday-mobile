@@ -43,6 +43,19 @@ angular.module('starter', ['ionic'])
 
       })
 
+      /*
+      .state('tab', {
+       url: "/tab",
+       onEnter: function ($rootScope) {
+          if (!getJSONLocal("user")) {            
+            $rootScope.go("login");
+          }
+        },
+       abstract: true,
+       templateUrl: "app/tabs/tabs.html"
+      })
+    */
+
       .state("app.dashboard", {
         url: "/dashboard",
         onEnter: function ($rootScope) {
@@ -51,12 +64,44 @@ angular.module('starter', ['ionic'])
           }
         },
         views: {
-          'content': {
+          'tab-dashboard': {
             templateUrl: 'app/dashboard/main.html',
             controller: 'DashboardCtrl'
           }
         }
       })
+
+
+      .state("app.categorias", {
+        url: "/categorias",
+        onEnter: function ($rootScope) {
+          if (!getJSONLocal("user")) {            
+            $rootScope.go("login");
+          }
+        },
+        views: {
+          'tab-categorias': {
+            templateUrl: 'app/categorias/main.html',
+            controller: 'CategoriasCtrl'
+          }
+        }
+      })
+
+      .state("app.sugerencias", {
+        url: "/sugerencias",
+        onEnter: function ($rootScope) {
+          if (!getJSONLocal("user")) {            
+            $rootScope.go("login");
+          }
+        },
+        views: {
+          'tab-sugerencias': {
+            templateUrl: 'app/sugerencias/main.html',
+            controller: 'SugerenciasCtrl'
+          }
+        }
+      })
+
 
     $urlRouterProvider.otherwise("/login");
     $httpProvider.interceptors.push('AuthInterceptor');

@@ -1,12 +1,39 @@
 <ion-side-menus>
 	<ion-side-menu-content>
-		<ion-nav-bar class="bar-positive" align-title="center">
+
+		<ion-nav-bar class="bar-positive nav-title-slide-ios7" align-title="center">
+
 			<ion-nav-buttons side="left">
 				<button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
 			</ion-nav-buttons>
+
+			<ion-nav-buttons side="right">
+				<button class="button button-icon icon ion-plus-round"></button>
+			</ion-nav-buttons>
+
+			<ion-tabs class="tabs-icon-top tabs-color-active-positive">
+ 
+				 <ion-tab title="Dashboard" icon="icon ion-clock" href="#/tab/dashboard">
+				 	<ion-nav-view name="tab-dashboard">
+				 	</ion-nav-view>
+				 </ion-tab>
+				 
+				 
+				 <ion-tab title="Categorias" icon="icon ion-network"  ui-sref="app.categorias">
+				 	<ion-nav-view name="tab-categorias">
+				 	</ion-nav-view>
+				 </ion-tab>
+				 
+				 
+				 <!-- Account Tab -->
+				 <ion-tab title="Sugerencias" icon="icon ion-ios-lightbulb"  ui-sref="app.sugerencias">
+				 	<ion-nav-view name="tab-sugerencias"></ion-nav-view>
+				 </ion-tab>
+			 
+			</ion-tabs>
+			
 		</ion-nav-bar>
-		<ion-nav-view name="content">
-		</ion-nav-view>
+
 	</ion-side-menu-content>
 
 	<ion-side-menu side="left" id="menu">

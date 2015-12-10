@@ -43,19 +43,6 @@ angular.module('starter', ['ionic'])
 
       })
 
-      /*
-      .state('tab', {
-       url: "/tab",
-       onEnter: function ($rootScope) {
-          if (!getJSONLocal("user")) {            
-            $rootScope.go("login");
-          }
-        },
-       abstract: true,
-       templateUrl: "app/tabs/tabs.html"
-      })
-    */
-
       .state("app.dashboard", {
         url: "/dashboard",
         onEnter: function ($rootScope) {

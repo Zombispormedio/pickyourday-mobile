@@ -9081,3 +9081,64 @@ a.button {
   opacity: 0;
   -webkit-transition-duration: 0s;
   transition-duration: 0s; }
+
+.login {
+  background-image: url("../assets/img/login.jpg");
+  background-size: cover;
+  background-position: bottom center;
+  height: 100%; }
+  .login .scroll-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center; }
+    .login .scroll-content .scroll {
+      flex: 1; }
+  .login form button {
+    border-color: transparent !important;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    background-color: rgba(5, 59, 52, 0.8) !important; }
+  .login .overlay {
+    height: 100%;
+    width: 100%;
+    background-color: rgba(5, 85, 74, 0.9); }
+
+.dashboard hr {
+  width: 20%;
+  height: 2px;
+  border: 0; }
+
+.dashboard h2 {
+  font-size: 24px;
+  text-align: center;
+  padding: 0;
+  margin: 0; }
+
+.dashboard p {
+  text-align: center; }
+
+.dashboard .list.card p {
+  text-align: left; }
+
+.positive {
+  background-color: #05564b; }
+
+.ion-nifty-modal {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 250px !important;
+  width: 90%;
+  color: #fff;
+  margin: auto; }
+  .ion-nifty-modal p {
+    margin: 20px 0;
+    font-size: 20px;
+    text-align: center; }
+  .ion-nifty-modal .scroll {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    -webkit-user-select: none; }

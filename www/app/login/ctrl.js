@@ -19,7 +19,7 @@ pydmCtrl.LoginCtrl = function ($rootScope, $scope, $http, $ionicModal) {
 		}
 
 	}
-	
+
 	$scope.cleanError=function(){
 			$scope.error="";
 	}

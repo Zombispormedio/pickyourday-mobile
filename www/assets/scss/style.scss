@@ -1,0 +1,89 @@
+.login{
+	background-image: url("../assets/img/login.jpg");
+	background-size: cover;
+    background-position: bottom center;
+    height: 100%;
+    
+
+    .scroll-content{
+    	display: flex;
+	    flex-direction: row;
+	    align-items: center;
+
+	    .scroll{
+    		flex: 1;
+	    }
+    }
+
+    form{
+
+    	button{
+			border-color: transparent !important;
+			border: 2px solid transparent;
+			border-radius: 5px;
+			background-color: rgba(5,59,52, 0.8) !important;
+		}
+    }
+
+    .overlay{
+		height: 100%;
+		width: 100%;
+		background-color: rgba(5,85,74,0.9);
+	}
+
+}
+
+
+
+.dashboard{
+	hr{
+		width: 20%;
+	    height: 2px;
+	    border: 0;
+	}
+
+	h2{
+		font-size: 24px;
+		text-align: center;
+		padding: 0;
+		margin: 0;
+	}
+
+	p{
+		text-align: center;
+	}
+
+	.list.card p{
+		text-align: left;
+	}
+
+}
+
+.positive{
+	background-color: $positive;
+}
+
+.ion-nifty-modal{
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 250px !important;
+	width: 90%;
+	color: #fff;
+	margin: auto;
+
+	p{
+		margin: 20px 0;
+		font-size: 20px;
+		text-align: center;
+	}
+
+	.scroll{
+		height: 100%;
+	    display: flex;
+	    flex-direction: column;
+	    justify-content: space-between;
+	    -webkit-user-select: none;
+	}
+}

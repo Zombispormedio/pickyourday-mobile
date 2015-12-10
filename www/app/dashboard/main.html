@@ -1,25 +1,30 @@
 <ion-view>
-  <ion-content class="padding">
+  <ion-content class="padding dashboard">
     
+    <hr class="positive">
     <h2>Próximos picks</h2>
     
-
-    <div ng-repeat="pick in picks"> 
-    
-      <div class="list card"> 
-        <div class="item item-divider">
-          <h3>{{ pick[1].serviceData.description }}</h3>
-          <p>{{ pick[0].initDate | date }}</p>
-        </div>
-
-        <div class="item item-body">
-          <div>
-           {{ pick[0].company.id_company.name }}
+    <div ng-if="picks.length > 0">
+      <div ng-repeat="pick in picks"> 
+      
+        <div class="list card"> 
+          <div class="item item-divider">
+            <h3>{{ pick[1].serviceData.description }}</h3>
+            <p>{{ pick[0].initDate | date }}</p>
           </div>
-        </div>
 
-      </div> 
+          <div class="item item-body">
+            <div>
+             {{ pick[0].company.id_company.name }}
+            </div>
+          </div>
 
+        </div> 
+
+      </div>
+    </div>
+    <div ng-if="picks.length <= 0">
+      <p>No tienes picks activos.</p>
     </div>
 
 

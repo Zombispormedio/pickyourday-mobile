@@ -1,12 +1,12 @@
 pydmCtrl.DashboardCtrl = function ($rootScope, $scope, $http, $ionicModal) {
   	$scope.error="";
-
+  	$scope.picks = "";
+  
 	$http.get("http://pickyourday.herokuapp.com/api/customer/pick", $scope.user).then(function successCallback(response) {
 		var res = response.data;
 		if (!res.error) {
 			var picksAux = response.data.data;
-			$scope.picks = picksAux;
-			//saveLocal("picks", response.data.data);							
+			$scope.picks = picksAux;							
 		} else {
 			$scope.error=res.error;
 			$scope.openModal();
@@ -14,7 +14,7 @@ pydmCtrl.DashboardCtrl = function ($rootScope, $scope, $http, $ionicModal) {
 
 	}, function errorCallback(response) {
 
-	});
+	}); 
 
 	$scope.cleanError=function(){
 		$scope.error="";

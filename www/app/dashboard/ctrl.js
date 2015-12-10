@@ -9,7 +9,7 @@ pydmCtrl.DashboardCtrl = function ($rootScope, $scope, $http, $ionicModal) {
 			$scope.picks = picksAux;							
 		} else {
 			$scope.error=res.error;
-			$scope.openModal();
+			//$scope.openModal();
 		}
 
 	}, function errorCallback(response) {

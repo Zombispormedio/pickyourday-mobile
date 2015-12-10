@@ -9103,6 +9103,13 @@ a.button {
     width: 100%;
     background-color: rgba(5, 85, 74, 0.9); }
 
+.cabecera {
+  width: 100%; }
+  .cabecera .col {
+    text-align: center; }
+    .cabecera .col img {
+      width: 30%; }
+
 .dashboard hr {
   width: 20%;
   height: 2px;

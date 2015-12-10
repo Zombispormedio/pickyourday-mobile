@@ -89,6 +89,21 @@ angular.module('starter', ['ionic'])
         }
       })
 
+      .state("app.newPick", {
+        url: "/newPick",
+        onEnter: function ($rootScope) {
+          if (!getJSONLocal("user")) {            
+            $rootScope.go("login");
+          }
+        },
+        views: {
+          'newPick': {
+            templateUrl: 'app/newPick/main.html',
+            controller: 'NewPickCtrl'
+          }
+        }
+      })
+
 
     $urlRouterProvider.otherwise("/login");
     $httpProvider.interceptors.push('AuthInterceptor');

@@ -8,7 +8,7 @@
 			</ion-nav-buttons>
 
 			<ion-nav-buttons side="right">
-				<button class="button button-icon icon ion-plus-round"></button>
+				<button class="button button-icon icon ion-plus-round"  ui-sref="app.newPick"></button>
 			</ion-nav-buttons>
 
 			<ion-tabs class="tabs-icon-top tabs-positive">
@@ -29,6 +29,10 @@
 				 <ion-tab title="Sugerencias" icon="icon ion-ios-lightbulb"  ui-sref="app.sugerencias">
 				 	<ion-nav-view name="tab-sugerencias"></ion-nav-view>
 				 </ion-tab>
+
+				<ion-tab title="NewPick" hidden="true">
+		          <ion-nav-view name="newPick"></ion-nav-view>
+		        </ion-tab>
 			 
 			</ion-tabs>
 			
@@ -39,7 +43,10 @@
 	<ion-side-menu side="left" id="menu">
 
 		<div class="row cabecera">
-	  		<div class="col"> Pick your day </div>
+	  		<div class="col"> 
+	  			<img src="assets/img/picker.png" id="logo" class="mt20"><br>
+	  			Pick your day
+	  		</div>
 		</div>
 		<a nav-clear menu-close ui-sref="app.dashboard" class="item item-icon-left pointer">
 			<i class="icon ion-calendar"></i>Dashboard

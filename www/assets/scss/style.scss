@@ -33,7 +33,17 @@
 
 }
 
+.cabecera{
+	width: 100%;
 
+	.col{
+		text-align: center;
+
+		img{
+			width: 30%;
+		}
+	}
+}
 
 .dashboard{
 	hr{

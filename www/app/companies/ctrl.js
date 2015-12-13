@@ -2,7 +2,7 @@ pydmCtrl.CompaniesCtrl = function ($rootScope, $scope, $http, $stateParams) {
 
 	$scope.companies = "";
 
-	$http.get("http://pickyourday.herokuapp.com/api/customer/searchcompany", $scope.user).then(function successCallback(response) {
+	$http.get("http://pickyourday.herokuapp.com/api/customer/company", $scope.user).then(function successCallback(response) {
 		var res = response.data;
 		if (!res.error) {
 			$scope.companies = response.data.data;							

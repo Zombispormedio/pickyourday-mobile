@@ -1,5 +1,10 @@
 <ion-view>
   <ion-content class="padding dashboard">
+
+  <ion-refresher
+    pulling-text="Pull to refresh..."
+    on-refresh="doRefresh()">
+  </ion-refresher>
     
     <hr class="positive">
     <h2>Próximos picks</h2>

@@ -1,4 +1,4 @@
-pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams) {
+pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams, $ionicHistory) {
 
 	var company = JSON.parse($stateParams.company);
 	var service = JSON.parse($stateParams.service);
@@ -38,7 +38,8 @@ pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams) {
 			$http.post("http://pickyourday.herokuapp.com/api/customer/pick", obj).then(function successCallback(response) {
 				var res = response.data;
 				if (!res.error) {
-					$rootScope.go("app.dashboard");
+					$ionicHistory.clearHistory();
+					$rootScope.go("app.dashboard", null, {reload: true});
 				} else {
 					$scope.error=res.error;
 					$scope.openModal();

@@ -1,4 +1,4 @@
-pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams, $ionicHistory) {
+pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams,$ionicHistory) {
 
 	var company = JSON.parse($stateParams.company);
 	var service = JSON.parse($stateParams.service);
@@ -24,7 +24,7 @@ pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams, $ionic
 	$scope.newPick = function () {
 
 
-		if ($scope.company._id !== "" && $scope.service._id !== "" && $scope.date) {
+		if ($scope.company._id !== "" && $scope.service._id !== "" && $scope.date !== "") {
 
 			var obj = {
 				"initDate" : $scope.date,
@@ -37,8 +37,8 @@ pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams, $ionic
 
 			$http.post("http://pickyourday.herokuapp.com/api/customer/pick", obj).then(function successCallback(response) {
 				var res = response.data;
-				if (!res.error) {					
-					$rootScope.go("app.dashboard", null, {reload: true});
+				if (!res.error) {				
+					$rootScope.go("app.dashboard");
 				} else {
 					$scope.error=res.error;
 					$scope.openModal();
@@ -51,4 +51,14 @@ pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams, $ionic
 		}
 
 	}
+
+	$scope.$on('$ionicView.enter', function() {
+		
+		var back = $ionicHistory.backView().stateName;
+		if(back != "app.companiesDetail")
+    		$rootScope.go("app.dashboard");
+	});
+
+	
+
 }

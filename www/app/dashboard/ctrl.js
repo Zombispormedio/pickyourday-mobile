@@ -28,7 +28,6 @@ pydmCtrl.DashboardCtrl = function ($rootScope, $scope, $http, $ionicHistory) {
 
 	$scope.$on('$ionicView.enter', function() {
     	$scope.getPicks();
-    	$ionicHistory.clearHistory();
 	});
 
 	$scope.cleanError=function(){

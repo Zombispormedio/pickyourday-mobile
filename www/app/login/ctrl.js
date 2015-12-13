@@ -24,28 +24,4 @@ pydmCtrl.LoginCtrl = function ($rootScope, $scope, $http, $ionicModal) {
 			$scope.error="";
 	}
 
-	$scope.openModal = function() {
-    $ionicModal.fromTemplateUrl('app/login/modal.html', {
-      scope: $scope,
-      animation: 'fade-in-scale'
-	    }).then(function(modal) {
-	      $scope.modal = modal;
-	      $scope.modal.show();
-	    });
-	  };
-	  $scope.closeModal = function() {
-	    $scope.modal.hide();
-	  };
-	  //Cleanup the modal when we're done with it!
-	  $scope.$on('$destroy', function() {
-	    $scope.modal.remove();
-	  });
-	  // Execute action on hide modal
-	  $scope.$on('modal.hidden', function() {
-	    // Execute action
-	  });
-	  // Execute action on remove modal
-	  $scope.$on('modal.removed', function() {
-	    // Execute action
-	  });
 }

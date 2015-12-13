@@ -59,32 +59,32 @@ angular.module('starter', ['ionic'])
       })
 
 
-      .state("app.categorias", {
-        url: "/categorias",
+      .state("app.categories", {
+        url: "/categories",
         onEnter: function ($rootScope) {
           if (!getJSONLocal("user")) {            
             $rootScope.go("login");
           }
         },
         views: {
-          'tab-categorias': {
-            templateUrl: 'app/categorias/main.html',
-            controller: 'CategoriasCtrl'
+          'tab-categories': {
+            templateUrl: 'app/categories/main.html',
+            controller: 'CategoriesCtrl'
           }
         }
       })
 
-      .state("app.sugerencias", {
-        url: "/sugerencias",
+      .state("app.prepicks", {
+        url: "/prepicks",
         onEnter: function ($rootScope) {
           if (!getJSONLocal("user")) {            
             $rootScope.go("login");
           }
         },
         views: {
-          'tab-sugerencias': {
-            templateUrl: 'app/sugerencias/main.html',
-            controller: 'SugerenciasCtrl'
+          'tab-prepicks': {
+            templateUrl: 'app/prepicks/main.html',
+            controller: 'PrepicksCtrl'
           }
         }
       })
@@ -113,11 +113,38 @@ angular.module('starter', ['ionic'])
 
 
 
-.run(function($ionicPlatform, $rootScope, $state) {
+.run(function($ionicPlatform, $rootScope, $state, $ionicModal) {
 
   $rootScope.go = function(state, params){
     $state.go(state, params);
   }
+
+    $ionicModal.fromTemplateUrl('app/modal/modal.html', {
+    scope: $rootScope,
+    animation: 'fade-in-scale'
+    }).then(function(modal) {
+      $rootScope.modal = modal;
+    });
+
+    $rootScope.openModal = function(err) {
+      $rootScope.error = err;
+      $rootScope.modal.show();
+    };
+    $rootScope.closeModal = function() {
+      $rootScope.modal.hide();
+    };
+    //Cleanup the modal when we're done with it!
+    $rootScope.$on('$destroy', function() {
+      $rootScope.modal.remove();
+    });
+    // Execute action on hide modal
+    $rootScope.$on('modal.hidden', function() {
+      // Execute action
+    });
+    // Execute action on remove modal
+    $rootScope.$on('modal.removed', function() {
+      // Execute action
+    });
 
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard

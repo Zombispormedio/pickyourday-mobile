@@ -1,4 +1,4 @@
-pydmCtrl.DashboardCtrl = function ($rootScope, $scope, $http) {
+pydmCtrl.DashboardCtrl = function ($rootScope, $scope, $http, $ionicHistory) {
   	$scope.error="";
   	$scope.picks = "";
   
@@ -28,6 +28,7 @@ pydmCtrl.DashboardCtrl = function ($rootScope, $scope, $http) {
 
 	$scope.$on('$ionicView.enter', function() {
     	$scope.getPicks();
+    	$ionicHistory.clearHistory();
 	});
 
 	$scope.cleanError=function(){

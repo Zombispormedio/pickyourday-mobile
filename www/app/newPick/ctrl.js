@@ -37,8 +37,7 @@ pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams, $ionic
 
 			$http.post("http://pickyourday.herokuapp.com/api/customer/pick", obj).then(function successCallback(response) {
 				var res = response.data;
-				if (!res.error) {
-					$ionicHistory.clearHistory();
+				if (!res.error) {					
 					$rootScope.go("app.dashboard", null, {reload: true});
 				} else {
 					$scope.error=res.error;

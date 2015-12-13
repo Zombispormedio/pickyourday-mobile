@@ -8,7 +8,7 @@ var pydmDrctv = {};
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('starter', ['ionic'])
+angular.module('starter', ['ionic', 'ionic-datepicker'])
   .controller(pydmCtrl)
   .factory(pydmFtry)
   .filter(pydmFiltr)
@@ -89,8 +89,56 @@ angular.module('starter', ['ionic'])
         }
       })
 
+      .state("app.companies", {
+        url: "/companies",
+        onEnter: function ($rootScope) {
+          if (!getJSONLocal("user")) {            
+            $rootScope.go("login");
+          }
+        },
+        views: {
+          'companies': {
+            templateUrl: 'app/companies/main.html',
+            controller: 'CompaniesCtrl'
+          }
+        }
+      })
+
+      .state("app.companiesDetail", {
+        url: "/companies/detail/:company",
+        onEnter: function ($rootScope) {
+          if (!getJSONLocal("user")) {            
+            $rootScope.go("login");
+          }
+        },
+        views: {
+          'companies': {
+            templateUrl: 'app/companies/detail/main.html',
+            controller: 'CompaniesDetailCtrl'
+          }
+        }
+      })
+/*
+
+      .state("app.companies.detail", {
+        url: "/companies/:detail",
+        onEnter: function ($rootScope) {
+          if (!getJSONLocal("user")) {            
+            $rootScope.go("login");
+          }
+        },
+        views: {
+          'companies': {
+            templateUrl: 'app/companies/detail.html',
+            controller: ''
+          }
+        }
+      })
+      */
+
+
       .state("app.newPick", {
-        url: "/newPick",
+        url: "/newPick/:company/service/:service",
         onEnter: function ($rootScope) {
           if (!getJSONLocal("user")) {            
             $rootScope.go("login");

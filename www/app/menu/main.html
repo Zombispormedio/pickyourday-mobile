@@ -8,7 +8,7 @@
 			</ion-nav-buttons>
 
 			<ion-nav-buttons side="right">
-				<button class="button button-icon icon ion-plus-round"  ui-sref="app.newPick"></button>
+				<button class="button button-icon icon ion-ios-search-strong"  ui-sref="app.companies"></button>
 			</ion-nav-buttons>
 
 			<ion-tabs class="tabs-icon-top tabs-positive">
@@ -33,6 +33,11 @@
 				<ion-tab title="NewPick" hidden="true">
 		          <ion-nav-view name="newPick"></ion-nav-view>
 		        </ion-tab>
+
+		        <ion-tab title="Companies" hidden="true">
+		          <ion-nav-view name="companies"></ion-nav-view>
+		        </ion-tab>		  
+
 			 
 			</ion-tabs>
 			
@@ -50,6 +55,9 @@
 		</div>
 		<a nav-clear menu-close ui-sref="app.dashboard" class="item item-icon-left pointer">
 			<i class="icon ion-calendar"></i>Dashboard
+		</a>
+		<a nav-clear menu-close ng-click="goCompanies()" class="item item-icon-left pointer">
+			<i class="icon ion-pie-graph"></i>Companies
 		</a>
 		<a nav-clear menu-close ng-click="logout()" class="item item-icon-left pointer">
 			<i class="icon ion-log-out"></i>Cerrar Sesión

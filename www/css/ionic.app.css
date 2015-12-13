@@ -9124,7 +9124,15 @@ a.button {
 .dashboard p {
   text-align: center; }
 
-.dashboard .list.card p {
+.dashboard .list.card.pick .item-divider {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; }
+  .dashboard .list.card.pick .item-divider img {
+    width: 35px;
+    margin-right: 20px; }
+
+.dashboard .list.card.pick p {
   text-align: left; }
 
 .positive {

@@ -1,5 +1,20 @@
 <ion-view>
   <ion-content class="padding">
-      <p>New pick</p>
+	
+	<h2>New pick</h2>
+
+
+	<p>Compañía: {{company.name}}</p>
+	<p>Servicio: {{service.id_name.name}}</p>    
+
+	<form ng-submit="newPick()">
+        <div class="list">
+            <ionic-datepicker date="currentDate" min="minDate" max="maxDate" callback="datePickerCallback">
+			    <button class="button button-block button-assertive"> {{ currentDate | date:'MMMM/dd/yyyy' }} </button>
+			</ionic-datepicker>
+        </div>
+        <button type="submit" class="button button-block button-positive">Crear pick</button>
+    </form>
+
   </ion-content>
 </ion-view>

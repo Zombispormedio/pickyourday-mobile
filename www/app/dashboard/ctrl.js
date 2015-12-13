@@ -1,4 +1,4 @@
-pydmCtrl.DashboardCtrl = function ($rootScope, $scope, $http, $ionicModal) {
+pydmCtrl.DashboardCtrl = function ($rootScope, $scope, $http) {
   	$scope.error="";
   	$scope.picks = "";
   

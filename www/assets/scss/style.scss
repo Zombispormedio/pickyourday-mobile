@@ -63,9 +63,24 @@
 		text-align: center;
 	}
 
-	.list.card p{
-		text-align: left;
+	.list.card.pick{
+
+		.item-divider{
+			display: flex;
+			align-items: center;
+    		justify-content: flex-start;
+
+			img{
+				width: 35px;
+    			margin-right: 20px;
+			}
+		}
+
+		p{
+			text-align: left;
+		}
 	}
+
 
 }
 

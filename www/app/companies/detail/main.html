@@ -1,0 +1,34 @@
+<ion-view>
+  <ion-content class="padding">
+  <a class="button icon icon-left ion-chevron-left" ui-sref="app.companies">Volver</a>
+  
+	<h2>{{company.name}}</h2>
+	<p>{{company.description}}</p>
+	
+	<h3>Servicios</h3>
+
+	<div ng-if="services.length > 0">
+		<div ng-repeat="service in services"> 
+
+		  <div class="list card" ng-click="newPick(company, service)"> 
+		    <div class="item item-divider">
+		      <h3>{{ service.id_name.name }}</h3>
+		    </div>
+
+		    <div class="item item-body">
+		      <div>
+		       {{ service.description}}
+		      </div>
+		    </div>
+
+		  </div> 
+
+		</div>
+	</div>
+
+	<div ng-if="services.length <= 0">
+		<p>No hay servicios</p>
+	</div>
+    
+  </ion-content>
+</ion-view>

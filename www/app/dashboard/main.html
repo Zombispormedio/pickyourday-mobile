@@ -7,15 +7,19 @@
     <div ng-if="picks.length > 0">
       <div ng-repeat="pick in picks"> 
       
-        <div class="list card"> 
+        <div class="list card pick"> 
+
           <div class="item item-divider">
-            <h3>{{ pick[1].serviceData.description }}</h3>
-            <p>{{ pick[0].initDate | date }}</p>
+            <img src="assets/img/picker.png" alt="">
+            <div class="title">
+              <h3>{{ pick.company.id_service.id_name.name }}</h3>
+              <p>{{ pick.initDate | date }}</p>
+            </div>
           </div>
 
           <div class="item item-body">
             <div>
-             {{ pick[0].company.id_company.name }}
+             {{ pick.company.id_company.name }}
             </div>
           </div>
 

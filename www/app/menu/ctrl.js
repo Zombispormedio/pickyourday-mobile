@@ -22,6 +22,10 @@ pydmCtrl.MenuCtrl = function ($rootScope, $scope, $ionicSideMenuDelegate, $http,
 
 	}
 
+	$scope.goCompanies = function () {
+		$rootScope.go("app.companies");
+	}
+
 	
 	$scope.cleanError=function(){
 			$scope.error="";

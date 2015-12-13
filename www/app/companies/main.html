@@ -1,0 +1,30 @@
+<ion-view>
+  <ion-content class="padding">
+  
+  <h2>Companies</h2>
+
+  <div ng-if="companies.length > 0">
+    <div ng-repeat="company in companies"> 
+    
+      <div class="list card" ng-click="goDetail(company)"> 
+        <div class="item item-divider">
+          <h3>{{ company.name }}</h3>
+        </div>
+
+        <div class="item item-body">
+          <div>
+           {{ company.description}}
+          </div>
+        </div>
+
+      </div> 
+
+    </div>
+  </div>
+
+  <div ng-if="companies.length <= 0">
+    <p>No hay compañías.</p>
+  </div>
+
+  </ion-content>
+</ion-view>

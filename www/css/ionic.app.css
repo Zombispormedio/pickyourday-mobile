@@ -9113,7 +9113,8 @@ a.button {
 .dashboard hr {
   width: 20%;
   height: 2px;
-  border: 0; }
+  border: 0;
+  margin-top: 25px; }
 
 .dashboard h2 {
   font-size: 24px;

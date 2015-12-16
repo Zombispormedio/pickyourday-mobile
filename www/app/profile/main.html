@@ -1,0 +1,19 @@
+<ion-view>
+  <ion-content class="padding">
+
+    <h2>Tu perfil</h2>
+     <div class="list card">
+        <div class="item">
+            <h2>{{user.name}}</h2>
+            <p>{{user.age_range}}</p>
+            <p>{{user.gender}}</p>
+            <p>{{user.work}}</p>
+            <a href="{{user.link}}">Timeline</a>
+        </div>
+        <div class="item item-body">
+            <img src="http://graph.facebook.com/{{user.id}}/picture?width=270&height=270"/>
+        </div>
+    </div>
+
+  </ion-content>
+</ion-view>

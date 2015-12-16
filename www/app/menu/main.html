@@ -38,7 +38,11 @@
 		          <ion-nav-view name="companies"></ion-nav-view>
 		        </ion-tab>		  
 
-			 
+		        <ion-tab title="Profile" hidden="true">
+		          <ion-nav-view name="profile"></ion-nav-view>
+		        </ion-tab>		  
+
+
 			</ion-tabs>
 			
 		</ion-nav-bar>
@@ -55,6 +59,9 @@
 		</div>
 		<a nav-clear menu-close ui-sref="app.dashboard" class="item item-icon-left pointer">
 			<i class="icon ion-calendar"></i>Dashboard
+		</a>
+		<a nav-clear menu-close ui-sref="app.profile" class="item item-icon-left pointer">
+			<i class="icon ion-person"></i>Profile
 		</a>
 		<a nav-clear menu-close ng-click="goCompanies()" class="item item-icon-left pointer">
 			<i class="icon ion-pie-graph"></i>Companies

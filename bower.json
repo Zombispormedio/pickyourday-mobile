@@ -6,6 +6,7 @@
   },
   "dependencies": {
     "ionic-nifty-modal": "*",
-    "datepicker-for-ionic": "~1.1.7"
+    "datepicker-for-ionic": "~1.1.7",
+    "moment": "~2.10.6"
   }
 }

@@ -10,7 +10,7 @@
     <h2>Próximos picks</h2>
     
     <div ng-if="picks.length > 0">
-      <div ng-repeat="pick in picks"> 
+      <div ng-repeat="pick in picks | orderBy: 'initDate'"> 
       
         <div class="list card pick"> 
 
@@ -18,7 +18,9 @@
             <img src="assets/img/picker.png" alt="">
             <div class="title">
               <h3>{{ pick.company.id_service.id_name.name }}</h3>
-              <p>{{ pick.initDate | date }}</p>
+              <p>{{ pick.initDate }}</p>
+              <p>{{ pick.initDate | date}}</p>
+              <p>{{ pick.initDate | formatDate}}</p>
             </div>
           </div>
 
@@ -35,7 +37,6 @@
     <div ng-if="picks.length <= 0">
       <p>No tienes picks activos.</p>
     </div>
-
-
+    
   </ion-content>
 </ion-view>

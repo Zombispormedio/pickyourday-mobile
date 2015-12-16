@@ -8,7 +8,7 @@ var pydmDrctv = {};
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('starter', ['ionic', 'ionic-datepicker'])
+angular.module('starter', ['ionic', 'ionic-datepicker', 'ngOpenFB'])
   .controller(pydmCtrl)
   .factory(pydmFtry)
   .filter(pydmFiltr)
@@ -152,6 +152,21 @@ angular.module('starter', ['ionic', 'ionic-datepicker'])
         }
       })
 
+      .state("app.profile", {
+        url: "/profile",
+        onEnter: function ($rootScope) {
+          if (!getJSONLocal("user")) {            
+            $rootScope.go("login");
+          }
+        },
+        views: {
+          'profile': {
+            templateUrl: 'app/profile/main.html',
+            controller: 'ProfileCtrl'
+          }
+        }
+      })
+
 
     $urlRouterProvider.otherwise("/login");
     $httpProvider.interceptors.push('AuthInterceptor');
@@ -161,7 +176,9 @@ angular.module('starter', ['ionic', 'ionic-datepicker'])
 
 
 
-.run(function($ionicPlatform, $rootScope, $state, $ionicModal) {
+.run(function($ionicPlatform, $rootScope, $state, $ionicModal, ngFB) {
+
+  ngFB.init({appId: '122387958132479'});
 
   $rootScope.go = function(state, params){
     $state.go(state, params);

@@ -1,18 +1,7 @@
-pydmCtrl.DashboardCtrl = function ($rootScope, $scope, $http, $ionicHistory, ngFB) {
+pydmCtrl.DashboardCtrl = function ($rootScope, $scope, $http, $ionicHistory) {
   	$scope.error="";
   	$scope.picks = "";
-  
-  	ngFB.api({
-        path: '/me',
-        params: {fields: 'id,name, email, gender, link, work'}
-    }).then(
-    function (user) {
-        $scope.user = user;
-    },
-    function (error) {
-    	$scope.error=  error.error_description;
-		$scope.openModal();
-    });
+
 	$scope.getPicks = function(){
 		$http.get("http://pickyourday.herokuapp.com/api/customer/pick/?afterInitDate=" + new Date()).then(function successCallback(response) {
 			var res = response.data;

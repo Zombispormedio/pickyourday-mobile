@@ -6,22 +6,24 @@ pydmCtrl.LoginCtrl = function ($rootScope, $scope, $http, $ionicModal, ngFB) {
 
 		if ( ($scope.user.email !== "" && $scope.user.password !== "") || (id !== "" && email !== "") ) {
 
-			if(id !== "" && email !== ""){
+			if(id && email){
 				var obj = {
 					"email" : email,
 					"password" : id
 				}
 			}else{
-				var obj = {
-					"email" : $scope.user.email,
-					"password" : $scope.user.password
-				}
+				var obj = $scope.user;
 			}
 
 			$http.post("http://pickyourday.herokuapp.com/api/oauth", obj).then(function successCallback(response) {
 				var res = response.data;
 				if (!res.error) {
+					
 					saveLocal("user", response.data.data);
+
+					if(email && id)
+						saveLocal("userFB", id);
+
 					$rootScope.go("app.dashboard");
 				} else {
 					$scope.error=res.error;

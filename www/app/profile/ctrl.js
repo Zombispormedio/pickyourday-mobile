@@ -11,8 +11,9 @@ pydmCtrl.ProfileCtrl = function ($rootScope, $scope, $http, ngFB) {
         $scope.user = user;
     },
     function (error) {
-    	$scope.error=  error.error_description;
-		$scope.openModal();
+    	//$scope.error=  error.error_description;
+		  //$scope.openModal();
+      $scope.getProfile();
     });
 
 }

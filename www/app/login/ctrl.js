@@ -2,9 +2,23 @@ pydmCtrl.LoginCtrl = function ($rootScope, $scope, $http, $ionicModal, ngFB) {
 	$scope.error="";
 	$scope.exists = "";
 	$scope.user = {};
-	$scope.login = function () {
-		if ($scope.user.email !== "" && $scope.user.password !== "") {
-			$http.post("http://pickyourday.herokuapp.com/api/oauth", $scope.user).then(function successCallback(response) {
+	$scope.login = function (id, email) {
+
+		if ( ($scope.user.email !== "" && $scope.user.password !== "") || (id !== "" && email !== "") ) {
+
+			if(id !== "" && email !== ""){
+				var obj = {
+					"email" : email,
+					"password" : id
+				}
+			}else{
+				var obj = {
+					"email" : $scope.user.email,
+					"password" : $scope.user.password
+				}
+			}
+
+			$http.post("http://pickyourday.herokuapp.com/api/oauth", obj).then(function successCallback(response) {
 				var res = response.data;
 				if (!res.error) {
 					saveLocal("user", response.data.data);
@@ -25,7 +39,6 @@ pydmCtrl.LoginCtrl = function ($rootScope, $scope, $http, $ionicModal, ngFB) {
 		if (email !== "") {
 			$http.get("http://pickyourday.herokuapp.com/api/oauth/check/?email=" + email).then(function successCallback(response) {
 				var res = response.data;
-				console.log("hh: " + res.data);
 				$scope.exists = res.data;
 				$scope.register(id, email);
 
@@ -42,16 +55,16 @@ pydmCtrl.LoginCtrl = function ($rootScope, $scope, $http, $ionicModal, ngFB) {
 				"password" : id
 			}
 			if($scope.exists == true){
-				$scope.user.email = email;
-				$scope.user.password = id;
-				$scope.login();
+				//$scope.user.email = email;
+				//$scope.user.password = id;
+				$scope.login(id, email);
 			}else{
 				$http.post("http://pickyourday.herokuapp.com/api/customer", obj).then(function successCallback(response) {
 				var res = response.data;
 				if (!res.error) {
-					$scope.user.email = email;
-					$scope.user.password = id;
-					$scope.login();
+					//$scope.user.email = email;
+					//$scope.user.password = id;
+					$scope.login(id, email);
 				} else {
 					$scope.error= res.error;
 					$scope.openModal(res.error.errmsg);
@@ -71,10 +84,9 @@ pydmCtrl.LoginCtrl = function ($rootScope, $scope, $http, $ionicModal, ngFB) {
 	        params: {fields: 'id, email'}
 	    }).then(
 	    function (user) {
-	        $scope.user = user;
+	        //$scope.user = user;
 	        //$scope.register(user.id, user.email);
 	        existsUser(user.id, user.email);
-	 		console.log(user);
 	    },
 	    function (error) {
 	    	$scope.error=  error.error_description;
@@ -87,8 +99,8 @@ pydmCtrl.LoginCtrl = function ($rootScope, $scope, $http, $ionicModal, ngFB) {
 	        function (response) {
 	            if (response.status === 'connected') {
 	                console.log('Facebook login succeeded');
-	                console.log(response);
-	                console.log(response.authResponse.accessToken);
+	                //console.log(response);
+	                //console.log(response.authResponse.accessToken);
 	                $scope.registerWithFb();
 	                //saveLocal("user", response.authResponse.accessToken);
 	            } else {

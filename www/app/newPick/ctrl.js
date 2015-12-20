@@ -34,7 +34,20 @@ pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams,$ionicH
 					"id_service": $scope.service._id
 				}
 			}
+			/*
+			CustomerService.pick().create({}, obj , function(result){
+				var res = result;
+				if (!res.error) {				
+					$rootScope.go("app.dashboard");
+				} else {
+					$scope.error=res.error;
+					$scope.openModal();
+				}
 
+            }, function(){
+
+            });
+			*/
 			$http.post("http://pickyourday.herokuapp.com/api/customer/pick", obj).then(function successCallback(response) {
 				var res = response.data;
 				if (!res.error) {				
@@ -47,6 +60,7 @@ pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams,$ionicH
 			}, function errorCallback(response) {
 
 			});
+	
 
 		}
 

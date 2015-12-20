@@ -3,6 +3,7 @@ pydmCtrl.LoginCtrl = function ($rootScope, $scope, $http, $ionicModal, ngFB, $io
 	$scope.exists = "";
 	$scope.user = {};
 	$scope.userR = {};
+	$scope.accessToken = "";
 	$scope.login = function (id, email) {
 
 		if ( ($scope.user.email && $scope.user.password ) || (id && email ) ) {
@@ -16,7 +17,7 @@ pydmCtrl.LoginCtrl = function ($rootScope, $scope, $http, $ionicModal, ngFB, $io
 				var obj = $scope.user;
 			}
 
-			OauthService.login().Session({}, obj , function(result){
+			OauthService.login().Session(obj , function(result){
 	            var res = result;
 	            if (!res.error) {       
 	              	saveLocal("user", res.data);
@@ -117,30 +118,39 @@ pydmCtrl.LoginCtrl = function ($rootScope, $scope, $http, $ionicModal, ngFB, $io
 	        });
 	};
 
+
 	var requestToken = "";
 	var accessToken = "";
 	var clientId = "492674088302-eg1tjtks9t05qen8u753fjvbde4ndb1e.apps.googleusercontent.com";
 	var clientSecret = "1KpoioqUOY-dRG_XTKbDa1iV";
-	$http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
- 
+	
     $scope.googleSignIn = function() {
+    	//$http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
         var ref = window.open('https://accounts.google.com/o/oauth2/auth?client_id=' + clientId + '&redirect_uri=http://localhost/callback&scope=https://www.googleapis.com/auth/urlshortener&approval_prompt=force&response_type=code&access_type=offline', '_blank', 'location=no');
         ref.addEventListener('loadstart', function(event) { 
             if((event.url).startsWith("http://localhost/callback")) {
                 requestToken = (event.url).split("code=")[1];
-                $http({method: "post", url: "https://accounts.google.com/o/oauth2/token", data: "client_id=" + clientId + "&client_secret=" + clientSecret + "&redirect_uri=http://localhost/callback" + "&grant_type=authorization_code" + "&code=" + requestToken })
+                $http({method: "post", url: "https://accounts.google.com/o/oauth2/token", data: "client_id=" + clientId + "&client_secret=" + clientSecret + "&redirect_uri=http://localhost/callback" + "&grant_type=authorization_code" + "&code=" + requestToken, headers: {'Content-Type':  'application/x-www-form-urlencoded' }})
                     .success(function(data) {
-                        accessToken = data.access_token;
-                        console.log(accessToken);
+                        $scope.accessToken = data.access_token;
+                        $scope.openModal($scope.accessToken);
+						/*
+                       $http({method: "get", url: 'https://www.googleapis.com/oauth2/v1/userinfo?access_token=' + $scope.accessToken})
+				    	.success(function(data) {
+				    		alert(data);
+				    	})
+				       .error(function(data, status) {
+				    		alert(data);
+				    	});                   */                 
                     })
                     .error(function(data, status) {
-                        alert("ERROR: " + data);
+                    	$scope.openModal(data);
                     });
                 ref.close();
             }
         });
     }
- 
+
     if (typeof String.prototype.startsWith != 'function') {
         String.prototype.startsWith = function (str){
             return this.indexOf(str) == 0;

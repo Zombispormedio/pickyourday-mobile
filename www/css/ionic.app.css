@@ -9093,6 +9093,8 @@ a.button {
     height: 100%; }
     .login .scroll-content .scroll .slider {
       height: 100%; }
+      .login .scroll-content .scroll .slider .slider-pager .slider-pager-page {
+        color: #fff; }
       .login .scroll-content .scroll .slider .box {
         height: 100%;
         padding: 0 10px;

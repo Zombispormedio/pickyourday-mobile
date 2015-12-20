@@ -17,7 +17,7 @@
           <div class="item item-divider">
             <img src="assets/img/picker.png" alt="">
             <div class="title">
-              <h3>{{ pick.company.id_service.id_name.name }}</h3>
+              <h3>{{ pick.service.metadata.name }}</h3>
               <p>{{ pick.initDate | date}}</p>
               <p>{{ pick.initDate | formatDate}}</p>
             </div>
@@ -25,7 +25,7 @@
 
           <div class="item item-body">
             <div>
-             {{ pick.company.id_company.name }}
+             {{ pick.company.name }}
             </div>
           </div>
 

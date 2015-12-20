@@ -1,4 +1,4 @@
-pydmCtrl.LoginCtrl = function ($rootScope, $scope, $http, $ionicModal, ngFB, $ionicSlideBoxDelegate, OauthService, CustomerService) {
+pydmCtrl.LoginCtrl = function ($rootScope, $scope, $http, $ionicModal, ngFB, $ionicSlideBoxDelegate, OauthService, CustomerService, $ionicLoading) {
 	$scope.error="";
 	$scope.exists = "";
 	$scope.user = {};
@@ -115,6 +115,35 @@ pydmCtrl.LoginCtrl = function ($rootScope, $scope, $http, $ionicModal, ngFB, $io
 	                alert('Facebook login failed');
 	            }
 	        });
+	};
+
+	$scope.googleSignIn = function() {
+
+		window.plugins.googleplus.isAvailable(
+		    function (available) {
+		      if (available) {
+		      	$scope.openModal("eh");
+		      }
+		    }
+		);
+		/*
+	    $ionicLoading.show({
+	      template: 'Logging in...'
+	    });
+
+	    window.plugins.googleplus.login(
+	      {},
+	      function (user_data) {
+	       
+	      	console.log(user_data);
+	        $ionicLoading.hide();
+	        
+	      },
+	      function (msg) {
+	        $ionicLoading.hide();
+	      }
+	    );
+*/
 	};
 
 	$scope.cleanError=function(){

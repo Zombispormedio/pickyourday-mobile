@@ -117,34 +117,35 @@ pydmCtrl.LoginCtrl = function ($rootScope, $scope, $http, $ionicModal, ngFB, $io
 	        });
 	};
 
-	$scope.googleSignIn = function() {
-
-		window.plugins.googleplus.isAvailable(
-		    function (available) {
-		      if (available) {
-		      	$scope.openModal("eh");
-		      }
-		    }
-		);
-		/*
-	    $ionicLoading.show({
-	      template: 'Logging in...'
-	    });
-
-	    window.plugins.googleplus.login(
-	      {},
-	      function (user_data) {
-	       
-	      	console.log(user_data);
-	        $ionicLoading.hide();
-	        
-	      },
-	      function (msg) {
-	        $ionicLoading.hide();
-	      }
-	    );
-*/
-	};
+	var requestToken = "";
+	var accessToken = "";
+	var clientId = "492674088302-eg1tjtks9t05qen8u753fjvbde4ndb1e.apps.googleusercontent.com";
+	var clientSecret = "1KpoioqUOY-dRG_XTKbDa1iV";
+	$http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+ 
+    $scope.googleSignIn = function() {
+        var ref = window.open('https://accounts.google.com/o/oauth2/auth?client_id=' + clientId + '&redirect_uri=http://localhost/callback&scope=https://www.googleapis.com/auth/urlshortener&approval_prompt=force&response_type=code&access_type=offline', '_blank', 'location=no');
+        ref.addEventListener('loadstart', function(event) { 
+            if((event.url).startsWith("http://localhost/callback")) {
+                requestToken = (event.url).split("code=")[1];
+                $http({method: "post", url: "https://accounts.google.com/o/oauth2/token", data: "client_id=" + clientId + "&client_secret=" + clientSecret + "&redirect_uri=http://localhost/callback" + "&grant_type=authorization_code" + "&code=" + requestToken })
+                    .success(function(data) {
+                        accessToken = data.access_token;
+                        console.log(accessToken);
+                    })
+                    .error(function(data, status) {
+                        alert("ERROR: " + data);
+                    });
+                ref.close();
+            }
+        });
+    }
+ 
+    if (typeof String.prototype.startsWith != 'function') {
+        String.prototype.startsWith = function (str){
+            return this.indexOf(str) == 0;
+        };
+    }
 
 	$scope.cleanError=function(){
 			$scope.error="";

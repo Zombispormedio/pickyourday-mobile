@@ -11,6 +11,11 @@ pydmFtry.OauthService= function(ApiService){
             return ApiService.rest(this.base+"/logout", {
                 Session:{method:"GET", params:{}}
             });
+        },
+        check:function(){
+            return ApiService.rest(this.base+"/check/?email=:email",{
+                list:{method:"GET", params:{email: "@email"}}
+            });
         }
 
     };

@@ -1,10 +1,11 @@
-pydmCtrl.LoginCtrl = function ($rootScope, $scope, $http, $ionicModal, ngFB) {
+pydmCtrl.LoginCtrl = function ($rootScope, $scope, $http, $ionicModal, ngFB, $ionicSlideBoxDelegate, OauthService, CustomerService) {
 	$scope.error="";
 	$scope.exists = "";
 	$scope.user = {};
+	$scope.userR = {};
 	$scope.login = function (id, email) {
 
-		if ( ($scope.user.email !== "" && $scope.user.password !== "") || (id !== "" && email !== "") ) {
+		if ( ($scope.user.email && $scope.user.password ) || (id && email ) ) {
 
 			if(id && email){
 				var obj = {
@@ -15,66 +16,76 @@ pydmCtrl.LoginCtrl = function ($rootScope, $scope, $http, $ionicModal, ngFB) {
 				var obj = $scope.user;
 			}
 
-			$http.post("http://pickyourday.herokuapp.com/api/oauth", obj).then(function successCallback(response) {
-				var res = response.data;
-				if (!res.error) {
-					
-					saveLocal("user", response.data.data);
-
-					if(email && id)
+			OauthService.login().Session({}, obj , function(result){
+	            var res = result;
+	            if (!res.error) {       
+	              	saveLocal("user", res.data);
+	              	if(email && id)
 						saveLocal("userFB", id);
 
 					$rootScope.go("app.dashboard");
-				} else {
-					$scope.error=res.error;
+	            } else {
+	               	$scope.error=res.error;
 					$scope.openModal(res.error);
-				}
+	            }
 
-			}, function errorCallback(response) {
+	        }, function(){
 
-			});
+	        });
 		}
 
 	}
 
 	function existsUser(id, email){
 		if (email !== "") {
-			$http.get("http://pickyourday.herokuapp.com/api/oauth/check/?email=" + email).then(function successCallback(response) {
-				var res = response.data;
-				$scope.exists = res.data;
-				$scope.register(id, email);
 
-			}, function errorCallback(response) {
-				$scope.openModal(response);
-			});
+			OauthService.check().list({email: email}, {} , function(result){
+	            var res = result;
+	            $scope.exists = res.data;
+				$scope.register(id, email);
+	        }, function(){
+				$scope.openModal("Server not found");
+	        });
 		}
 	}
 
 	$scope.register = function (id, email){
-		if (email !== "" && id !== "") {
-			var obj = {
-				"email" : email,
-				"password" : id
+		if ( ($scope.userR.email  && $scope.userR.password && $scope.userR.password2 ) || (id && email) ) {
+
+			if(id && email){
+				var obj = {
+					"email" : email,
+					"password" : id
+				}
+			}else if($scope.userR.password != $scope.userR.password2 ){
+				$scope.openModal("Las contraseñas no coinciden");
+			}else{
+				var obj = {
+					"email" : $scope.userR.email,
+					"password" : $scope.userR.password
+				}
+				$scope.user.email = $scope.userR.email;
+				$scope.user.password = $scope.userR.password;
 			}
+			
 			if($scope.exists == true){
-				//$scope.user.email = email;
-				//$scope.user.password = id;
 				$scope.login(id, email);
 			}else{
-				$http.post("http://pickyourday.herokuapp.com/api/customer", obj).then(function successCallback(response) {
-				var res = response.data;
-				if (!res.error) {
-					//$scope.user.email = email;
-					//$scope.user.password = id;
-					$scope.login(id, email);
-				} else {
-					$scope.error= res.error;
-					$scope.openModal(res.error.errmsg);
-				}
 
-				}, function errorCallback(response) {
 
-				});
+		
+				CustomerService.register().create({}, obj , function(result){
+		            var res = result;
+		            if (!res.error) {
+						$scope.openModal("Registro correcto");
+						$scope.login(id, email);
+					} else {
+						$scope.error= res.error;
+						$scope.openModal(res.error.errmsg);
+					}
+		        }, function(){
+					$scope.openModal("Server not found");
+		        });
 				
 			}
 		}
@@ -86,8 +97,6 @@ pydmCtrl.LoginCtrl = function ($rootScope, $scope, $http, $ionicModal, ngFB) {
 	        params: {fields: 'id, email'}
 	    }).then(
 	    function (user) {
-	        //$scope.user = user;
-	        //$scope.register(user.id, user.email);
 	        existsUser(user.id, user.email);
 	    },
 	    function (error) {
@@ -101,10 +110,7 @@ pydmCtrl.LoginCtrl = function ($rootScope, $scope, $http, $ionicModal, ngFB) {
 	        function (response) {
 	            if (response.status === 'connected') {
 	                console.log('Facebook login succeeded');
-	                //console.log(response);
-	                //console.log(response.authResponse.accessToken);
 	                $scope.registerWithFb();
-	                //saveLocal("user", response.authResponse.accessToken);
 	            } else {
 	                alert('Facebook login failed');
 	            }
@@ -114,5 +120,14 @@ pydmCtrl.LoginCtrl = function ($rootScope, $scope, $http, $ionicModal, ngFB) {
 	$scope.cleanError=function(){
 			$scope.error="";
 	}
+
+
+	$scope.nextSlide = function() {
+    	$ionicSlideBoxDelegate.next();
+  	}
+
+  	$scope.previousSlide = function() {
+  		$ionicSlideBoxDelegate.previous();
+  	}
 
 }

@@ -3,15 +3,46 @@
 	background-size: cover;
     background-position: bottom center;
     height: 100%;
-    
+    color: #fff;
 
     .scroll-content{
-    	display: flex;
-	    flex-direction: row;
-	    align-items: center;
 
 	    .scroll{
     		flex: 1;
+    		height: 100%;
+
+    		.slider{
+    			height: 100%;
+
+    			.box{
+    				height: 100%;					
+					padding: 0 10px;
+					display: flex;
+					align-items: center;
+
+					.container{
+						flex: 1;
+
+						p{
+							text-align: center;
+							span{
+								text-decoration: underline;
+							}
+						}
+
+						.loginWith{
+							margin-top: 20px;
+							font-weight: 300;
+							text-align: center;
+
+							img{
+								width: 50px;
+								display: inline-block;
+							}
+						}
+					}
+    			}
+    		}
 	    }
     }
 

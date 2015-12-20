@@ -3,6 +3,65 @@
   <div class="login">
   <div class="overlay">
 
+<ion-content class="padding">
+  <ion-slide-box>
+    <ion-slide>
+      <div class="box loginSlide">
+        
+        <div class="loginContainer container">
+          <form ng-submit="login()">
+              <div class="list">
+                  <label class="item item-input">
+                      <input type="text" placeholder="Email" ng-model="user.email">
+                  </label>
+                  <label class="item item-input">
+                      <input type="password" placeholder="Password" ng-model="user.password">
+                  </label>
+              </div>
+              <button type="submit" class="button button-block button-positive">Login</button>
+          </form>
+
+          <p>¿No tienes usuario? <span ng-click="nextSlide()">Regístrate</span></p>
+          
+          <div class="loginWith">
+            <p>O entra con:</p>
+            <img src="../assets/img/facebook.png" alt="Login with facebook" ng-click="fbLogin()">
+          <!--
+            <button class="button button-block button-positive" ng-click="fbLogin()">
+            Login with Facebook
+            </button>
+          -->
+          </div>
+        </div>
+
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <div class="box registerSlide">
+        <div class="registerContainer container">
+          <form ng-submit="register()">
+            <div class="list">
+                <label class="item item-input">
+                    <input type="text" placeholder="Email" ng-model="userR.email">
+                </label>
+                <label class="item item-input">
+                    <input type="password" placeholder="Password" ng-model="userR.password">
+                </label>
+                <label class="item item-input">
+                    <input type="password" placeholder="Password" ng-model="userR.password2">
+                </label>
+            </div>
+            <button type="submit" class="button button-block button-positive">Register</button>
+        </form>
+
+        <p>¿Ya tienes cuenta? <span ng-click="previousSlide()">Inicia Sesión</span></p>
+      </div>
+    </ion-slide>
+  </ion-slide-box>
+
+
+  </ion-content>
+<!--
   <ion-content class="padding">
     <form ng-submit="login()">
         <div class="list">
@@ -22,6 +81,7 @@
 
 
   </ion-content>
+-->
 
   </div>
   </div>

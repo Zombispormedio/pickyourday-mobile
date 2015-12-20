@@ -1,18 +1,19 @@
-pydmCtrl.CompaniesCtrl = function ($rootScope, $scope, $http, $stateParams) {
+pydmCtrl.CompaniesCtrl = function ($rootScope, $scope, $http, $stateParams, CustomerService) {
 
 	$scope.companies = "";
 
-	$http.get("http://pickyourday.herokuapp.com/api/customer/company", $scope.user).then(function successCallback(response) {
-		var res = response.data;
-		if (!res.error) {
-			$scope.companies = response.data.data;							
-		} else {
-			$scope.error=res.error;
-		}
+	CustomerService.company().list({}, $scope.user , function(result){
+        var res = result;
+        if (!res.error) {       
+          	$scope.companies = res.data;		
+        } else {
+           $scope.error=res.error;
+        }
 
-	}, function errorCallback(response) {
+    }, function(){
 
-	}); 
+    });
+
 
 	$scope.goDetail = function (company) {
 

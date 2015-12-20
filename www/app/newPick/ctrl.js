@@ -47,27 +47,12 @@ pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams,$ionicH
             }, function(){
 
             });
-			/*
-			$http.post("http://pickyourday.herokuapp.com/api/customer/pick", obj).then(function successCallback(response) {
-				var res = response.data;
-				if (!res.error) {				
-					$rootScope.go("app.dashboard");
-				} else {
-					$scope.error=res.error;
-					$scope.openModal();
-				}
-
-			}, function errorCallback(response) {
-
-			});
-	*/
 
 		}
 
 	}
 
 	$scope.$on('$ionicView.enter', function() {
-		
 		var back = $ionicHistory.backView().stateName;
 		if(back != "app.companiesDetail")
     		$rootScope.go("app.dashboard");

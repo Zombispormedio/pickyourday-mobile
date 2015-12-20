@@ -1,26 +1,28 @@
-pydmCtrl.ProfileCtrl = function ($rootScope, $scope, $http, ngFB) {
+pydmCtrl.ProfileCtrl = function ($rootScope, $scope, $http, ngFB, CustomerService) {
 
   	$scope.error="";
   	$scope.picks = "";
     $scope.user = {};
 
-    $scope.getProfile = function(){
-        $http.get("http://pickyourday.herokuapp.com/api/customer/profile").then(function successCallback(response) {
-          var res = response.data;
-          if (!res.error) {
-            $scope.user = response.data.data;
-            //saveLocal("user", response.data.data);
-          } else {
-            $scope.error=res.error;
-            $scope.openModal(res.error);
-          }
 
-        }, function errorCallback(response) {
+    $scope.getProfile = function(){
+
+        CustomerService.profile().list({}, {} , function(result){
+            var res = result;
+            if (!res.error) {       
+              console.log(res);
+              $scope.user = res.data;
+            } else {
+               $scope.error=res.error;
+              $scope.openModal(res.error);
+            }
+
+        }, function(){
 
         });
+
     }
     if(getJSONLocal("userFB")){
-      console.log(getJSONLocal("userFB"));
       	ngFB.api({
             path: '/me',
             params: {fields: 'id , name, email, gender, link, work'}
@@ -29,8 +31,6 @@ pydmCtrl.ProfileCtrl = function ($rootScope, $scope, $http, ngFB) {
             $scope.user = user;
         },
         function (error) {
-        	//$scope.error=  error.error_description;
-    		  //$scope.openModal();
           $scope.getProfile();
         });
     }else{

@@ -9086,13 +9086,31 @@ a.button {
   background-image: url("../assets/img/login.jpg");
   background-size: cover;
   background-position: bottom center;
-  height: 100%; }
-  .login .scroll-content {
-    display: flex;
-    flex-direction: row;
-    align-items: center; }
-    .login .scroll-content .scroll {
-      flex: 1; }
+  height: 100%;
+  color: #fff; }
+  .login .scroll-content .scroll {
+    flex: 1;
+    height: 100%; }
+    .login .scroll-content .scroll .slider {
+      height: 100%; }
+      .login .scroll-content .scroll .slider .box {
+        height: 100%;
+        padding: 0 10px;
+        display: flex;
+        align-items: center; }
+        .login .scroll-content .scroll .slider .box .container {
+          flex: 1; }
+          .login .scroll-content .scroll .slider .box .container p {
+            text-align: center; }
+            .login .scroll-content .scroll .slider .box .container p span {
+              text-decoration: underline; }
+          .login .scroll-content .scroll .slider .box .container .loginWith {
+            margin-top: 20px;
+            font-weight: 300;
+            text-align: center; }
+            .login .scroll-content .scroll .slider .box .container .loginWith img {
+              width: 50px;
+              display: inline-block; }
   .login form button {
     border-color: transparent !important;
     border: 2px solid transparent;

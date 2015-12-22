@@ -1,0 +1,29 @@
+.cabecera{
+	width: 100%;
+
+	.col{
+		text-align: center;
+
+		img{
+			width: 30%;
+		}
+	}
+}
+.tabs-top > .tabs{
+	border: 0;
+}
+.tabs-top.tabs-striped .tab-item, .tabs-icon-top > .tabs .tab-item{
+	text-decoration: none;
+
+	&:hover{
+		color: #FFF;
+		text-decoration: none;
+	}
+
+}
+.tabs-top.tabs-striped .tab-item.tab-item-active{
+	border-width: 0px 0px 4px 0px !important;
+	border-color: #163b36;
+	text-decoration: none;
+	margin-top: 0;
+}

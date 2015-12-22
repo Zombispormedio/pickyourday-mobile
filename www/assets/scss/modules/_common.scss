@@ -1,0 +1,56 @@
+hr{
+	width: 20%;
+    height: 2px;
+    border: 0;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+h2{
+	font-size: 24px;
+	text-align: center;
+	padding: 0;
+	margin: 0;
+}
+
+.Salud{
+	background-color: #455a64;
+}
+
+.Belleza{
+	background-color: #a62222;
+}
+
+.positive{
+	background-color: $positive;
+}
+
+.orange{
+	background-color: $orange;
+}
+
+
+.ion-nifty-modal{
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 250px !important;
+	width: 90%;
+	color: #fff;
+	margin: auto;
+
+	p{
+		margin: 20px 0;
+		font-size: 20px;
+		text-align: center;
+	}
+
+	.scroll{
+		height: 100%;
+	    @include flexbox();
+		@include flex-direction(column);
+	    justify-content: space-between;
+	    -webkit-user-select: none;
+	}
+}

@@ -2,7 +2,7 @@ pydmCtrl.CompaniesCtrl = function ($rootScope, $scope, $http, $stateParams, Cust
 
 	$scope.companies = "";
 
-	CustomerService.company().list({}, $scope.user , function(result){
+	CustomerService.company().list({}, {}, function(result){
         var res = result;
         if (!res.error) {       
           	$scope.companies = res.data;		

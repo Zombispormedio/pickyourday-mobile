@@ -6,26 +6,21 @@
 
 	<div class="datos">
 		<p><span class="strong">Compañía:</span> {{company.name}}</p>
-		<p><span class="strong">Servicio:</span> {{service.id_name.name}}</p>    
+		<p><span class="strong">Servicio:</span> {{service.default.name}}</p>    
 	</div>
 
 	<div class="dropdown list">
-	    <button class="button button-block button-assertive dropdown-toggle" data-toggle="dropdown" id="dLabel">{{ fecha }}</button>
+	    <button class="button button-block button-assertive dropdown-toggle" data-toggle="dropdown" id="dLabel">
+	    	{{ fecha | date:'dd MMMM yyyy HH:mm'}}
+	    </button>
 	    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
 	        <datetimepicker data-ng-model="data.date"
 	        				data-before-render="beforeRender($view, $dates, $leftDate, $upDate, $rightDate)"
 	        				data-on-set-time="onTimeSet(newDate, oldDate)"
-	                        data-datetimepicker-config="{ dropdownSelector: '.dropdown-toggle' }"></datetimepicker>
+	                        data-datetimepicker-config="{ dropdownSelector: '.dropdown-toggle'}"></datetimepicker>
 	    </ul>
 	</div>
 
-	<!--
-    <div class="list">
-        <ionic-datepicker date="currentDate" min="minDate" max="maxDate" callback="datePickerCallback">
-		    <button class="button button-block button-assertive"> {{ currentDate | date:'MMMM/dd/yyyy' }} </button>
-		</ionic-datepicker>
-    </div>
-	-->
     <button class="button button-block button-positive" ng-click="newPick()">Crear pick</button>
 
 

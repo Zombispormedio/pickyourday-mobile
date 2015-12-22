@@ -1,0 +1,74 @@
+.login{
+	background-image: url("../assets/img/login.jpg");
+	background-size: cover;
+    background-position: bottom center;
+    height: 100%;
+    color: #fff;
+
+    .scroll-content{
+
+	    .scroll{
+    		@include flex(1);
+    		height: 100%;
+
+    		.slider{
+    			height: 100%;
+
+				.slider-pager .slider-pager-page{
+					color: #fff;
+				}
+
+    			.box{
+    				height: 100%;					
+					padding: 0 10px;
+					display: flex;
+					align-items: center;
+
+					label{
+						margin: 10px 0;
+					}
+
+					.container{
+						@include flex(1);
+
+						p{
+							text-align: center;
+							span{
+								text-decoration: underline;
+							}
+						}
+
+						.loginWith{
+							margin-top: 20px;
+							font-weight: 300;
+							text-align: center;
+
+							img{
+								width: 50px;
+								display: inline-block;
+								margin: 0 10px;
+							}
+						}
+					}
+    			}
+    		}
+	    }
+    }
+
+    form{
+
+    	button{
+			border-color: transparent !important;
+			border: 2px solid transparent;
+			border-radius: 5px;
+			background-color: rgba(5,59,52, 0.8) !important;
+		}
+    }
+
+    .overlay{
+		height: 100%;
+		width: 100%;
+		background-color: rgba(5,85,74,0.9);
+	}
+
+}

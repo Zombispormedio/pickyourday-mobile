@@ -1,18 +1,17 @@
 <ion-view>
-  <ion-content class="padding">
+  <ion-content class="padding profile">
 
+    <hr class="positive">
     <h2>Tu perfil</h2>
-     <div class="list card">
-        <div class="item">
-            <h2>{{user.name}}</h2>
-            <p>{{user.email}}</p>
-        </div>
-        <div ng-if="user.id !=''">
-            <div class="item item-body">
-                <img src="http://graph.facebook.com/{{user.id}}/picture?width=270&height=270"/>
-            </div>
-        </div>
+
+
+    <h3>{{user.name}}</h3>
+    <p>{{user.email}}</p>
+
+    <div ng-if="user.id !=''">
+        <img src="http://graph.facebook.com/{{user.id}}/picture?width=270&height=270"/>
     </div>
+
 
   </ion-content>
 </ion-view>

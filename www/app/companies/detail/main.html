@@ -5,6 +5,11 @@
   		<hr class="{{company.category_metadata.name}}">
 		<h2>{{company.name}}</h2>
 		<p>{{company.description}}</p>
+		<ion-slide-box ng-if="company.images.length > 0">
+		  <ion-slide ng-repeat="image in company.images">
+		    <img src="{{image.src}}" alt="{{image.alt}}">
+		  </ion-slide>
+		</ion-slide-box>
 	</div>
 	
 	<hr class="positive">

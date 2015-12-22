@@ -1,0 +1,32 @@
+.prepicks{
+
+	.list.card.sugerencias{
+		@include flex-box();
+		height: 150px;
+
+		.item.left{
+			@include flex(1);
+			padding: 0;
+			background-size: cover;
+    		background-position: bottom center;
+		}
+
+		.item.right{
+			@include flex(1);
+			background-color: #a62222;
+
+			h3{
+				color: #FFF;
+				font-size: 14px;
+			}
+
+			p{
+				color: #FFF;
+				font-size: 12px;
+				font-weight: 100;
+				white-space: pre-line;
+    			text-align: left;
+			}
+		}
+	}
+}

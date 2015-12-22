@@ -9082,6 +9082,119 @@ a.button {
   -webkit-transition-duration: 0s;
   transition-duration: 0s; }
 
+/*--------------------------------- Archivos del config -----------------------------------*/
+/* FLEXBOX */
+/* Icono del menu del movil */
+/*--------------------------------------------------------------------*/
+/*  Estilos de caracter 
+/*--------------------------------------------------------------------*/
+/* colores */
+/* Font weights */
+/*--------------------------------------- Modules -----------------------------------------*/
+.cabecera {
+  width: 100%; }
+  .cabecera .col {
+    text-align: center; }
+    .cabecera .col img {
+      width: 30%; }
+
+.tabs-top > .tabs {
+  border: 0; }
+
+.tabs-top.tabs-striped .tab-item, .tabs-icon-top > .tabs .tab-item {
+  text-decoration: none; }
+  .tabs-top.tabs-striped .tab-item:hover, .tabs-icon-top > .tabs .tab-item:hover {
+    color: #FFF;
+    text-decoration: none; }
+
+.tabs-top.tabs-striped .tab-item.tab-item-active {
+  border-width: 0px 0px 4px 0px !important;
+  border-color: #163b36;
+  text-decoration: none;
+  margin-top: 0; }
+
+hr {
+  width: 20%;
+  height: 2px;
+  border: 0;
+  margin-top: 10px;
+  margin-bottom: 10px; }
+
+h2 {
+  font-size: 24px;
+  text-align: center;
+  padding: 0;
+  margin: 0; }
+
+.Salud {
+  background-color: #455a64; }
+
+.Belleza {
+  background-color: #a62222; }
+
+.positive {
+  background-color: #05564b; }
+
+.orange {
+  background-color: #e64a19; }
+
+.ion-nifty-modal {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 250px !important;
+  width: 90%;
+  color: #fff;
+  margin: auto; }
+  .ion-nifty-modal p {
+    margin: 20px 0;
+    font-size: 20px;
+    text-align: center; }
+  .ion-nifty-modal .scroll {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    -webkit-user-select: none; }
+
+.dashboard p {
+  text-align: center; }
+
+.dashboard .list.card.pick .item-divider {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; }
+  .dashboard .list.card.pick .item-divider img {
+    width: 40px;
+    margin-right: 10px; }
+  .dashboard .list.card.pick .item-divider h3 {
+    margin-bottom: 0; }
+
+.dashboard .list.card.pick p {
+  text-align: left; }
+
+.dashboard .list.card.promotion {
+  display: flex;
+  height: 100px; }
+  .dashboard .list.card.promotion .item.left {
+    flex: 1;
+    padding: 0;
+    background-size: cover;
+    background-position: bottom center; }
+  .dashboard .list.card.promotion .item.right {
+    flex: 1;
+    background-color: #a62222; }
+    .dashboard .list.card.promotion .item.right h3 {
+      color: #FFF;
+      font-size: 14px; }
+    .dashboard .list.card.promotion .item.right p {
+      color: #FFF;
+      font-size: 12px;
+      font-weight: 100;
+      white-space: pre-line;
+      text-align: left; }
+
 .login {
   background-image: url("../assets/img/login.jpg");
   background-size: cover;
@@ -9126,47 +9239,66 @@ a.button {
     width: 100%;
     background-color: rgba(5, 85, 74, 0.9); }
 
-.cabecera {
-  width: 100%; }
-  .cabecera .col {
-    text-align: center; }
-    .cabecera .col img {
-      width: 30%; }
-
-hr {
-  width: 20%;
-  height: 2px;
-  border: 0;
-  margin-top: 10px;
-  margin-bottom: 10px; }
-
-h2 {
-  font-size: 24px;
-  text-align: center;
-  padding: 0;
-  margin: 0; }
-
-.Salud {
-  background-color: #455a64; }
-
-.Belleza {
-  background-color: #a62222; }
-
-.dashboard p {
-  text-align: center; }
-
-.dashboard .list.card.pick .item-divider {
+.prepicks .list.card.sugerencias {
   display: flex;
-  align-items: center;
-  justify-content: flex-start; }
-  .dashboard .list.card.pick .item-divider img {
-    width: 40px;
-    margin-right: 10px; }
-  .dashboard .list.card.pick .item-divider h3 {
-    margin-bottom: 0; }
+  height: 150px; }
+  .prepicks .list.card.sugerencias .item.left {
+    flex: 1;
+    padding: 0;
+    background-size: cover;
+    background-position: bottom center; }
+  .prepicks .list.card.sugerencias .item.right {
+    flex: 1;
+    background-color: #a62222; }
+    .prepicks .list.card.sugerencias .item.right h3 {
+      color: #FFF;
+      font-size: 14px; }
+    .prepicks .list.card.sugerencias .item.right p {
+      color: #FFF;
+      font-size: 12px;
+      font-weight: 100;
+      white-space: pre-line;
+      text-align: left; }
 
-.dashboard .list.card.pick p {
-  text-align: left; }
+.categories .item {
+  position: relative;
+  height: 150px;
+  padding: 0;
+  border: 0;
+  color: #fff;
+  display: -webkit-box;
+  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+  display: -ms-flexbox;
+  /* TWEENER - IE 10 */
+  display: -webkit-flex;
+  /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+  display: flex;
+  /* NEW, Spec - Firefox, Chrome, Opera */
+  -ms-flex-direction: column;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; }
+  .categories .item .overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    opacity: 0.5;
+    left: 0;
+    top: 0; }
+    .categories .item .overlay.gray {
+      background-color: #000;
+      opacity: 0.7 !important; }
+  .categories .item h3 {
+    color: #FFF;
+    font-size: 24px;
+    text-transform: uppercase;
+    z-index: 1; }
+  .categories .item p {
+    color: #FFF;
+    font-size: 14px;
+    font-weight: 100;
+    z-index: 1; }
 
 .companies .item.cabecera {
   display: flex;
@@ -9180,28 +9312,29 @@ h2 {
 .companies .item h3 {
   margin-bottom: 0; }
 
-.company .cabecera {
-  text-align: center;
-  margin-bottom: 20px; }
-  .company .cabecera hr {
-    width: 20%; }
-
-.company hr {
-  width: 10%; }
-
-.company h3 {
-  font-size: 20px;
-  text-align: center;
-  margin-top: 0; }
-
-.company .list.card .item h4 {
-  text-align: left;
-  font-size: 18px; }
-
-.company .list.card .item.item-body {
-  padding-top: 10px; }
-  .company .list.card .item.item-body p {
-    margin: 5px 0; }
+.company {
+  text-align: left; }
+  .company .cabecera {
+    text-align: center;
+    margin-bottom: 20px; }
+    .company .cabecera hr {
+      width: 20%; }
+    .company .cabecera img {
+      width: 100%; }
+  .company hr {
+    width: 10%; }
+  .company h3 {
+    font-size: 20px;
+    text-align: center;
+    margin-top: 0; }
+  .company .list.card .item h4 {
+    text-align: left;
+    font-size: 18px; }
+  .company .list.card .item.item-body {
+    text-align: left;
+    padding-top: 10px; }
+    .company .list.card .item.item-body p {
+      margin: 5px 0; }
 
 .newPick strong {
   font-weight: 600; }
@@ -9216,38 +9349,3 @@ h2 {
   border: 2px solid;
   background-color: transparent;
   color: #000; }
-
-.positive {
-  background-color: #05564b; }
-
-.orange {
-  background-color: #e64a19; }
-
-.tabs-top.tabs-striped .tab-item {
-  text-decoration: none; }
-
-.tabs-top.tabs-striped .tab-item.tab-item-active {
-  border-width: 0px 0px 4px 0px !important;
-  border-color: #163b36;
-  text-decoration: none;
-  margin-top: 0; }
-
-.ion-nifty-modal {
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 250px !important;
-  width: 90%;
-  color: #fff;
-  margin: auto; }
-  .ion-nifty-modal p {
-    margin: 20px 0;
-    font-size: 20px;
-    text-align: center; }
-  .ion-nifty-modal .scroll {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    -webkit-user-select: none; }

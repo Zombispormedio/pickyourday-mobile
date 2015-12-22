@@ -1,0 +1,60 @@
+.dashboard{
+
+	p{
+		text-align: center;
+	}
+
+	.list.card.pick{
+
+		.item-divider{
+			@include flexbox();
+			align-items: center;
+    		justify-content: flex-start;
+
+			img{
+				width: 40px;
+    			margin-right: 10px;
+			}
+
+			h3{
+				margin-bottom: 0;
+			}
+		}
+
+		p{
+			text-align: left;
+		}
+	}
+
+	.list.card.promotion{
+		display: flex;
+		height: 100px;
+
+		.item.left{
+			flex: 1;
+			padding: 0;
+			background-size: cover;
+    		background-position: bottom center;
+		}
+
+		.item.right{
+			flex: 1;
+			background-color: #a62222;
+
+			h3{
+				color: #FFF;
+				font-size: 14px;
+			}
+
+			p{
+				color: #FFF;
+				font-size: 12px;
+				font-weight: 100;
+				white-space: pre-line;
+    			text-align: left;
+			}
+		}
+	}
+
+
+}

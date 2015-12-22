@@ -60,10 +60,25 @@ pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams,$ionicH
     		$rootScope.go("app.dashboard");
 	});
 
+
 	$scope.beforeRender = function ($view, $dates, $leftDate, $upDate, $rightDate) {
-	    var index = Math.floor(Math.random() * $dates.length);
-	    $dates[index].selectable = false;
+
+	    var threeMonthsLater = moment().add(3, 'months');
+	    for(var i=0; i<$dates.length;i++) {
+	       if(moment() > $dates[i].utcDateValue && $dates[i].utcDateValue <= threeMonthsLater ) {
+	          $dates[i].selectable = false;
+	       }
+	    }     
 	}
+
+	/*
+	$scope.beforeRender = function ($view, $dates, $leftDate, $upDate, $rightDate) {
+        var threeMonthsLater = moment().add(3, 'months');
+        for(var index=0;index<$dates.length;index++) {
+            $dates[index].selectable = moment($dates[index].utcDateValue).isBetween(moment(),threeMonthsLater);            
+        }
+    }
+    */
 
 	$scope.onTimeSet = function (newDate, oldDate) {
 		$scope.fecha = newDate;

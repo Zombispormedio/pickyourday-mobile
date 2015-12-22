@@ -11,6 +11,8 @@ pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams,$ionicH
 	$scope.currentDate = new Date();
 	$scope.minDate = new Date();
 	$scope.maxDate = new Date(2100, 6, 31);
+
+	$scope.fecha = new Date();
 	 
 	$scope.datePickerCallback = function (val) {
 		if (!val) {	
@@ -27,7 +29,7 @@ pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams,$ionicH
 		if ($scope.company._id !== "" && $scope.service._id !== "" && $scope.date !== "") {
 
 			var obj = {
-				"initDate" : $scope.date,
+				"initDate" : $scope.fecha,
 				"state": "active",
 				"company": {
 					"id_company": $scope.company._id,
@@ -57,6 +59,18 @@ pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams,$ionicH
 		if(back != "app.companiesDetail")
     		$rootScope.go("app.dashboard");
 	});
+
+	$scope.beforeRender = function ($view, $dates, $leftDate, $upDate, $rightDate) {
+	    var index = Math.floor(Math.random() * $dates.length);
+	    $dates[index].selectable = false;
+	}
+
+	$scope.onTimeSet = function (newDate, oldDate) {
+		$scope.fecha = newDate;
+	    console.log(newDate);
+	    console.log(oldDate);
+	}
+
 
 	
 

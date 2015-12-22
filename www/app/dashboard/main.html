@@ -15,10 +15,9 @@
         <div class="list card pick"> 
 
           <div class="item item-divider">
-            <img src="assets/img/picker.png" alt="">
+            <img src="assets/img/{{ pick.company.category.name }}.png" alt="{{ pick.company.category.name }}">
             <div class="title">
               <h3>{{ pick.service.metadata.name }}</h3>
-              <p>{{ pick.initDate | date}}</p>
               <p>{{ pick.initDate | formatDate}}</p>
             </div>
           </div>
@@ -26,6 +25,7 @@
           <div class="item item-body">
             <div>
              {{ pick.company.name }}
+             {{ pick.company.category.name }}
             </div>
           </div>
 
@@ -36,6 +36,9 @@
     <div ng-if="picks.length <= 0">
       <p>No tienes picks activos.</p>
     </div>
+
+    <hr class="orange">
+    <h2>Promociones</h2>
     
   </ion-content>
 </ion-view>

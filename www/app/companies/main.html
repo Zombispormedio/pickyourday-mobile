@@ -1,20 +1,20 @@
 <ion-view>
-  <ion-content class="padding">
+  <ion-content class="padding companies">
   
+  <hr class="positive">
   <h2>Companies</h2>
 
   <div ng-if="companies.length > 0">
     <div ng-repeat="company in companies"> 
     
       <div class="list card" ng-click="goDetail(company)"> 
-        <div class="item item-divider">
+        <div class="item cabecera">
+          <img src="assets/img/{{company.category_metadata.name}}.png" alt="{{ company.category_metadata.name }}">
           <h3>{{ company.name }}</h3>
         </div>
 
-        <div class="item item-body">
-          <div>
-           {{ company.description}}
-          </div>
+        <div class="item">
+          <p>{{ company.description}}</p>
         </div>
 
       </div> 

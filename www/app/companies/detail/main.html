@@ -1,10 +1,13 @@
 <ion-view>
-  <ion-content class="padding">
-  <a class="button icon icon-left ion-chevron-left" ui-sref="app.companies">Volver</a>
+  <ion-content class="padding company">
   
-	<h2>{{company.name}}</h2>
-	<p>{{company.description}}</p>
+  	<div class="cabecera">
+  		<hr class="{{company.category_metadata.name}}">
+		<h2>{{company.name}}</h2>
+		<p>{{company.description}}</p>
+	</div>
 	
+	<hr class="positive">
 	<h3>Servicios</h3>
 
 	<div ng-if="services.length > 0">
@@ -12,13 +15,11 @@
 
 		  <div class="list card" ng-click="newPick(company, service)"> 
 		    <div class="item item-divider">
-		      <h3>{{ service.id_name.name }}</h3>
+		      <h4>{{ service.default.name }}</h4>
 		    </div>
-
 		    <div class="item item-body">
-		      <div>
-		       {{ service.description}}
-		      </div>
+		      <p>{{ service.description}}</p>
+		      <span class="price">{{ service.price | currency : ""}} €</span>
 		    </div>
 
 		  </div> 
@@ -29,6 +30,8 @@
 	<div ng-if="services.length <= 0">
 		<p>No hay servicios</p>
 	</div>
+
+	<a class="button icon icon-left ion-chevron-left" ui-sref="app.companies">Volver</a>
     
   </ion-content>
 </ion-view>

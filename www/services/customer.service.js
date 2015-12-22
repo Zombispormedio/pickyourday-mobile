@@ -25,7 +25,13 @@ pydmFtry.CustomerService = function(ApiService){
             return ApiService.rest(this.base+"/company",{
                 list:{method:"GET", params:{}}              
             });
+        },
+        category: function(){
+            return ApiService.rest(this.base+"/category",{
+                list:{method:"GET", params:{}}              
+            });
         }
+
 
 
     };

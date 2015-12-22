@@ -119,6 +119,7 @@ pydmCtrl.LoginCtrl = function ($rootScope, $scope, $http, $ionicModal, ngFB, $io
 	};
 
 
+
 	var requestToken = "";
 	var accessToken = "";
 	var clientId = "492674088302-eg1tjtks9t05qen8u753fjvbde4ndb1e.apps.googleusercontent.com";
@@ -126,22 +127,23 @@ pydmCtrl.LoginCtrl = function ($rootScope, $scope, $http, $ionicModal, ngFB, $io
 	
     $scope.googleSignIn = function() {
     	//$http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-        var ref = window.open('https://accounts.google.com/o/oauth2/auth?client_id=' + clientId + '&redirect_uri=http://localhost/callback&scope=https://www.googleapis.com/auth/urlshortener&approval_prompt=force&response_type=code&access_type=offline', '_blank', 'location=no');
+        var ref = window.open('https://accounts.google.com/o/oauth2/auth?client_id=' + clientId + '&redirect_uri=http://localhost/callback&scope=https://www.googleapis.com/auth/userinfo.email+https://www.googleapis.com/auth/userinfo.profile&approval_prompt=force&response_type=code&access_type=offline', '_blank', 'location=no');
         ref.addEventListener('loadstart', function(event) { 
             if((event.url).startsWith("http://localhost/callback")) {
                 requestToken = (event.url).split("code=")[1];
                 $http({method: "post", url: "https://accounts.google.com/o/oauth2/token", data: "client_id=" + clientId + "&client_secret=" + clientSecret + "&redirect_uri=http://localhost/callback" + "&grant_type=authorization_code" + "&code=" + requestToken, headers: {'Content-Type':  'application/x-www-form-urlencoded' }})
                     .success(function(data) {
                         $scope.accessToken = data.access_token;
-                        $scope.openModal($scope.accessToken);
-						/*
-                       $http({method: "get", url: 'https://www.googleapis.com/oauth2/v1/userinfo?access_token=' + $scope.accessToken})
-				    	.success(function(data) {
-				    		alert(data);
+
+ 						$http({method: "get", url: "https://www.googleapis.com/plus/v1/people/me", headers: {'Content-Type': 'application/json', 'Authorization':  'Bearer '+data.access_token }})
+                        .success(function(data) {
+				    		var id = data.id;
+				    		var googleEmail = data.emails[0].value;
+				    		existsUser(id, googleEmail);
 				    	})
-				       .error(function(data, status) {
-				    		alert(data);
-				    	});                   */                 
+				    	.error(function(data, status) {
+				    		$scope.openModal(data);
+				    	});                               
                     })
                     .error(function(data, status) {
                     	$scope.openModal(data);
@@ -151,11 +153,13 @@ pydmCtrl.LoginCtrl = function ($rootScope, $scope, $http, $ionicModal, ngFB, $io
         });
     }
 
+
     if (typeof String.prototype.startsWith != 'function') {
         String.prototype.startsWith = function (str){
             return this.indexOf(str) == 0;
         };
     }
+    
 
 	$scope.cleanError=function(){
 			$scope.error="";

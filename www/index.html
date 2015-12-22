@@ -7,6 +7,14 @@
     
     <link href="lib/ionic-nifty-modal/nifty.modal.css" rel="stylesheet">  
     
+    <!-- datepicker -->
+    <!--
+    <link href="http://code.ionicframework.com/1.0.0-beta.6/css/ionic.css" rel="stylesheet">
+    <link href="http://dalelotts.github.io/angular-bootstrap-datetimepicker/stylesheets/datetimepicker.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    -->
+    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="lib/angular-bootstrap-datetimepicker/src/css/datetimepicker.css">
 
     <!-- compiled css output -->
     <link href="css/ionic.app.css" rel="stylesheet">
@@ -24,11 +32,14 @@
 
     <script src="services/utils.js"></script>
 
+
+
+
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
 
     <!-- cordova script (this will be a 404 during development) -->
-	  <script src="lib/angular-resource/angular-resource.min.js"></script>
+	<script src="lib/angular-resource/angular-resource.min.js"></script>
     <script src="cordova.js"></script>
 	
     
@@ -37,10 +48,23 @@
     <script src="lib/datepicker-for-ionic/dist/templates.min.js"></script>
     <script src="lib/datepicker-for-ionic/dist/ionic-datepicker.min.js"></script>
 
-    <script src="lib/moment/min/moment.min.js"></script>
-
     <script src="lib/openfb/openfb.js"></script>
     <script src="lib/openfb/ngopenfb.js"></script>
+
+    <!--- google apis -->
+    <script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script>
+    <script type="text/javascript" src="//www.google.com/jsapi"></script>
+
+    <!-- datepicker -->
+    <script type="text/javascript" src="lib/moment/moment.js"></script>
+    <script type="text/javascript" src="lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script type="text/javascript" src="lib/angular-bootstrap-datetimepicker/src/js/datetimepicker.js"></script>
+    <!--<script src="lib/moment/min/moment.min.js"></script>-->
+    <!--
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.4.0/moment.min.js"></script>
+    <script src="http://dalelotts.github.io/angular-bootstrap-datetimepicker/javascripts/datetimepicker.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    -->
     <!-- your app's js -->
     <script src="app.js"></script>
     

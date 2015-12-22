@@ -21,8 +21,8 @@
     			.box{
     				height: 100%;					
 					padding: 0 10px;
-					display: flex;
-					align-items: center;
+					@include flexbox();
+					@include flex-align(center);
 
 					label{
 						margin: 10px 0;

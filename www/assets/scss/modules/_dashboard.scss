@@ -8,8 +8,8 @@
 
 		.item-divider{
 			@include flexbox();
-			align-items: center;
-    		justify-content: flex-start;
+			@include flex-align(center);
+			@include flex-justify(flex-start);
 
 			img{
 				width: 40px;
@@ -27,7 +27,7 @@
 	}
 
 	.list.card.promotion{
-		display: flex;
+		@include flexbox();
 		height: 100px;
 
 		.item.left{

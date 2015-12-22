@@ -1,7 +1,7 @@
 .prepicks{
 
 	.list.card.sugerencias{
-		@include flex-box();
+		@include flexbox();
 		height: 150px;
 
 		.item.left{
@@ -13,7 +13,6 @@
 
 		.item.right{
 			@include flex(1);
-			background-color: #a62222;
 
 			h3{
 				color: #FFF;

@@ -9085,6 +9085,14 @@ a.button {
 /*--------------------------------- Archivos del config -----------------------------------*/
 /* FLEXBOX */
 /* Icono del menu del movil */
+/*
+ * $color1 y $color2 en hex
+ * $break número con %
+ * $endColorstr es el fallback en IE 
+ */
+/*@function percent($a, $b) {
+  @return percentage($a / $b);
+}*/
 /*--------------------------------------------------------------------*/
 /*  Estilos de caracter 
 /*--------------------------------------------------------------------*/
@@ -9153,18 +9161,53 @@ h2 {
     text-align: center; }
   .ion-nifty-modal .scroll {
     height: 100%;
+    display: -webkit-box;
+    /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+    display: -ms-flexbox;
+    /* TWEENER - IE 10 */
+    display: -webkit-flex;
+    /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
     display: flex;
+    /* NEW, Spec - Firefox, Chrome, Opera */
+    -ms-flex-direction: column;
+    -webkit-flex-direction: column;
     flex-direction: column;
     justify-content: space-between;
+    -webkit-justify-content: space-between;
+    -moz-justify-content: space-between;
+    -ms-justify-content: space-between;
+    -webkit-justify-items: space-between;
+    -moz-justify-items: space-between;
+    -ms-justify-items: space-between;
     -webkit-user-select: none; }
 
 .dashboard p {
   text-align: center; }
 
 .dashboard .list.card.pick .item-divider {
+  display: -webkit-box;
+  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+  display: -ms-flexbox;
+  /* TWEENER - IE 10 */
+  display: -webkit-flex;
+  /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
   display: flex;
+  /* NEW, Spec - Firefox, Chrome, Opera */
   align-items: center;
-  justify-content: flex-start; }
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  justify-content: flex-start;
+  -webkit-justify-content: flex-start;
+  -moz-justify-content: flex-start;
+  -ms-justify-content: flex-start;
+  -webkit-justify-items: flex-start;
+  -moz-justify-items: flex-start;
+  -ms-justify-items: flex-start; }
   .dashboard .list.card.pick .item-divider img {
     width: 40px;
     margin-right: 10px; }
@@ -9175,7 +9218,14 @@ h2 {
   text-align: left; }
 
 .dashboard .list.card.promotion {
+  display: -webkit-box;
+  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+  display: -ms-flexbox;
+  /* TWEENER - IE 10 */
+  display: -webkit-flex;
+  /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
   display: flex;
+  /* NEW, Spec - Firefox, Chrome, Opera */
   height: 100px; }
   .dashboard .list.card.promotion .item.left {
     flex: 1;
@@ -9202,7 +9252,14 @@ h2 {
   height: 100%;
   color: #fff; }
   .login .scroll-content .scroll {
+    -webkit-box-flex: 1;
+    /* OLD - iOS 6-, Safari 3.1-6 */
+    -webkit-flex: 1;
+    /* Safari 6.1+. iOS 7.1+, BB10 */
+    -ms-flex: 1;
+    /* IE 10 */
     flex: 1;
+    /* NEW, Spec - Firefox, Chrome, Opera */
     height: 100%; }
     .login .scroll-content .scroll .slider {
       height: 100%; }
@@ -9211,12 +9268,33 @@ h2 {
       .login .scroll-content .scroll .slider .box {
         height: 100%;
         padding: 0 10px;
+        display: -webkit-box;
+        /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+        display: -ms-flexbox;
+        /* TWEENER - IE 10 */
+        display: -webkit-flex;
+        /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
         display: flex;
-        align-items: center; }
+        /* NEW, Spec - Firefox, Chrome, Opera */
+        align-items: center;
+        -webkit-box-pack: center;
+        -moz-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-box-align: center;
+        -moz-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center; }
         .login .scroll-content .scroll .slider .box label {
           margin: 10px 0; }
         .login .scroll-content .scroll .slider .box .container {
-          flex: 1; }
+          -webkit-box-flex: 1;
+          /* OLD - iOS 6-, Safari 3.1-6 */
+          -webkit-flex: 1;
+          /* Safari 6.1+. iOS 7.1+, BB10 */
+          -ms-flex: 1;
+          /* IE 10 */
+          flex: 1;
+          /* NEW, Spec - Firefox, Chrome, Opera */ }
           .login .scroll-content .scroll .slider .box .container p {
             text-align: center; }
             .login .scroll-content .scroll .slider .box .container p span {
@@ -9240,16 +9318,36 @@ h2 {
     background-color: rgba(5, 85, 74, 0.9); }
 
 .prepicks .list.card.sugerencias {
+  display: -webkit-box;
+  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+  display: -ms-flexbox;
+  /* TWEENER - IE 10 */
+  display: -webkit-flex;
+  /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
   display: flex;
+  /* NEW, Spec - Firefox, Chrome, Opera */
   height: 150px; }
   .prepicks .list.card.sugerencias .item.left {
+    -webkit-box-flex: 1;
+    /* OLD - iOS 6-, Safari 3.1-6 */
+    -webkit-flex: 1;
+    /* Safari 6.1+. iOS 7.1+, BB10 */
+    -ms-flex: 1;
+    /* IE 10 */
     flex: 1;
+    /* NEW, Spec - Firefox, Chrome, Opera */
     padding: 0;
     background-size: cover;
     background-position: bottom center; }
   .prepicks .list.card.sugerencias .item.right {
+    -webkit-box-flex: 1;
+    /* OLD - iOS 6-, Safari 3.1-6 */
+    -webkit-flex: 1;
+    /* Safari 6.1+. iOS 7.1+, BB10 */
+    -ms-flex: 1;
+    /* IE 10 */
     flex: 1;
-    background-color: #a62222; }
+    /* NEW, Spec - Firefox, Chrome, Opera */ }
     .prepicks .list.card.sugerencias .item.right h3 {
       color: #FFF;
       font-size: 14px; }
@@ -9278,7 +9376,20 @@ h2 {
   -webkit-flex-direction: column;
   flex-direction: column;
   align-items: center;
-  justify-content: center; }
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  justify-content: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  -webkit-justify-items: center;
+  -moz-justify-items: center;
+  -ms-justify-items: center; }
   .categories .item .overlay {
     width: 100%;
     height: 100%;
@@ -9301,9 +9412,29 @@ h2 {
     z-index: 1; }
 
 .companies .item.cabecera {
+  display: -webkit-box;
+  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+  display: -ms-flexbox;
+  /* TWEENER - IE 10 */
+  display: -webkit-flex;
+  /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
   display: flex;
+  /* NEW, Spec - Firefox, Chrome, Opera */
   align-items: center;
-  justify-content: flex-start; }
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  justify-content: flex-start;
+  -webkit-justify-content: flex-start;
+  -moz-justify-content: flex-start;
+  -ms-justify-content: flex-start;
+  -webkit-justify-items: flex-start;
+  -moz-justify-items: flex-start;
+  -ms-justify-items: flex-start; }
 
 .companies .item img {
   width: 40px;

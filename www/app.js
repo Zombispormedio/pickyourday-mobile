@@ -14,7 +14,7 @@ var app=angular.module('starter', ['ionic', 'ionic-datepicker', 'ngOpenFB', "ngR
   .filter(pydmFiltr)
   .directive(pydmDrctv)
 
-  .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
+  .config(function ($stateProvider, $urlRouterProvider, $httpProvider,  $ionicConfigProvider) {
 
 
   $stateProvider
@@ -153,6 +153,7 @@ var app=angular.module('starter', ['ionic', 'ionic-datepicker', 'ngOpenFB', "ngR
 
     $urlRouterProvider.otherwise("/login");
     $httpProvider.interceptors.push('AuthInterceptor');
+	  $ionicConfigProvider.tabs.position('top');
 
   })
 

@@ -9,7 +9,7 @@
     
       <div class="list card" ng-click="goDetail(company)"> 
         <div class="item cabecera">
-          <img src="assets/img/{{company.category_metadata.name}}.png" alt="{{ company.category_metadata.name }}">
+          <img src="assets/img/{{company.category_metadata.name | healthy}}.png" alt="{{ company.category_metadata.name }}">
           <h3>{{ company.name }}</h3>
         </div>
 

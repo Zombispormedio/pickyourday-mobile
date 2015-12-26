@@ -15,7 +15,7 @@
         <div class="list card pick"> 
 
           <div class="item item-divider">
-            <img src="assets/img/{{ pick.company.category.name | healthy}}.png" alt="{{ pick.company.category.name }}">
+            <img ng-src="{{ pick.company.category.icon.src}}" alt="{{ pick.company.category.icon.alt}}">
             <div class="title">
               <h3>{{ pick.service.metadata.name }}</h3>
               <p>{{ pick.initDate | formatDate}}</p>

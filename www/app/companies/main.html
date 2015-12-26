@@ -1,6 +1,5 @@
 <ion-view>
   <ion-content class="padding companies">
-  
   <hr class="positive">
   <h2>Compañías</h2>
 
@@ -9,7 +8,7 @@
     
       <div class="list card" ng-click="goDetail(company)"> 
         <div class="item cabecera">
-          <img src="assets/img/{{company.category_metadata.name | healthy}}.png" alt="{{ company.category_metadata.name }}">
+          <img ng-src="{{company.category_metadata.icon.src}}" alt="{{ company.category_metadata.icon.alt }}">
           <h3>{{ company.name }}</h3>
         </div>
 

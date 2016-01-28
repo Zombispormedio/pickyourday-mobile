@@ -8,7 +8,9 @@
     
       <div class="list card" ng-click="goDetail(company)"> 
         <div class="item cabecera">
-          <img ng-src="{{company.category_metadata.icon.src}}" alt="{{ company.category_metadata.icon.alt }}">
+          <div class="iconCat" style="background-color: {{company.category_metadata.color}};">
+             <img ng-src="{{company.category_metadata.icon.src}}" alt="{{ company.category_metadata.icon.alt }}">
+          </div>
           <h3>{{ company.name }}</h3>
         </div>
 

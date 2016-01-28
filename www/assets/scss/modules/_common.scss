@@ -29,10 +29,11 @@ h2{
 	background-color: $orange;
 }
 
-.icon{
+.iconCat{
 	border-radius: 50%;
     width: 40px;
     height: 40px;
+    padding: 2%;
     @include flexbox();
     @include flex-align(center);
     @include flex-justify(center);

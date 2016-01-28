@@ -9146,10 +9146,11 @@ h2 {
 .orange {
   background-color: #e64a19; }
 
-.icon {
+.iconCat {
   border-radius: 50%;
   width: 40px;
   height: 40px;
+  padding: 2%;
   display: -webkit-box;
   /* OLD - iOS 6-, Safari 3.1-6, BB7 */
   display: -ms-flexbox;
@@ -9173,7 +9174,7 @@ h2 {
   -webkit-justify-items: center;
   -moz-justify-items: center;
   -ms-justify-items: center; }
-  .icon img {
+  .iconCat img {
     width: 80%; }
 
 .ion-nifty-modal {
@@ -9238,7 +9239,7 @@ h2 {
   -webkit-justify-items: flex-start;
   -moz-justify-items: flex-start;
   -ms-justify-items: flex-start; }
-  .dashboard .list.card.pick .item-divider .icon {
+  .dashboard .list.card.pick .item-divider .iconCat {
     margin-right: 10px; }
   .dashboard .list.card.pick .item-divider h3 {
     margin-bottom: 0; }
@@ -9437,8 +9438,9 @@ h2 {
     top: 10px;
     left: 10px; }
     .categories .item .services img {
-      width: 20px;
-      vertical-align: middle; }
+      vertical-align: middle;
+      height: 20px;
+      margin-right: 5px; }
     .categories .item .services span {
       color: #FFF;
       font-size: 14px;
@@ -9479,8 +9481,7 @@ h2 {
   -moz-justify-items: flex-start;
   -ms-justify-items: flex-start; }
 
-.companies .item img {
-  width: 40px;
+.companies .item .iconCat {
   margin-right: 10px; }
 
 .companies .item h3 {

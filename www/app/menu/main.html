@@ -8,9 +8,39 @@
 			</ion-nav-buttons>
 
 			<ion-nav-buttons side="right">
+				<button class="button button-icon icon ion-clock"  ui-sref="app.dashboard"></button>
+				<button class="button button-icon icon ion-ios-lightbulb"  ui-sref="app.prepicks"></button>
+				<button class="button button-icon icon ion-network"  ui-sref="app.categories"></button>
 				<button class="button button-icon icon ion-ios-search-strong"  ui-sref="app.companies"></button>
 			</ion-nav-buttons>
 
+
+			<ion-tabs class="tabs-item-hide">
+				<ion-tab title="Dashboard" hidden="true">
+				 	<ion-nav-view name="tab-dashboard"></ion-nav-view>
+				</ion-tab>
+
+				<ion-tab title="Categorias" hidden="true">
+				 	<ion-nav-view name="tab-categories"></ion-nav-view>
+				</ion-tab>
+
+				<ion-tab title="Sugerencias" hidden="true">
+				 	<ion-nav-view name="tab-prepicks"></ion-nav-view>
+				</ion-tab>
+
+				<ion-tab title="NewPick" hidden="true">
+		          <ion-nav-view name="newPick"></ion-nav-view>
+		        </ion-tab>
+
+		        <ion-tab title="Companies" hidden="true">
+		          <ion-nav-view name="companies"></ion-nav-view>
+		        </ion-tab>		  
+
+		        <ion-tab title="Profile" hidden="true">
+		          <ion-nav-view name="profile"></ion-nav-view>
+		        </ion-tab>		  
+			</ion-tabs>
+		<!--
 			<ion-tabs class="tabs-icon-top tabs-positive">
  
 				 <ion-tab title="Dashboard" icon="icon ion-clock" href="app.dashboard">
@@ -25,7 +55,7 @@
 				 </ion-tab>
 				 
 				 
-				 <!-- Account Tab -->
+
 				 <ion-tab title="Sugerencias" icon="icon ion-ios-lightbulb"  ui-sref="app.prepicks">
 				 	<ion-nav-view name="tab-prepicks"></ion-nav-view>
 				 </ion-tab>
@@ -44,6 +74,7 @@
 
 
 			</ion-tabs>
+		-->
 			
 		</ion-nav-bar>
 

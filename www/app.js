@@ -150,6 +150,21 @@ var app=angular.module('starter', ['ionic', 'ngOpenFB', "ngResource", 'ui.bootst
         }
       })
 
+      .state("app.search", {
+        url: "/search",
+        onEnter: function ($rootScope) {
+          if (!getJSONLocal("user")) {            
+            $rootScope.go("login");
+          }
+        },
+        views: {
+          'search': {
+            templateUrl: 'app/search/main.html',
+            controller: 'SearchCtrl'
+          }
+        }
+      })
+
 
     $urlRouterProvider.otherwise("/login");
     $httpProvider.interceptors.push('AuthInterceptor');

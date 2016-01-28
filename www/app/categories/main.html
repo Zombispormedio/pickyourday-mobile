@@ -7,6 +7,10 @@
 	        <div class="item" style="background-image: url({{ category.image.src }});">	      
 	       		<div class="overlay" style="background-color:{{ category.color }};"></div>   
 	       		<div class="overlay gray"></div>   
+	       		<div class="services">
+		       		<img ng-src="{{ category.icon.src}}" alt="{{ category.icon.alt}}">
+		       		<span>2k servicios</span>
+		       	</div>
 	        	<h3>{{ category.name }}</h3>
 	        	<p>{{ category.description }}</p>
 	        </div>

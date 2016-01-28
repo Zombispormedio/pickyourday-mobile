@@ -29,6 +29,18 @@ h2{
 	background-color: $orange;
 }
 
+.icon{
+	border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    @include flexbox();
+    @include flex-align(center);
+    @include flex-justify(center);
+
+	img{
+		width: 80%;
+	}
+}
 
 .ion-nifty-modal{
 	top: 0;

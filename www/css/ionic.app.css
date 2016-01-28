@@ -9146,6 +9146,36 @@ h2 {
 .orange {
   background-color: #e64a19; }
 
+.icon {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: -webkit-box;
+  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+  display: -ms-flexbox;
+  /* TWEENER - IE 10 */
+  display: -webkit-flex;
+  /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+  display: flex;
+  /* NEW, Spec - Firefox, Chrome, Opera */
+  align-items: center;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  justify-content: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  -webkit-justify-items: center;
+  -moz-justify-items: center;
+  -ms-justify-items: center; }
+  .icon img {
+    width: 80%; }
+
 .ion-nifty-modal {
   top: 0;
   bottom: 0;
@@ -9208,8 +9238,7 @@ h2 {
   -webkit-justify-items: flex-start;
   -moz-justify-items: flex-start;
   -ms-justify-items: flex-start; }
-  .dashboard .list.card.pick .item-divider img {
-    width: 40px;
+  .dashboard .list.card.pick .item-divider .icon {
     margin-right: 10px; }
   .dashboard .list.card.pick .item-divider h3 {
     margin-bottom: 0; }
@@ -9402,6 +9431,18 @@ h2 {
     .categories .item .overlay.gray {
       background-color: #000;
       opacity: 0.7 !important; }
+  .categories .item .services {
+    z-index: 1;
+    position: absolute;
+    top: 10px;
+    left: 10px; }
+    .categories .item .services img {
+      width: 20px;
+      vertical-align: middle; }
+    .categories .item .services span {
+      color: #FFF;
+      font-size: 14px;
+      font-weight: 100; }
   .categories .item h3 {
     color: #FFF;
     font-size: 24px;

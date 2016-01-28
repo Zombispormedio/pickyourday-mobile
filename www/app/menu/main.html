@@ -11,7 +11,7 @@
 				<button class="button button-icon icon ion-clock"  ui-sref="app.dashboard"></button>
 				<button class="button button-icon icon ion-ios-lightbulb"  ui-sref="app.prepicks"></button>
 				<button class="button button-icon icon ion-network"  ui-sref="app.categories"></button>
-				<button class="button button-icon icon ion-ios-search-strong"  ui-sref="app.companies"></button>
+				<button class="button button-icon icon ion-ios-search-strong"  ui-sref="app.search"></button>
 			</ion-nav-buttons>
 
 
@@ -38,7 +38,11 @@
 
 		        <ion-tab title="Profile" hidden="true">
 		          <ion-nav-view name="profile"></ion-nav-view>
-		        </ion-tab>		  
+		        </ion-tab>		
+
+		        <ion-tab title="Search" hidden="true">
+		          <ion-nav-view name="search"></ion-nav-view>
+		        </ion-tab>	 
 			</ion-tabs>
 		<!--
 			<ion-tabs class="tabs-icon-top tabs-positive">
@@ -96,7 +100,7 @@
 		<a nav-clear menu-close ui-sref="app.profile" class="item item-icon-left pointer">
 			<i class="icon ion-person"></i>Profile
 		</a>
-		<a nav-clear menu-close ng-click="goCompanies()" class="item item-icon-left pointer">
+		<a nav-clear menu-close  ui-sref="app.companies" class="item item-icon-left pointer">
 			<i class="icon ion-pie-graph"></i>Companies
 		</a>
 		<a nav-clear menu-close ng-click="logout()" class="item item-icon-left pointer">

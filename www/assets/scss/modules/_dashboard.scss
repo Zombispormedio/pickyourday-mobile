@@ -11,9 +11,8 @@
 			@include flex-align(center);
 			@include flex-justify(flex-start);
 
-			img{
-				width: 40px;
-    			margin-right: 10px;
+			.icon{
+				margin-right: 10px;
 			}
 
 			h3{

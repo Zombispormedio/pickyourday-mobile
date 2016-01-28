@@ -15,7 +15,9 @@
         <div class="list card pick"> 
 
           <div class="item item-divider">
-            <img ng-src="{{ pick.company.category.icon.src}}" alt="{{ pick.company.category.icon.alt}}">
+            <div class="icon" style="background-color: {{pick.company.category.color}};">
+              <img ng-src="{{ pick.company.category.icon.src}}" alt="{{ pick.company.category.icon.alt}}">
+            </div>
             <div class="title">
               <h3>{{ pick.service.metadata.name }}</h3>
               <p>{{ pick.initDate | formatDate}}</p>

@@ -9247,34 +9247,6 @@ h2 {
 .dashboard .list.card.pick p {
   text-align: left; }
 
-.dashboard .list.card.promotion {
-  display: -webkit-box;
-  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
-  display: -ms-flexbox;
-  /* TWEENER - IE 10 */
-  display: -webkit-flex;
-  /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
-  display: flex;
-  /* NEW, Spec - Firefox, Chrome, Opera */
-  height: 100px; }
-  .dashboard .list.card.promotion .item.left {
-    flex: 1;
-    padding: 0;
-    background-size: cover;
-    background-position: bottom center; }
-  .dashboard .list.card.promotion .item.right {
-    flex: 1;
-    background-color: #a62222; }
-    .dashboard .list.card.promotion .item.right h3 {
-      color: #FFF;
-      font-size: 14px; }
-    .dashboard .list.card.promotion .item.right p {
-      color: #FFF;
-      font-size: 12px;
-      font-weight: 100;
-      white-space: pre-line;
-      text-align: left; }
-
 .login {
   background-image: url("../assets/img/login.jpg");
   background-size: cover;
@@ -9347,7 +9319,7 @@ h2 {
     width: 100%;
     background-color: rgba(5, 85, 74, 0.9); }
 
-.prepicks .list.card.sugerencias {
+.list.card.prepicks {
   display: -webkit-box;
   /* OLD - iOS 6-, Safari 3.1-6, BB7 */
   display: -ms-flexbox;
@@ -9356,8 +9328,8 @@ h2 {
   /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
   display: flex;
   /* NEW, Spec - Firefox, Chrome, Opera */
-  height: 150px; }
-  .prepicks .list.card.sugerencias .item.left {
+  max-height: 200px; }
+  .list.card.prepicks .item.left {
     -webkit-box-flex: 1;
     /* OLD - iOS 6-, Safari 3.1-6 */
     -webkit-flex: 1;
@@ -9369,7 +9341,7 @@ h2 {
     padding: 0;
     background-size: cover;
     background-position: bottom center; }
-  .prepicks .list.card.sugerencias .item.right {
+  .list.card.prepicks .item.right {
     -webkit-box-flex: 1;
     /* OLD - iOS 6-, Safari 3.1-6 */
     -webkit-flex: 1;
@@ -9377,16 +9349,68 @@ h2 {
     -ms-flex: 1;
     /* IE 10 */
     flex: 1;
-    /* NEW, Spec - Firefox, Chrome, Opera */ }
-    .prepicks .list.card.sugerencias .item.right h3 {
-      color: #FFF;
-      font-size: 14px; }
-    .prepicks .list.card.sugerencias .item.right p {
-      color: #FFF;
-      font-size: 12px;
-      font-weight: 100;
-      white-space: pre-line;
-      text-align: left; }
+    /* NEW, Spec - Firefox, Chrome, Opera */
+    display: -webkit-box;
+    /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+    display: -ms-flexbox;
+    /* TWEENER - IE 10 */
+    display: -webkit-flex;
+    /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+    display: flex;
+    /* NEW, Spec - Firefox, Chrome, Opera */
+    -ms-flex-direction: column;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    justify-content: space-between;
+    -webkit-justify-content: space-between;
+    -moz-justify-content: space-between;
+    -ms-justify-content: space-between;
+    -webkit-justify-items: space-between;
+    -moz-justify-items: space-between;
+    -ms-justify-items: space-between;
+    padding: 0; }
+    .list.card.prepicks .item.right .title {
+      padding: 10px; }
+      .list.card.prepicks .item.right .title h3 {
+        color: #FFF;
+        font-size: 14px; }
+      .list.card.prepicks .item.right .title p {
+        color: #FFF;
+        font-size: 12px;
+        font-weight: 100;
+        white-space: pre-line;
+        text-align: left; }
+      .list.card.prepicks .item.right .title p.city {
+        text-align: right; }
+    .list.card.prepicks .item.right .info {
+      position: relative;
+      padding: 5px 10px; }
+      .list.card.prepicks .item.right .info .overlay {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: -1;
+        background-color: rgba(0, 0, 0, 0.2); }
+      .list.card.prepicks .item.right .info img {
+        height: 30px;
+        margin-right: 10px;
+        vertical-align: middle; }
+      .list.card.prepicks .item.right .info .text {
+        vertical-align: middle;
+        display: inline-block;
+        width: 70%; }
+        .list.card.prepicks .item.right .info .text h4 {
+          color: #FFF;
+          font-size: 13px;
+          white-space: pre-line; }
+        .list.card.prepicks .item.right .info .text p {
+          color: #FFF;
+          font-size: 12px;
+          font-weight: 100;
+          text-align: left;
+          white-space: pre-line; }
 
 .categories .item {
   background-size: cover;
@@ -9434,6 +9458,7 @@ h2 {
       opacity: 0.7 !important; }
   .categories .item .services {
     z-index: 1;
+    opacity: 0.8;
     position: absolute;
     top: 10px;
     left: 10px; }

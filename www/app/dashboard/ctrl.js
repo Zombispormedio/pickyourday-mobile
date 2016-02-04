@@ -20,6 +20,22 @@ pydmCtrl.DashboardCtrl = function ($rootScope, $scope, $http, $ionicHistory, Cus
         });
 	}
 
+
+
+	$scope.category = "";
+
+	CustomerService.category().list({}, {} , function(result){
+        var res = result;
+        if (!res.error) {       
+          	$scope.category = res.data[0];		
+        } else {
+           $scope.error=res.error;
+        }
+    }, function(){
+
+    });
+
+
 	$scope.doRefresh = function() {
 		$scope.getPicks();
 	}

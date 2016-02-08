@@ -1,10 +1,12 @@
 
-.list.card.prepicks{
+.prepicks{
 	@include flexbox();
 	max-height: 200px;
+	margin-top: 15px;
 
 	.item.left{
 		@include flex(1);
+		border: 0;
 		padding: 0;
 		background-size: cover;
 		background-position: bottom center;
@@ -15,6 +17,7 @@
 		@include flexbox();
 		@include flex-direction(column);
 		@include flex-justify(space-between);
+		border: 0;
 		padding: 0;
 
 		.title{
@@ -41,6 +44,7 @@
 		.info{
 			position: relative;
 			padding: 5px 10px;
+			width: 100%;
 
 			.overlay{
 				width: 100%;

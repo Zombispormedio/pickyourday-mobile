@@ -6,45 +6,34 @@
     on-refresh="doRefresh()">
   </ion-refresher>
     
-    <hr class="positive">
+    <hr class="green">
     <h2>Próximos picks</h2>
     
-    <div ng-if="picks.length > 0">
-      <div ng-repeat="pick in picks | orderBy: 'initDate'"> 
-      
-        <div class="list card pick"> 
+    <div ng-if="picks.length > 0"  class="list">
 
-          <div class="item item-divider">
+      <div ng-repeat="pick in picks | orderBy: 'initDate'" class="pick"> 
+      
             <div class="iconCat" style="background-color: {{pick.company.category.color}};">
               <img ng-src="{{ pick.company.category.icon.src}}" alt="{{ pick.company.category.icon.alt}}">
             </div>
             <div class="title">
               <h3>{{ pick.service.metadata.name }}</h3>
-              <p>{{ pick.initDate | formatDate}}</p>
+              <p class="date">{{ pick.initDate | formatDate}}</p>
+              <p>{{ pick.company.name }}</p>
             </div>
-          </div>
-
-          <div class="item item-body">
-            <div>
-             {{ pick.company.name }}
-            </div>
-          </div>
-
-        </div> 
 
       </div>
     </div>
     <div ng-if="picks.length <= 0">
-      <p>No tienes picks activos.</p>
+      <p class="noPicks">No tienes picks activos.</p>
     </div>
 
     <hr class="orange">
     <h2>Promociones</h2>
 
-    <div class="list card prepicks"> 
+    <div class="prepicks"> 
 
-      <div class="item left" style="background-image: url('assets/img/promotion.jpg')">  
-      </div>
+      <div class="item left" style="background-image: url('assets/img/promotion.jpg')"></div>
 
       <div class="item right" style="background-color: #a62222;">
         <div class="title">

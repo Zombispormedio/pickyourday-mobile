@@ -119,6 +119,47 @@ var app=angular.module('starter', ['ionic', 'ngOpenFB', "ngResource", 'ui.bootst
         }
       })
 
+      .state('app.companiesInfo', {
+        url: '/companies/detail/info/:company',
+        onEnter: function ($rootScope) {
+          if (!getJSONLocal("user")) {            
+            $rootScope.go("login");
+          }
+        },
+        views: {
+          'companies': {
+            templateUrl: 'app/companies/detail/info/main.html'
+          }
+        }
+      })
+      .state('app.companiesServices', {
+        url: '/companies/detail/services/:company',
+        onEnter: function ($rootScope) {
+          if (!getJSONLocal("user")) {            
+            $rootScope.go("login");
+          }
+        },
+        views: {
+          'companies': {
+            templateUrl: 'app/companies/detail/services/main.html'
+          }
+        }
+      })
+
+      .state('app.companiesReviews', {
+        url: '/companies/detail/reviews/:company',
+        onEnter: function ($rootScope) {
+          if (!getJSONLocal("user")) {            
+            $rootScope.go("login");
+          }
+        },
+        views: {
+          'companies': {
+            templateUrl: 'app/companies/detail/reviews/main.html'
+          }
+        }
+      })
+
 
       .state("app.newPick", {
         url: "/newPick/:company/service/:service",

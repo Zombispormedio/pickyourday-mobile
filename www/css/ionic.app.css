@@ -9126,21 +9126,15 @@ hr {
   height: 2px;
   border: 0;
   margin-top: 10px;
-  margin-bottom: 10px; }
+  margin-bottom: 5px; }
 
 h2 {
-  font-size: 24px;
+  font-size: 16px;
   text-align: center;
   padding: 0;
   margin: 0; }
 
-.Salud {
-  background-color: #455a64; }
-
-.Belleza {
-  background-color: #a62222; }
-
-.positive {
+.green {
   background-color: #05564b; }
 
 .orange {
@@ -9215,37 +9209,53 @@ h2 {
 .dashboard p {
   text-align: center; }
 
-.dashboard .list.card.pick .item-divider {
-  display: -webkit-box;
-  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
-  display: -ms-flexbox;
-  /* TWEENER - IE 10 */
-  display: -webkit-flex;
-  /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
-  display: flex;
-  /* NEW, Spec - Firefox, Chrome, Opera */
-  align-items: center;
-  -webkit-box-pack: center;
-  -moz-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-box-align: center;
-  -moz-box-align: center;
-  -ms-flex-align: center;
-  -webkit-align-items: center;
-  justify-content: flex-start;
-  -webkit-justify-content: flex-start;
-  -moz-justify-content: flex-start;
-  -ms-justify-content: flex-start;
-  -webkit-justify-items: flex-start;
-  -moz-justify-items: flex-start;
-  -ms-justify-items: flex-start; }
-  .dashboard .list.card.pick .item-divider .iconCat {
-    margin-right: 10px; }
-  .dashboard .list.card.pick .item-divider h3 {
-    margin-bottom: 0; }
+.dashboard .list {
+  margin: 20px 0; }
+  .dashboard .list .pick {
+    display: -webkit-box;
+    /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+    display: -ms-flexbox;
+    /* TWEENER - IE 10 */
+    display: -webkit-flex;
+    /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+    display: flex;
+    /* NEW, Spec - Firefox, Chrome, Opera */
+    align-items: flex-start;
+    -webkit-box-pack: flex-start;
+    -moz-box-pack: flex-start;
+    -ms-flex-pack: flex-start;
+    -webkit-box-align: flex-start;
+    -moz-box-align: flex-start;
+    -ms-flex-align: flex-start;
+    -webkit-align-items: flex-start;
+    justify-content: flex-start;
+    -webkit-justify-content: flex-start;
+    -moz-justify-content: flex-start;
+    -ms-justify-content: flex-start;
+    -webkit-justify-items: flex-start;
+    -moz-justify-items: flex-start;
+    -ms-justify-items: flex-start;
+    background-color: #fff;
+    border-bottom: 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-top: 0; }
+    .dashboard .list .pick:first-child {
+      border-top: 1px solid #ddd; }
+    .dashboard .list .pick .iconCat {
+      margin-right: 15px; }
+    .dashboard .list .pick .date {
+      color: #888;
+      margin-bottom: 5px; }
+    .dashboard .list .pick h3 {
+      margin-bottom: 0;
+      font-size: 16px; }
+    .dashboard .list .pick p {
+      text-align: left;
+      margin-bottom: 0; }
 
-.dashboard .list.card.pick p {
-  text-align: left; }
+.dashboard .noPicks {
+  margin-top: 10px; }
 
 .login {
   background-image: url("../assets/img/login.jpg");
@@ -9319,7 +9329,7 @@ h2 {
     width: 100%;
     background-color: rgba(5, 85, 74, 0.9); }
 
-.list.card.prepicks {
+.prepicks {
   display: -webkit-box;
   /* OLD - iOS 6-, Safari 3.1-6, BB7 */
   display: -ms-flexbox;
@@ -9328,8 +9338,9 @@ h2 {
   /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
   display: flex;
   /* NEW, Spec - Firefox, Chrome, Opera */
-  max-height: 200px; }
-  .list.card.prepicks .item.left {
+  max-height: 200px;
+  margin-top: 15px; }
+  .prepicks .item.left {
     -webkit-box-flex: 1;
     /* OLD - iOS 6-, Safari 3.1-6 */
     -webkit-flex: 1;
@@ -9338,10 +9349,11 @@ h2 {
     /* IE 10 */
     flex: 1;
     /* NEW, Spec - Firefox, Chrome, Opera */
+    border: 0;
     padding: 0;
     background-size: cover;
     background-position: bottom center; }
-  .list.card.prepicks .item.right {
+  .prepicks .item.right {
     -webkit-box-flex: 1;
     /* OLD - iOS 6-, Safari 3.1-6 */
     -webkit-flex: 1;
@@ -9368,24 +9380,26 @@ h2 {
     -webkit-justify-items: space-between;
     -moz-justify-items: space-between;
     -ms-justify-items: space-between;
+    border: 0;
     padding: 0; }
-    .list.card.prepicks .item.right .title {
+    .prepicks .item.right .title {
       padding: 10px; }
-      .list.card.prepicks .item.right .title h3 {
+      .prepicks .item.right .title h3 {
         color: #FFF;
         font-size: 14px; }
-      .list.card.prepicks .item.right .title p {
+      .prepicks .item.right .title p {
         color: #FFF;
         font-size: 12px;
         font-weight: 100;
         white-space: pre-line;
         text-align: left; }
-      .list.card.prepicks .item.right .title p.city {
+      .prepicks .item.right .title p.city {
         text-align: right; }
-    .list.card.prepicks .item.right .info {
+    .prepicks .item.right .info {
       position: relative;
-      padding: 5px 10px; }
-      .list.card.prepicks .item.right .info .overlay {
+      padding: 5px 10px;
+      width: 100%; }
+      .prepicks .item.right .info .overlay {
         width: 100%;
         height: 100%;
         position: absolute;
@@ -9393,19 +9407,19 @@ h2 {
         top: 0;
         z-index: -1;
         background-color: rgba(0, 0, 0, 0.2); }
-      .list.card.prepicks .item.right .info img {
+      .prepicks .item.right .info img {
         height: 30px;
         margin-right: 10px;
         vertical-align: middle; }
-      .list.card.prepicks .item.right .info .text {
+      .prepicks .item.right .info .text {
         vertical-align: middle;
         display: inline-block;
         width: 70%; }
-        .list.card.prepicks .item.right .info .text h4 {
+        .prepicks .item.right .info .text h4 {
           color: #FFF;
           font-size: 13px;
           white-space: pre-line; }
-        .list.card.prepicks .item.right .info .text p {
+        .prepicks .item.right .info .text p {
           color: #FFF;
           font-size: 12px;
           font-weight: 100;
@@ -9481,36 +9495,45 @@ h2 {
     font-weight: 100;
     z-index: 1; }
 
-.companies .item.cabecera {
-  display: -webkit-box;
-  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
-  display: -ms-flexbox;
-  /* TWEENER - IE 10 */
-  display: -webkit-flex;
-  /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
-  display: flex;
-  /* NEW, Spec - Firefox, Chrome, Opera */
-  align-items: center;
-  -webkit-box-pack: center;
-  -moz-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-box-align: center;
-  -moz-box-align: center;
-  -ms-flex-align: center;
-  -webkit-align-items: center;
-  justify-content: flex-start;
-  -webkit-justify-content: flex-start;
-  -moz-justify-content: flex-start;
-  -ms-justify-content: flex-start;
-  -webkit-justify-items: flex-start;
-  -moz-justify-items: flex-start;
-  -ms-justify-items: flex-start; }
-
-.companies .item .iconCat {
-  margin-right: 10px; }
-
-.companies .item h3 {
-  margin-bottom: 0; }
+.companies {
+  margin: 10px 0; }
+  .companies .list {
+    margin-top: 20px; }
+  .companies .item {
+    display: -webkit-box;
+    /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+    display: -ms-flexbox;
+    /* TWEENER - IE 10 */
+    display: -webkit-flex;
+    /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+    display: flex;
+    /* NEW, Spec - Firefox, Chrome, Opera */
+    align-items: center;
+    -webkit-box-pack: center;
+    -moz-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-box-align: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    justify-content: flex-start;
+    -webkit-justify-content: flex-start;
+    -moz-justify-content: flex-start;
+    -ms-justify-content: flex-start;
+    -webkit-justify-items: flex-start;
+    -moz-justify-items: flex-start;
+    -ms-justify-items: flex-start;
+    border: 0;
+    margin: 5px 0;
+    border-bottom: 1px solid #ddd; }
+    .companies .item:first-child {
+      border-top: 1px solid #ddd; }
+    .companies .item .iconCat {
+      margin-right: 15px; }
+    .companies .item h3 {
+      margin-bottom: 0; }
+    .companies .item p {
+      white-space: pre-line; }
 
 .company {
   text-align: left; }

@@ -16,7 +16,9 @@ pydmCtrl.CompaniesCtrl = function ($rootScope, $scope, $http, $stateParams, Cust
 
 
 	$scope.goDetail = function (company) {
+    console.log(company);
 		$rootScope.go("app.companiesDetail", {company: JSON.stringify(company)} );
+
 	}
 
 

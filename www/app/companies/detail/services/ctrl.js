@@ -1,4 +1,4 @@
-pydmCtrl.companiesServices = function ($rootScope, $scope, $http, $stateParams) {
+pydmCtrl.CompaniesServicesCtrl = function ($rootScope, $scope, $http, $stateParams) {
 
 	var company = JSON.parse($stateParams.company);
 

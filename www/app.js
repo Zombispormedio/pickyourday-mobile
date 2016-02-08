@@ -119,7 +119,7 @@ var app=angular.module('starter', ['ionic', 'ngOpenFB', "ngResource", 'ui.bootst
         }
       })
 
-      .state('app.companiesInfo', {
+      .state('app.companiesDetail.info', {
         url: '/companies/detail/info/:company',
         onEnter: function ($rootScope) {
           if (!getJSONLocal("user")) {            
@@ -127,12 +127,13 @@ var app=angular.module('starter', ['ionic', 'ngOpenFB', "ngResource", 'ui.bootst
           }
         },
         views: {
-          'companies': {
-            templateUrl: 'app/companies/detail/info/main.html'
+          'companies1': {
+            templateUrl: 'app/companies/detail/info/main.html',
+            controller: 'CompaniesInfoCtrl'
           }
         }
       })
-      .state('app.companiesServices', {
+      .state('app.companiesDetail.services', {
         url: '/companies/detail/services/:company',
         onEnter: function ($rootScope) {
           if (!getJSONLocal("user")) {            
@@ -140,13 +141,14 @@ var app=angular.module('starter', ['ionic', 'ngOpenFB', "ngResource", 'ui.bootst
           }
         },
         views: {
-          'companies': {
-            templateUrl: 'app/companies/detail/services/main.html'
+          'companies2': {
+            templateUrl: 'app/companies/detail/services/main.html',
+            controller: 'CompaniesServicesCtrl'
           }
         }
       })
 
-      .state('app.companiesReviews', {
+      .state('app.companiesDetail.reviews', {
         url: '/companies/detail/reviews/:company',
         onEnter: function ($rootScope) {
           if (!getJSONLocal("user")) {            
@@ -154,8 +156,9 @@ var app=angular.module('starter', ['ionic', 'ngOpenFB', "ngResource", 'ui.bootst
           }
         },
         views: {
-          'companies': {
-            templateUrl: 'app/companies/detail/reviews/main.html'
+          'companies3': {
+            templateUrl: 'app/companies/detail/reviews/main.html',
+            controller: 'CompaniesReviewsCtrl'
           }
         }
       })

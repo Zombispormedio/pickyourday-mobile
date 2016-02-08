@@ -1,5 +1,27 @@
 <ion-view>
 	<ion-content class="padding company">
-		<p>Services</p>
+		<hr class="positive">
+		<h3>Servicios</h3>
+
+		<div ng-if="services.length > 0">
+			<div ng-repeat="service in services"> 
+
+			  <div class="list card" ng-click="newPick(company, service)"> 
+			    <div class="item item-divider">
+			      <h4>{{ service.default.name }}</h4>
+			    </div>
+			    <div class="item item-body">
+			      <p>{{ service.description}}</p>
+			      <span class="price">{{ service.price | currency : ""}} €</span>
+			    </div>
+
+			  </div> 
+
+			</div>
+		</div>
+
+		<div ng-if="services.length <= 0">
+			<p>No hay servicios</p>
+		</div>
 	</ion-content>
 </ion-view>

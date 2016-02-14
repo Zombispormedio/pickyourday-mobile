@@ -1,6 +1,46 @@
 
 .company{
 	text-align: left;
+
+	p{
+		margin: 0;
+	}
+
+	.rating{
+		text-align: left;
+		display: inline-block;
+		vertical-align: middle;
+		display: flex;
+		flex-direction: row;
+
+		i {
+			font-size: 25px;
+		}
+	}
+
+	.ratingContainer{
+		margin: 5px 0;
+		display: inline-block;
+		display: flex;
+		align-items: center;
+
+		.rate{
+			font-size: 16px;
+			margin-right: 5px;
+			vertical-align: middle;
+		}
+
+		.reviews{
+			margin-left: 10px;
+			vertical-align: middle;
+		}
+
+		.rating{
+			i {
+				color: #fff;
+			}
+		}
+	}
 	
 	/*INFO*/
 	.slide{
@@ -45,29 +85,17 @@
 			margin-top: 5px;
 		}
 		
-		.rating{
-			margin: 5px 0;
-
+		.ratingContainer{
 			.rate{
 				color: #fff;
-				font-size: 16px;
-				margin-right: 5px;
-				vertical-align: middle;
 			}
 
 			.reviews{
 				color: #fff;
-				margin-left: 10px;
-				vertical-align: middle;
 			}
-
-			.ionic_ratings{
-				text-align: left;
-				display: inline-block;
-				vertical-align: middle;
-
-				.icon {
-					font-size: 25px;
+			.rating{
+				i {
+					color: #fff;
 				}
 			}
 		}
@@ -109,22 +137,213 @@
 
 	.info{
 		padding: 20px;
+
+		.description{
+			margin-bottom: 15px;
+		}
+
+		.infoContainer{
+			display: flex;
+			justify-content: flex-start;
+			align-items: flex-start;
+
+			button{
+				color: $detail;
+				vertical-align: middle;
+				min-width: 45px;
+			}
+			>p{
+				display: inline-block;
+			    vertical-align: middle;
+			    margin: 0;
+			    margin-left: 10px;
+			    margin-top: 10px;
+			    width: 70%;
+			}
+		}
+
+
+		.dateTable, .phoneContainer{
+			display: flex;
+			justify-content: flex-start;
+			align-items: flex-start;
+
+			button{
+				color: $detail;
+				vertical-align: top;
+				min-width: 45px;
+			}
+
+			.timetable, .phoneNumbers{
+				display: inline-block;			    
+			    margin-left: 10px;
+			    margin-top: 10px;
+			    vertical-align: top;
+			    flex-grow: 1;
+			    position: relative;
+
+			    >p{
+					margin-left: 0px;
+					margin-top: 0px;
+					display: flex;
+					justify-content: space-between;
+					width: 80%;
+				}
+			}
+			
+			.down{
+				position: absolute;
+				right: 0;
+				top: 0;
+				padding: 0;
+				min-height: 0;
+				line-height: 15px;
+
+				&:before{
+					line-height: 15px;
+					font-size: 20px
+				}
+				&:after{
+					display: none;
+				}
+
+				&.open{
+					transform: rotate(180deg);
+					@include trs(transform 0.3s ease-in-out);
+				}
+			}
+
+			ul{
+				display: none;
+				width: 80%;
+
+				li{
+					display: flex;
+					justify-content: space-between;
+					margin: 5px 0;
+
+					.hours span{
+						display: block;
+						margin-bottom: 5px;
+					}
+				}
+			}
+		}
 	}
 
 	/* SERVICES */
-	.list.card{
-		.item{
-			h4{
-				text-align: left;
-				font-size: 18px;
-			}
+	.services{
+		.service{
+			text-align: left;
+			position: relative;
+			padding: 15px;
+			margin: 20px 10px;
+   			overflow: visible;
 
-			&.item-body{
+			.service_title{
 				text-align: left;
-				padding-top: 10px;
+				background-color: transparent;
+				border-bottom: 1px solid #ccc;
+				padding-bottom: 10px;
+
+				h2,p{
+					text-align: left;
+					white-space: pre-line;
+				}
 
 				p{
-					margin: 5px 0;
+					font-size: 15px;
+				}
+
+				h2{
+					font-size: 18px;
+				}
+			}
+
+			.pick{
+				position: absolute;
+			    right: 10px;
+			    bottom: -10px;
+			    width: 40px;
+			    height: 40px;
+			    padding: 5px;
+			    background-color: $detail;
+			    z-index: 2;
+			    display: flex;
+			    align-items: center;
+			    justify-content: center;
+			    color: #fff;
+			    border-radius: 50%;
+
+			    &:before{
+			    	font-size: 20px;
+			    }
+			}
+
+			.price{
+				position: absolute;
+			    right: 10px;
+			    top: 10px;
+			    font-weight: bold;
+			}
+
+			.review{
+				padding-top: 10px;
+			}
+
+			.ratingContainer{
+				.rate{
+					color: $orange;
+    				font-weight: bold;
+				}
+				.rating{
+					i {
+						color: $orange;
+					}
+				}
+			}
+			
+		}
+	}
+
+	/*REVIEWS*/
+	&.reviewsDetail{
+		h2{
+			font-size: 20px;
+			text-align: left;
+			margin-bottom: 10px;
+		}
+		.detail{
+			display: flex;
+			.left{
+				flex: 1;
+
+				.barCont{
+					display: flex;
+
+					span:first-child{
+						margin-right: 5px;
+					}
+				}
+				.barFilled{
+					display: block;
+					background-color: $orange;
+					height: 20px;
+					margin-bottom: 5px;
+				}
+			}
+
+			.right{
+				flex: 1;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				flex-direction: column;
+
+				.mark{
+					font-weight: bold;
+					font-size: 30px;
+					color: $orange;
 				}
 			}
 		}

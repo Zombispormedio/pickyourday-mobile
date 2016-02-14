@@ -4,9 +4,11 @@
 				
 	<ion-slide-box ng-if="company.images.length > 0" show-pager="false" disable-scroll="true">
 		<ion-slide ng-repeat="image in company.images" class="slide">
-			<button ng-click="previousSlide()" class="button button-icon icon ion-ios-arrow-left"></button>	
-			<div class="image" style="background-image: url({{image.src}});"></div>			
-			<button ng-click="nextSlide()" class="button button-icon icon ion-ios-arrow-right"></button>
+			<button ng-if="company.images.length > 1 && $index != 0"
+				ng-click="previousSlide()" class="button button-icon icon ion-ios-arrow-left"></button>	
+			<div class="image" style="background-image: url('{{image.src}}');"></div>			
+			<button ng-if="company.images.length > 1 && $index != company.images.length -1" 
+				ng-click="nextSlide()" class="button button-icon icon ion-ios-arrow-right"></button>
 		</ion-slide>
 	</ion-slide-box>
 
@@ -14,35 +16,102 @@
 
 	<div class="title">
 		<h2>{{company.name}}</h2>
-		<div class="rating">
-			<span class="rate">4</span>
-			<ionic-ratings ratingsobj='ratingsObject'></ionic-ratings>
-			<span class="reviews">100 reviews</span>
+		<div class="ratingContainer" ng-if="company.review.length > 0">
+			<span class="rate">{{company.review_ratings.avg}}</span>
+			<rating readonly="true" ng-model="company.review_ratings.avg" max="5"></rating>
+			<span class="reviews">{{company.review.length}} reviews</span>
 		</div>
+		<p ng-if="company.review.length == 0">No tiene reviews</p>
 		<p>{{company.category.name}}</p>
 	</div>
 
 	<div class="icons">
-		<button class="button button-icon icon ion-ios-telephone">Llamar</button>	
-		<button class="button button-icon icon ion-ios-email">Mail</button>	
-		<button class="button button-icon icon ion-ios-world">Website</button>	
+		<button ng-if="company.phone[0]" 
+			href="tel:{{company.phone[0]}}" class="button button-icon icon ion-ios-telephone">Llamar</button>	
+		<button ng-if="company.email" 
+			href="mailto:{{company.email}}" class="button button-icon icon ion-ios-email">Mail</button>	
+		<button ng-if="company.web" 
+			href="{{company.web}}" class="button button-icon icon ion-ios-world">Website</button>	
 	</div>
 
 	<div class="info">
-		<p>{{company.description}}</p>
-		<div class="location">
+		<p class="description">{{company.description}}</p>
+
+		<div ng-if="company.location" class="infoContainer">
 			<button class="button button-icon icon ion-ios-location"></button>
-			<p></p>
+			<p>{{company.location.zipcode}} {{company.location.address}} {{company.location.city}}, {{company.location.province}}, {{company.location.country}}</p> 
+		</div>
+
+		<div class="dateTable">
+			<button class="button button-icon icon ion-ios-clock-outline"></button>
+			<div class="timetable">
+				<button class="down button button-icon icon ion-ios-arrow-down" ng-click="openTimetable()"></button>
+				<p ng-click="openTimetable()">
+					<span class="bold">Abierto ahora:</span>
+					<span>12:00 - 16:00</span>
+				</p>
+				<ul>
+					<li>
+						<span>Domingo</span>
+						<div class="hours">
+							<span>12:00 - 16:00</span>
+						</div>
+					</li>
+					<li>
+						<span>Lunes</span>
+						<div class="hours">
+							<span>12:00 - 16:00</span>
+						</div>
+					</li>
+					<li>
+						<span>Martes</span>
+						<div class="hours">
+							<span>12:00 - 16:00</span>
+						</div>
+					</li>
+					<li>
+						<span>Miércoles</span>
+						<div class="hours">
+							<span>12:00 - 16:00</span>
+						</div>
+					</li>
+					<li>
+						<span>Jueves</span>
+						<div class="hours">
+							<span>12:00 - 16:00</span>
+						</div>
+					</li>
+					<li>
+						<span>Viernes</span>
+						<div class="hours">
+							<span>12:00 - 16:00</span>
+						</div>
+					</li>
+					<li>
+						<span>Sábado</span>
+						<div class="hours">
+							<span>12:00 - 16:00</span>
+							<span>17:00 - 21:00</span>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="infoContainer phoneContainer" ng-if="company.phone[0]">
+			<button class="button button-icon icon ion-ios-telephone" ></button>
+			<div class="phoneNumbers">
+				<button ng-if="company.phone.length > 1" class="down button button-icon icon ion-ios-arrow-down" 
+					ng-click="openPhone()"></button>
+				<p ng-click="openPhone()">{{company.phone[0]}}</p> 
+				<ul ng-if="company.phone.length > 1">
+					<li ng-repeat="phone in company.phone.slice(1,company.phone.length)">
+						{{phone}}
+					</li>
+				</ul>
+			</div>
 		</div>
 	</div>
 
-	<ion-list>
-	  <ion-item>
-	    I love kittens!
-	    <ion-option-button class="button-positive">Share</ion-option-button>
-	    <ion-option-button class="button-assertive">Edit</ion-option-button>
-	  </ion-item>
-	</ion-list>
-	{{company}}
 	</ion-content>
 </ion-view>

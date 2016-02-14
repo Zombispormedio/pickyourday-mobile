@@ -1,15 +1,34 @@
 <ion-view>
-	<ion-content class="padding company has-header">
-
-		<div ng-if="reviews.length > 0">
-			<div ng-repeat="review in reviews"> 
-
-			  <div class="list card"> 
-			      <h4>{{ review }}</h4>
-			  </div> 
-
+	<ion-content class="padding company reviewsDetail has-header">
+		
+		<h2>Resumen de reseñas</h2>
+		<div class="detail">
+			<div class="left">
+				<div ng-repeat="value in widths track by $index" class="barCont">
+					<span>{{$index}}</span>
+					<span class="barFilled" style="width:{{value}}%;"></span>
+				</div>
+			</div>
+			<div class="right">
+				<span class="mark">{{company.review_ratings.avg}}</span>
+				<span>{{company.review.length}} reviews</span>
 			</div>
 		</div>
+
+		<div ng-if="reviews.length > 0"  class="list">
+	      <div ng-repeat="review in reviews | orderBy: 'date'" class="card"> 
+	      
+	            <div class="user">
+	              <h3>{{ review.id_customer.name }}</h3>
+	            </div>
+				
+	            <div class="review">
+	            	<span class="rate">{{review.rating}}</span>
+					<rating readonly="true" ng-model="review.rating" max="5"></rating>
+					<p>{{review.description}}</p>
+	            </div>
+	      </div>
+	    </div>
 
 		<div ng-if="reviews.length <= 0">
 			<p>No hay reviews</p>

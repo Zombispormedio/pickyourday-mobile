@@ -1,21 +1,26 @@
 <ion-view>
-	<ion-content class="padding company has-header">
-		<hr class="positive">
-		<h3>Servicios</h3>
+	<ion-content class="company has-header">
 
-		<div ng-if="services.length > 0">
-			<div ng-repeat="service in services"> 
+		<div ng-if="services.length > 0" class="services">
+			<div ng-repeat="service in services | orderBy:'-avgRating'" 
+				class="service item"> 
 
-			  <div class="list card" ng-click="newPick(company, service)"> 
-			    <div class="item item-divider">
-			      <h4>{{ service.default.name }}</h4>
-			    </div>
-			    <div class="item item-body">
+			  <div class="service_title">
+			      <h2>{{ service.default.name }}</h2>
 			      <p>{{ service.description}}</p>
-			      <span class="price">{{ service.price | currency : ""}} €</span>
-			    </div>
+			      <p>Duración: <span class="bold">{{service.duration}} min</span></p>		
+			  </div>
+				
+			<div class="ratingContainer" ng-if="service.rating.length > 0">
+				<span class="rate">{{service.avgRating}}</span>
+				<rating readonly="true" ng-model="service.avgRating" max="5"></rating>
+				<span class="reviews">{{service.rating.length}} reviews</span>
+			</div>
 
-			  </div> 
+			<p ng-if="service.rating.length == 0">No tiene reviews</p>
+
+		    <span class="price">{{ service.price | currency : ""}} €</span>
+		    <div class="pick ion-android-add" ng-click="newPick(company, service)"></div>
 
 			</div>
 		</div>

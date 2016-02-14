@@ -9135,6 +9135,9 @@ h2 {
   padding: 0;
   margin: 0; }
 
+.bold {
+  font-weight: bold; }
+
 .tab-item {
   font-family: "Lato", sans-serif; }
 
@@ -9145,7 +9148,7 @@ h2 {
   background-color: #05564b; }
 
 .orange {
-  background-color: #e64a19; }
+  background-color: #FF9800; }
 
 .iconCat {
   border-radius: 50%;
@@ -9545,7 +9548,32 @@ h2 {
 .company {
   text-align: left;
   /*INFO*/
-  /* SERVICES */ }
+  /* SERVICES */
+  /*REVIEWS*/ }
+  .company p {
+    margin: 0; }
+  .company .rating {
+    text-align: left;
+    display: inline-block;
+    vertical-align: middle;
+    display: flex;
+    flex-direction: row; }
+    .company .rating i {
+      font-size: 25px; }
+  .company .ratingContainer {
+    margin: 5px 0;
+    display: inline-block;
+    display: flex;
+    align-items: center; }
+    .company .ratingContainer .rate {
+      font-size: 16px;
+      margin-right: 5px;
+      vertical-align: middle; }
+    .company .ratingContainer .reviews {
+      margin-left: 10px;
+      vertical-align: middle; }
+    .company .ratingContainer .rating i {
+      color: #fff; }
   .company .slide {
     width: 100%; }
     .company .slide .image {
@@ -9572,23 +9600,12 @@ h2 {
       color: #fff;
       margin: 0;
       margin-top: 5px; }
-    .company .title .rating {
-      margin: 5px 0; }
-      .company .title .rating .rate {
-        color: #fff;
-        font-size: 16px;
-        margin-right: 5px;
-        vertical-align: middle; }
-      .company .title .rating .reviews {
-        color: #fff;
-        margin-left: 10px;
-        vertical-align: middle; }
-      .company .title .rating .ionic_ratings {
-        text-align: left;
-        display: inline-block;
-        vertical-align: middle; }
-        .company .title .rating .ionic_ratings .icon {
-          font-size: 25px; }
+    .company .title .ratingContainer .rate {
+      color: #fff; }
+    .company .title .ratingContainer .reviews {
+      color: #fff; }
+    .company .title .ratingContainer .rating i {
+      color: #fff; }
   .company .suscribe {
     color: #3A6964;
     background-color: #FFF;
@@ -9618,14 +9635,145 @@ h2 {
       text-transform: uppercase; }
   .company .info {
     padding: 20px; }
-  .company .list.card .item h4 {
+    .company .info .description {
+      margin-bottom: 15px; }
+    .company .info .infoContainer {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start; }
+      .company .info .infoContainer button {
+        color: #3A6964;
+        vertical-align: middle;
+        min-width: 45px; }
+      .company .info .infoContainer > p {
+        display: inline-block;
+        vertical-align: middle;
+        margin: 0;
+        margin-left: 10px;
+        margin-top: 10px;
+        width: 70%; }
+    .company .info .dateTable, .company .info .phoneContainer {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start; }
+      .company .info .dateTable button, .company .info .phoneContainer button {
+        color: #3A6964;
+        vertical-align: top;
+        min-width: 45px; }
+      .company .info .dateTable .timetable, .company .info .dateTable .phoneNumbers, .company .info .phoneContainer .timetable, .company .info .phoneContainer .phoneNumbers {
+        display: inline-block;
+        margin-left: 10px;
+        margin-top: 10px;
+        vertical-align: top;
+        flex-grow: 1;
+        position: relative; }
+        .company .info .dateTable .timetable > p, .company .info .dateTable .phoneNumbers > p, .company .info .phoneContainer .timetable > p, .company .info .phoneContainer .phoneNumbers > p {
+          margin-left: 0px;
+          margin-top: 0px;
+          display: flex;
+          justify-content: space-between;
+          width: 80%; }
+      .company .info .dateTable .down, .company .info .phoneContainer .down {
+        position: absolute;
+        right: 0;
+        top: 0;
+        padding: 0;
+        min-height: 0;
+        line-height: 15px; }
+        .company .info .dateTable .down:before, .company .info .phoneContainer .down:before {
+          line-height: 15px;
+          font-size: 20px; }
+        .company .info .dateTable .down:after, .company .info .phoneContainer .down:after {
+          display: none; }
+        .company .info .dateTable .down.open, .company .info .phoneContainer .down.open {
+          transform: rotate(180deg);
+          -webkit-transition: transform 0.3s ease-in-out;
+          -moz-transition: transform 0.3s ease-in-out;
+          -o-transition: transform 0.3s ease-in-out;
+          transition: transform 0.3s ease-in-out; }
+      .company .info .dateTable ul, .company .info .phoneContainer ul {
+        display: none;
+        width: 80%; }
+        .company .info .dateTable ul li, .company .info .phoneContainer ul li {
+          display: flex;
+          justify-content: space-between;
+          margin: 5px 0; }
+          .company .info .dateTable ul li .hours span, .company .info .phoneContainer ul li .hours span {
+            display: block;
+            margin-bottom: 5px; }
+  .company .services .service {
     text-align: left;
-    font-size: 18px; }
-  .company .list.card .item.item-body {
+    position: relative;
+    padding: 15px;
+    margin: 20px 10px;
+    overflow: visible; }
+    .company .services .service .service_title {
+      text-align: left;
+      background-color: transparent;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 10px; }
+      .company .services .service .service_title h2, .company .services .service .service_title p {
+        text-align: left;
+        white-space: pre-line; }
+      .company .services .service .service_title p {
+        font-size: 15px; }
+      .company .services .service .service_title h2 {
+        font-size: 18px; }
+    .company .services .service .pick {
+      position: absolute;
+      right: 10px;
+      bottom: -10px;
+      width: 40px;
+      height: 40px;
+      padding: 5px;
+      background-color: #3A6964;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      border-radius: 50%; }
+      .company .services .service .pick:before {
+        font-size: 20px; }
+    .company .services .service .price {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      font-weight: bold; }
+    .company .services .service .review {
+      padding-top: 10px; }
+    .company .services .service .ratingContainer .rate {
+      color: #FF9800;
+      font-weight: bold; }
+    .company .services .service .ratingContainer .rating i {
+      color: #FF9800; }
+  .company.reviewsDetail h2 {
+    font-size: 20px;
     text-align: left;
-    padding-top: 10px; }
-    .company .list.card .item.item-body p {
-      margin: 5px 0; }
+    margin-bottom: 10px; }
+  .company.reviewsDetail .detail {
+    display: flex; }
+    .company.reviewsDetail .detail .left {
+      flex: 1; }
+      .company.reviewsDetail .detail .left .barCont {
+        display: flex; }
+        .company.reviewsDetail .detail .left .barCont span:first-child {
+          margin-right: 5px; }
+      .company.reviewsDetail .detail .left .barFilled {
+        display: block;
+        background-color: #FF9800;
+        height: 20px;
+        margin-bottom: 5px; }
+    .company.reviewsDetail .detail .right {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column; }
+      .company.reviewsDetail .detail .right .mark {
+        font-weight: bold;
+        font-size: 30px;
+        color: #FF9800; }
 
 .newPick strong {
   font-weight: 600; }

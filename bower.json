@@ -12,6 +12,6 @@
     "angular-resource": "~1.4.8",
     "angular-bootstrap-datetimepicker": "~0.4.0",
     "bootstrap": "~3.3.6",
-    "ionic-ratings": "~0.2.0"
+    "ionic-rating": "~0.2.0"
   }
 }

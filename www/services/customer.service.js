@@ -22,8 +22,9 @@ pydmFtry.CustomerService = function(ApiService){
             });
         },
         company:function(){
-            return ApiService.rest(this.base+"/company",{
-                list:{method:"GET", params:{}}              
+            return ApiService.rest(this.base+"/company/:id",{
+                list:{method:"GET", params:{}},
+                getByID:{method:"GET", params:{id:"@id"}}
             });
         },
         category: function(){

@@ -7,6 +7,7 @@ pydmCtrl.CompaniesCtrl = function ($rootScope, $scope, $http, $stateParams, Cust
         if (!res.error) {       
           	$scope.companies = res.data;		
         } else {
+          console.log(res.error);
            $scope.error=res.error;
         }
 
@@ -15,11 +16,9 @@ pydmCtrl.CompaniesCtrl = function ($rootScope, $scope, $http, $stateParams, Cust
     });
 
 
-	$scope.goDetail = function (company) {
-    console.log(company);
-		$rootScope.go("app.companiesDetail.info", {company: JSON.stringify(company)} );
-
-	}
+  $scope.goDetail = function (idCompany) {
+    $rootScope.go("app.companyDetail", {idCompany: idCompany });
+  }
 
 
 }

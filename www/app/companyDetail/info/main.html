@@ -1,0 +1,15 @@
+<ion-view>
+	<ion-content class="company has-header">
+
+	<div class="cabecera">  				
+		<ion-slide-box ng-if="company.images.length > 0" show-pager="true">
+			<ion-slide ng-repeat="image in company.images">
+				<img src="{{image.src}}" alt="{{image.alt}}">
+			</ion-slide>
+		</ion-slide-box>
+		<h2>{{company.name}}</h2>
+		<p>{{company.description}}</p>
+	</div>
+
+	</ion-content>
+</ion-view>

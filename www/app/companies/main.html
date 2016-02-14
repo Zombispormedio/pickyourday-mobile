@@ -1,12 +1,12 @@
 <ion-view>
-  <ion-content class="companies">
+  <ion-content class="companies has-header">
   
   <hr class="green">
   <h2>Compañías</h2>
 
   <div ng-if="companies.length > 0" class="list">
 
-    <div ng-repeat="company in companies" class="item" ng-click="goDetail(company)"> 
+    <div ng-repeat="company in companies" class="item" ng-click="goDetail(company._id)"> 
 
           <div class="iconCat" style="background-color: {{company.category_metadata.color}};">
              <img ng-src="{{company.category_metadata.icon.src}}" alt="{{ company.category_metadata.icon.alt }}">

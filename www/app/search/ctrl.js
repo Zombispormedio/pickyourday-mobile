@@ -10,6 +10,7 @@ pydmCtrl.SearchCtrl = function ($rootScope, $scope, $http, ngFB, CustomerService
         var res = result;
         if (!res.error) {       
           	$scope.companies = res.data;		
+            $scope.services = res.data.services;
         } else {
            $scope.error=res.error;
         }
@@ -24,8 +25,9 @@ pydmCtrl.SearchCtrl = function ($rootScope, $scope, $http, ngFB, CustomerService
 	};
 
 
-	$scope.goDetail = function (company) {
-		$rootScope.go("app.companiesDetail", {company: JSON.stringify(company)} );
-	}
+	$scope.goDetail = function (idCompany) {
+    
+    $rootScope.go("app.companyDetail", {idCompany: idCompany });
+  }
 
 }

@@ -51,7 +51,7 @@ var app=angular.module('starter', ['ionic', 'ngOpenFB', "ngResource", 'ui.bootst
           }
         },
         views: {
-          'tab-dashboard': {
+          'content': {
             templateUrl: 'app/dashboard/main.html',
             controller: 'DashboardCtrl'
           }
@@ -67,7 +67,7 @@ var app=angular.module('starter', ['ionic', 'ngOpenFB', "ngResource", 'ui.bootst
           }
         },
         views: {
-          'tab-categories': {
+          'content': {
             templateUrl: 'app/categories/main.html',
             controller: 'CategoriesCtrl'
           }
@@ -82,7 +82,7 @@ var app=angular.module('starter', ['ionic', 'ngOpenFB', "ngResource", 'ui.bootst
           }
         },
         views: {
-          'tab-prepicks': {
+          'content': {
             templateUrl: 'app/prepicks/main.html',
             controller: 'PrepicksCtrl'
           }
@@ -97,68 +97,65 @@ var app=angular.module('starter', ['ionic', 'ngOpenFB', "ngResource", 'ui.bootst
           }
         },
         views: {
-          'companies': {
+          'content': {
             templateUrl: 'app/companies/main.html',
             controller: 'CompaniesCtrl'
           }
         }
       })
 
-      .state("app.companiesDetail", {
-        url: "/companies/detail/:company",
+      .state("app.companyDetail", {
+        url: "/companyDetail/:idCompany",
         onEnter: function ($rootScope) {
           if (!getJSONLocal("user")) {            
             $rootScope.go("login");
           }
         },
         views: {
-          'companies': {
-            templateUrl: 'app/companies/detail/main.html',
+          'content': {
+            templateUrl: 'app/companyDetail/main.html',
             controller: 'CompaniesDetailCtrl'
           }
         }
       })
 
-      .state('app.companiesDetail.info', {
-        url: '/companies/detail/info/:company',
+      .state('app.companyDetail.info', {
+        url: '/companyDetail/info',
         onEnter: function ($rootScope) {
           if (!getJSONLocal("user")) {            
             $rootScope.go("login");
           }
         },
         views: {
-          'companies1': {
-            templateUrl: 'app/companies/detail/info/main.html',
-            controller: 'CompaniesInfoCtrl'
+          'info': {
+            templateUrl: 'app/companyDetail/info/main.html'
           }
         }
       })
-      .state('app.companiesDetail.services', {
-        url: '/companies/detail/services/:company',
+      .state('app.companyDetail.services', {
+        url: '/companyDetail/services',
         onEnter: function ($rootScope) {
           if (!getJSONLocal("user")) {            
             $rootScope.go("login");
           }
         },
         views: {
-          'companies2': {
-            templateUrl: 'app/companies/detail/services/main.html',
-            controller: 'CompaniesServicesCtrl'
+          'services': {
+            templateUrl: 'app/companyDetail/services/main.html'
           }
         }
       })
 
-      .state('app.companiesDetail.reviews', {
-        url: '/companies/detail/reviews/:company',
+      .state('app.companyDetail.reviews', {
+        url: '/companyDetail/reviews',
         onEnter: function ($rootScope) {
           if (!getJSONLocal("user")) {            
             $rootScope.go("login");
           }
         },
         views: {
-          'companies3': {
-            templateUrl: 'app/companies/detail/reviews/main.html',
-            controller: 'CompaniesReviewsCtrl'
+          'reviews': {
+            templateUrl: 'app/companyDetail/reviews/main.html'
           }
         }
       })
@@ -172,7 +169,7 @@ var app=angular.module('starter', ['ionic', 'ngOpenFB', "ngResource", 'ui.bootst
           }
         },
         views: {
-          'newPick': {
+          'content': {
             templateUrl: 'app/newPick/main.html',
             controller: 'NewPickCtrl'
           }
@@ -187,7 +184,7 @@ var app=angular.module('starter', ['ionic', 'ngOpenFB', "ngResource", 'ui.bootst
           }
         },
         views: {
-          'profile': {
+          'content': {
             templateUrl: 'app/profile/main.html',
             controller: 'ProfileCtrl'
           }
@@ -202,7 +199,7 @@ var app=angular.module('starter', ['ionic', 'ngOpenFB', "ngResource", 'ui.bootst
           }
         },
         views: {
-          'search': {
+          'content': {
             templateUrl: 'app/search/main.html',
             controller: 'SearchCtrl'
           }
@@ -219,16 +216,32 @@ var app=angular.module('starter', ['ionic', 'ngOpenFB', "ngResource", 'ui.bootst
 
 
 
-.run(function($ionicPlatform, $rootScope, $state, $ionicModal, ngFB) {
-  ngFB.init({appId: '122387958132479'});
+.run(function($ionicPlatform, $rootScope, $state, $ionicModal, $ionicPopup, ngFB) {
 
-  $rootScope.go = function(state, params){
-    $state.go(state, params);
-  }
+    ngFB.init({appId: '122387958132479'});
+
+    $rootScope.go = function(state, params){
+      $state.go(state, params);
+    }
+/*
+    $ionicPlatform.registerBackButtonAction(function(event) {
+
+      if($state.current.name=="app.dashboard") {
+        $ionicPopup.confirm({
+          //title: 'System warning',
+          template: '¿Seguro que deseas salir de la aplicación?'
+        }).then(function(res) {
+          if (res) {
+            ionic.Platform.exitApp();
+          }
+        })
+      }
+    }, 100);
+    */
 
     $ionicModal.fromTemplateUrl('app/modal/modal.html', {
-    scope: $rootScope,
-    animation: 'fade-in-scale'
+      scope: $rootScope,
+      animation: 'fade-in-scale'
     }).then(function(modal) {
       $rootScope.modal = modal;
     });

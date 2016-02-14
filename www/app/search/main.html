@@ -8,12 +8,12 @@
 	         class="full-width">
 	</ion-header-bar>
 
-  <ion-content class="padding profile">
+  <ion-content class="padding profile has-header">
 
 
 	<ion-list> 
 
-	  <ion-item ng-repeat="company in companies" class="my-item" ng-click="goDetail(company)"> 
+	  <ion-item ng-repeat="company in companies" class="my-item" ng-click="goDetail(company._id)"> 
 	      {{ company.name }}
 	  </ion-item>
 

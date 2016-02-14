@@ -1,6 +1,6 @@
 <ion-side-menus>
 	<ion-side-menu-content>
-
+		
 		<ion-nav-bar class="bar-positive " align-title="center">
 
 		 	<ion-nav-back-button>
@@ -17,73 +17,9 @@
 				<button class="button button-icon icon ion-ios-search-strong"  ui-sref="app.search"></button>
 			</ion-nav-buttons>
 
-
-			<ion-tabs class="tabs-item-hide">
-				<ion-tab title="Dashboard" hidden="true">
-				 	<ion-nav-view name="tab-dashboard"></ion-nav-view>
-				</ion-tab>
-
-				<ion-tab title="Categorias" hidden="true">
-				 	<ion-nav-view name="tab-categories"></ion-nav-view>
-				</ion-tab>
-
-				<ion-tab title="Sugerencias" hidden="true">
-				 	<ion-nav-view name="tab-prepicks"></ion-nav-view>
-				</ion-tab>
-
-				<ion-tab title="NewPick" hidden="true">
-		          <ion-nav-view name="newPick"></ion-nav-view>
-		        </ion-tab>
-
-		        <ion-tab title="Companies" hidden="true">
-		          <ion-nav-view name="companies"></ion-nav-view>
-		        </ion-tab>		  
-
-		        <ion-tab title="Profile" hidden="true">
-		          <ion-nav-view name="profile"></ion-nav-view>
-		        </ion-tab>		
-
-		        <ion-tab title="Search" hidden="true">
-		          <ion-nav-view name="search"></ion-nav-view>
-		        </ion-tab>	 
-			</ion-tabs>
-		<!--
-			<ion-tabs class="tabs-icon-top tabs-positive">
- 
-				 <ion-tab title="Dashboard" icon="icon ion-clock" href="app.dashboard">
-				 	<ion-nav-view name="tab-dashboard">
-				 	</ion-nav-view>
-				 </ion-tab>
-				 
-				 
-				 <ion-tab title="Categorias" icon="icon ion-network"  ui-sref="app.categories">
-				 	<ion-nav-view name="tab-categories">
-				 	</ion-nav-view>
-				 </ion-tab>
-				 
-				 
-
-				 <ion-tab title="Sugerencias" icon="icon ion-ios-lightbulb"  ui-sref="app.prepicks">
-				 	<ion-nav-view name="tab-prepicks"></ion-nav-view>
-				 </ion-tab>
-
-				<ion-tab title="NewPick" hidden="true">
-		          <ion-nav-view name="newPick"></ion-nav-view>
-		        </ion-tab>
-
-		        <ion-tab title="Companies" hidden="true">
-		          <ion-nav-view name="companies"></ion-nav-view>
-		        </ion-tab>		  
-
-		        <ion-tab title="Profile" hidden="true">
-		          <ion-nav-view name="profile"></ion-nav-view>
-		        </ion-tab>		  
-
-
-			</ion-tabs>
-		-->
-			
 		</ion-nav-bar>
+
+		<ui-view name="content" ></ui-view>
 
 	</ion-side-menu-content>
 

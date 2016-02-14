@@ -1,0 +1,19 @@
+<ion-view>
+	<ion-content class="padding company has-header">
+
+		<div ng-if="reviews.length > 0">
+			<div ng-repeat="review in reviews"> 
+
+			  <div class="list card"> 
+			      <h4>{{ review }}</h4>
+			  </div> 
+
+			</div>
+		</div>
+
+		<div ng-if="reviews.length <= 0">
+			<p>No hay reviews</p>
+		</div>
+
+	</ion-content>
+</ion-view>

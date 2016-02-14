@@ -1,29 +1,117 @@
 
 .company{
 	text-align: left;
-	.cabecera{
-		text-align: center;
-		margin-bottom: 20px;
+	
+	/*INFO*/
+	.slide{
+		width: 100%;
 
-		hr{
-			width: 20%;
+
+		.image{
+			height: 160px;
+			background-size: cover;
+			background-position: center center;
 		}
 
-		img{
-			width: 100%;
+		.ion-ios-arrow-left, .ion-ios-arrow-right{
+			position: absolute;
+			color: #fff;
+			top: 0;
+			bottom: 0;
+			margin: auto;
+		}
+
+		.ion-ios-arrow-right{
+			right: 0;			
 		}
 	}
 
-	hr{
-		width: 10%;
+
+	.title{
+		text-align: left;
+		padding: 20px;
+		background-color: $detail;
+
+		h2{
+			color: #fff;
+			font-size: 20px;
+	    	text-align: left;
+	    	//text-transform: uppercase;	    	
+		}
+
+		p{
+			color: #fff;		
+			margin: 0;	
+			margin-top: 5px;
+		}
+		
+		.rating{
+			margin: 5px 0;
+
+			.rate{
+				color: #fff;
+				font-size: 16px;
+				margin-right: 5px;
+				vertical-align: middle;
+			}
+
+			.reviews{
+				color: #fff;
+				margin-left: 10px;
+				vertical-align: middle;
+			}
+
+			.ionic_ratings{
+				text-align: left;
+				display: inline-block;
+				vertical-align: middle;
+
+				.icon {
+					font-size: 25px;
+				}
+			}
+		}
+	}
+	
+	.suscribe{
+	    color: $detail;
+	    background-color: #FFF;
+	    border: 0;
+	    outline: 0;
+	    padding: 0;
+	    width: 50px;
+	    height: 50px;
+	    font-size: 20px;
+	    border-radius: 50%;
+	    position: absolute;
+	    right: 10px;
+	    top: 130px;
+	}
+	
+	.icons{
+		display: flex;
+		color: $detail;
+		padding-top: 15px;
+    	padding-bottom: 5px;
+		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+
+		.button-icon.icon:before {
+		    display: block;
+		    line-height: 20px;
+		}
+		.button{
+			flex: 1;
+			color: $detail;
+    		line-height: 40px;
+			text-transform: uppercase;
+		}
 	}
 
-	h3{
-		font-size: 20px;
-    	text-align: center;
-    	margin-top: 0;
+	.info{
+		padding: 20px;
 	}
 
+	/* SERVICES */
 	.list.card{
 		.item{
 			h4{

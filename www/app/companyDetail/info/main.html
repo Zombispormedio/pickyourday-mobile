@@ -1,15 +1,48 @@
 <ion-view>
 	<ion-content class="company has-header">
 
-	<div class="cabecera">  				
-		<ion-slide-box ng-if="company.images.length > 0" show-pager="true">
-			<ion-slide ng-repeat="image in company.images">
-				<img src="{{image.src}}" alt="{{image.alt}}">
-			</ion-slide>
-		</ion-slide-box>
+				
+	<ion-slide-box ng-if="company.images.length > 0" show-pager="false" disable-scroll="true">
+		<ion-slide ng-repeat="image in company.images" class="slide">
+			<button ng-click="previousSlide()" class="button button-icon icon ion-ios-arrow-left"></button>	
+			<div class="image" style="background-image: url({{image.src}});"></div>			
+			<button ng-click="nextSlide()" class="button button-icon icon ion-ios-arrow-right"></button>
+		</ion-slide>
+	</ion-slide-box>
+
+	<button class="ion-ios-heart suscribe"></button>
+
+	<div class="title">
 		<h2>{{company.name}}</h2>
-		<p>{{company.description}}</p>
+		<div class="rating">
+			<span class="rate">4</span>
+			<ionic-ratings ratingsobj='ratingsObject'></ionic-ratings>
+			<span class="reviews">100 reviews</span>
+		</div>
+		<p>{{company.category.name}}</p>
 	</div>
 
+	<div class="icons">
+		<button class="button button-icon icon ion-ios-telephone">Llamar</button>	
+		<button class="button button-icon icon ion-ios-email">Mail</button>	
+		<button class="button button-icon icon ion-ios-world">Website</button>	
+	</div>
+
+	<div class="info">
+		<p>{{company.description}}</p>
+		<div class="location">
+			<button class="button button-icon icon ion-ios-location"></button>
+			<p></p>
+		</div>
+	</div>
+
+	<ion-list>
+	  <ion-item>
+	    I love kittens!
+	    <ion-option-button class="button-positive">Share</ion-option-button>
+	    <ion-option-button class="button-assertive">Edit</ion-option-button>
+	  </ion-item>
+	</ion-list>
+	{{company}}
 	</ion-content>
 </ion-view>

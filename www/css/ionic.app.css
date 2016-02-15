@@ -9834,6 +9834,8 @@ h2 {
         .company.reviewsDetail .reviewCard .user .review .rating i {
           color: #FF9800;
           font-size: 15px; }
+  .company.reviewsDetail .noReviews {
+    padding: 0 10px; }
 
 .newPick strong {
   font-weight: 600; }

@@ -17,7 +17,7 @@
 				<span class="reviews">{{service.rating.length}} reviews</span>
 			</div>
 
-			<p ng-if="service.rating.length == 0">No tiene reviews</p>
+			<p class="ratingContainer" ng-if="service.rating.length == 0">No tiene reviews</p>
 
 		    <span class="price">{{ service.price | currency : ""}} €</span>
 		    <div class="pick ion-android-add" ng-click="newPick(company, service)"></div>

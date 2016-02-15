@@ -5,7 +5,7 @@
 		<div class="detail">
 			<div class="left">
 				<div ng-repeat="value in widths track by $index" class="barCont">
-					<span>{{$index}} <i class="ion-android-star"></i></span>
+					<span>{{$index+1}} <i class="ion-android-star"></i></span>
 					<div class="barFilledContainer">
 						<span class="barFilled" style="width:{{value}}%;"></span>
 					</div>
@@ -43,7 +43,7 @@
 	    </div>
 
 		<div ng-if="reviews.length <= 0">
-			<p>No hay reviews</p>
+			<p class="noReviews">No hay reviews</p>
 		</div>
 
 	</ion-content>

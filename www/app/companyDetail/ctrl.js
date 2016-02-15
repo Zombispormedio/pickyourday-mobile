@@ -3,7 +3,7 @@ pydmCtrl.CompaniesDetailCtrl = function ($rootScope, $scope, $http, $stateParams
 
   var idCompany = $stateParams.idCompany;
 
-  $scope.userRate = [];
+  $scope.userRate = 0;
   $scope.company = [];
   $scope.services = [];
   $scope.reviews = [];
@@ -37,16 +37,21 @@ pydmCtrl.CompaniesDetailCtrl = function ($rootScope, $scope, $http, $stateParams
     var arr = [];
     angular.forEach($scope.company.review_ratings, function (rev, index) {
         if(index != "avg") 
-          arr[index] = rev;
+          arr[index-1] = rev;
     });
 
     var max = arr.max();
+    
     var wid = [];
 
-    angular.forEach($scope.company.review_ratings, function (rev, index) {
-      if(index != "avg") 
-          wid[index] = (rev/max)*100;
-    });
+    if(max > 0){
+      angular.forEach($scope.company.review_ratings, function (rev, index) {
+        if(index != "avg") 
+            wid[index-1] = (rev/max)*100;
+      });
+    }else{
+      wid = [0,0,0,0,0];
+    }
 
     $scope.widths = wid;
     

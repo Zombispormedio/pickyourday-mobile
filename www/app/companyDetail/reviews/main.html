@@ -1,32 +1,44 @@
 <ion-view>
-	<ion-content class="padding company reviewsDetail has-header">
+	<ion-content class="company reviewsDetail has-header">
 		
 		<h2>Resumen de reseñas</h2>
 		<div class="detail">
 			<div class="left">
 				<div ng-repeat="value in widths track by $index" class="barCont">
-					<span>{{$index}}</span>
-					<span class="barFilled" style="width:{{value}}%;"></span>
+					<span>{{$index}} <i class="ion-android-star"></i></span>
+					<div class="barFilledContainer">
+						<span class="barFilled" style="width:{{value}}%;"></span>
+					</div>
 				</div>
 			</div>
 			<div class="right">
-				<span class="mark">{{company.review_ratings.avg}}</span>
-				<span>{{company.review.length}} reviews</span>
+				  <div class="globalReview">
+	            	<span class="rate">{{company.review_ratings.avg}}</span>
+					<rating readonly="true" ng-model="company.review_ratings.avg" max="5"></rating>
+					<p>{{company.review.length}} reviews</p>
+	            </div>
 			</div>
 		</div>
 
-		<div ng-if="reviews.length > 0"  class="list">
-	      <div ng-repeat="review in reviews | orderBy: 'date'" class="card"> 
+		<h2 class="evaluate">Valora la empresa</h2>
+		<rating class="userRating" ng-model="userRate" max="5"></rating>
+
+		<h3>Todas las reseñas</h3>
+		<div ng-if="reviews.length > 0">
+	      <div ng-repeat="review in reviews | orderBy: 'date'" class="reviewCard"> 
 	      
 	            <div class="user">
-	              <h3>{{ review.id_customer.name }}</h3>
+	            	<div class="userPhoto ion-person"></div>
+	            	<div class="text">
+		              	<h4>{{ review.id_customer.name }}</h4>
+		              	<span class="date">Hace dos años</p>
+		              	<div class="review">
+			            	<span class="rate">{{review.rating}}</span>
+							<rating readonly="true" ng-model="review.rating" max="5"></rating>
+			            </div>
+		            </div>
 	            </div>
-				
-	            <div class="review">
-	            	<span class="rate">{{review.rating}}</span>
-					<rating readonly="true" ng-model="review.rating" max="5"></rating>
-					<p>{{review.description}}</p>
-	            </div>
+	            <p>{{review.description}}</p>
 	      </div>
 	    </div>
 

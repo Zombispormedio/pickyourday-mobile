@@ -311,26 +311,40 @@
 		h2{
 			font-size: 20px;
 			text-align: left;
-			margin-bottom: 10px;
+			padding: 10px;
 		}
 		.detail{
 			display: flex;
+			padding: 10px;
 			.left{
 				flex: 1;
 
 				.barCont{
 					display: flex;
+					>span{
+						width: auto;
+						margin-right: 10px;
 
-					span:first-child{
-						margin-right: 5px;
+						i{
+							margin-left: 5px;
+							color: #ccc;
+						}
 					}
-				}
-				.barFilled{
-					display: block;
-					background-color: $orange;
-					height: 20px;
-					margin-bottom: 5px;
-				}
+					.barFilledContainer{
+						flex-grow: 1;
+						margin-bottom: 5px;
+						height: 20px;
+						position: relative;
+
+						.barFilled{
+							min-width: 1%;
+							display: block;
+							background-color: $orange;
+							height: 100%;
+						}
+					}
+				
+				}				
 			}
 
 			.right{
@@ -340,10 +354,88 @@
 				align-items: center;
 				flex-direction: column;
 
-				.mark{
-					font-weight: bold;
-					font-size: 30px;
-					color: $orange;
+				.globalReview{
+					text-align: center;
+					.rate{
+						background-color: transparent;
+						font-weight: bold;
+						font-size: 30px;
+						color: $orange;
+					}
+
+					.rating{
+						i{
+							font-size: 20px;
+							color: $orange;
+						}
+					}
+					
+				}
+			}
+		}
+
+		h2.evaluate{
+			border-top: 1px solid #ccc;
+		}
+
+		.userRating{
+			justify-content: space-between;
+			width: 80%;
+			margin: 0 auto;
+			i{
+				font-size: 30px;
+				color: $orange;
+			}
+		}
+
+		h3{
+			font-size: 18px;
+			padding: 10px;
+			border-top: 1px solid #ccc;
+			text-align: left;
+		}
+
+		.reviewCard{
+			margin: 0 10px;
+			padding: 10px 5px;
+			border-bottom: 1px solid #ccc;
+
+			.user{
+				display: flex;
+				.userPhoto{
+					color: #FFF;
+					background-color: $detail;
+					border-radius: 50%;
+				    float: left;
+				    width: 25px;
+				    height: 25px;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+				}
+				.text{
+					flex-grow: 1;
+					margin-left: 15px;
+					h4{
+						margin: 0;
+					}
+				}
+
+				.review{
+					display: flex;
+					align-items: center;
+
+					span{
+						margin-right: 5px;
+						color: $orange;
+					}
+
+					.rating{
+						i{
+							color: $orange;
+							font-size: 15px;
+						}
+					}
 				}
 			}
 		}

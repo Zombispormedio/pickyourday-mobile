@@ -3,6 +3,7 @@ pydmCtrl.CompaniesDetailCtrl = function ($rootScope, $scope, $http, $stateParams
 
   var idCompany = $stateParams.idCompany;
 
+  $scope.userRate = [];
   $scope.company = [];
   $scope.services = [];
   $scope.reviews = [];
@@ -44,7 +45,7 @@ pydmCtrl.CompaniesDetailCtrl = function ($rootScope, $scope, $http, $stateParams
 
     angular.forEach($scope.company.review_ratings, function (rev, index) {
       if(index != "avg") 
-          wid[index] = (rev/max)*100 + 1;
+          wid[index] = (rev/max)*100;
     });
 
     $scope.widths = wid;

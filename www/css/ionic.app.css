@@ -9750,30 +9750,90 @@ h2 {
   .company.reviewsDetail h2 {
     font-size: 20px;
     text-align: left;
-    margin-bottom: 10px; }
+    padding: 10px; }
   .company.reviewsDetail .detail {
-    display: flex; }
+    display: flex;
+    padding: 10px; }
     .company.reviewsDetail .detail .left {
       flex: 1; }
       .company.reviewsDetail .detail .left .barCont {
         display: flex; }
-        .company.reviewsDetail .detail .left .barCont span:first-child {
-          margin-right: 5px; }
-      .company.reviewsDetail .detail .left .barFilled {
-        display: block;
-        background-color: #FF9800;
-        height: 20px;
-        margin-bottom: 5px; }
+        .company.reviewsDetail .detail .left .barCont > span {
+          width: auto;
+          margin-right: 10px; }
+          .company.reviewsDetail .detail .left .barCont > span i {
+            margin-left: 5px;
+            color: #ccc; }
+        .company.reviewsDetail .detail .left .barCont .barFilledContainer {
+          flex-grow: 1;
+          margin-bottom: 5px;
+          height: 20px;
+          position: relative; }
+          .company.reviewsDetail .detail .left .barCont .barFilledContainer .barFilled {
+            min-width: 1%;
+            display: block;
+            background-color: #FF9800;
+            height: 100%; }
     .company.reviewsDetail .detail .right {
       flex: 1;
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column; }
-      .company.reviewsDetail .detail .right .mark {
-        font-weight: bold;
-        font-size: 30px;
-        color: #FF9800; }
+      .company.reviewsDetail .detail .right .globalReview {
+        text-align: center; }
+        .company.reviewsDetail .detail .right .globalReview .rate {
+          background-color: transparent;
+          font-weight: bold;
+          font-size: 30px;
+          color: #FF9800; }
+        .company.reviewsDetail .detail .right .globalReview .rating i {
+          font-size: 20px;
+          color: #FF9800; }
+  .company.reviewsDetail h2.evaluate {
+    border-top: 1px solid #ccc; }
+  .company.reviewsDetail .userRating {
+    justify-content: space-between;
+    width: 80%;
+    margin: 0 auto; }
+    .company.reviewsDetail .userRating i {
+      font-size: 30px;
+      color: #FF9800; }
+  .company.reviewsDetail h3 {
+    font-size: 18px;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+    text-align: left; }
+  .company.reviewsDetail .reviewCard {
+    margin: 0 10px;
+    padding: 10px 5px;
+    border-bottom: 1px solid #ccc; }
+    .company.reviewsDetail .reviewCard .user {
+      display: flex; }
+      .company.reviewsDetail .reviewCard .user .userPhoto {
+        color: #FFF;
+        background-color: #3A6964;
+        border-radius: 50%;
+        float: left;
+        width: 25px;
+        height: 25px;
+        display: flex;
+        justify-content: center;
+        align-items: center; }
+      .company.reviewsDetail .reviewCard .user .text {
+        flex-grow: 1;
+        margin-left: 15px; }
+        .company.reviewsDetail .reviewCard .user .text h4 {
+          margin: 0; }
+      .company.reviewsDetail .reviewCard .user .review {
+        display: flex;
+        align-items: center; }
+        .company.reviewsDetail .reviewCard .user .review span {
+          margin-right: 5px;
+          color: #FF9800; }
+        .company.reviewsDetail .reviewCard .user .review .rating i {
+          color: #FF9800;
+          font-size: 15px; }
 
 .newPick strong {
   font-weight: 600; }

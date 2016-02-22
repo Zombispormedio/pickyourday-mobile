@@ -3,15 +3,17 @@
 
     <hr class="positive">
     <h2>Tu perfil</h2>
+	
+    <h3 ng-if="user.name && !user.name.givenName">{{user.name}}</h3>
+    <h3 ng-if="user.displayName">{{user.displayName}}</h3>
 
+    <p ng-if="user.email">{{user.email}}</p>
+    <p ng-id="user.emails[0]">{{user.emails[0].value}}</p>
 
-    <h3>{{user.name}}</h3>
-    <p>{{user.email}}</p>
-
-    <div ng-if="user.id !=''">
-        <img src="http://graph.facebook.com/{{user.id}}/picture?width=270&height=270"/>
-    </div>
-
+    <img ng-if="user.picture.data" src="{{user.picture.data.url}}"/>
+    <img ng-if="googleImage" src="{{googleImage}}"/>
+	
+	<p ng-if="user.age_range">Age Range: {{user.age_range.min}} - {{user.age_range.max}}</p>
 
   </ion-content>
 </ion-view>

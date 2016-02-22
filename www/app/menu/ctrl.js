@@ -10,7 +10,8 @@ pydmCtrl.MenuCtrl = function ($rootScope, $scope, $ionicSideMenuDelegate, $http,
             var res = result;
             if (!res.error) {       
               	deleteLocal("user");
-				deleteLocal("userFB");
+				deleteLocal("facebook");
+				deleteLocal("google");
 				$rootScope.go("login");
             } else {
                	$scope.error=res.error;

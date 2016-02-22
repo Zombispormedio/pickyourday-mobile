@@ -8,8 +8,8 @@
 
     <div ng-repeat="company in companies" class="item" ng-click="goDetail(company._id)"> 
 
-          <div class="iconCat" style="background-color: {{company.category_metadata.color}};">
-             <img ng-src="{{company.category_metadata.icon.src}}" alt="{{ company.category_metadata.icon.alt }}">
+          <div class="iconCat" style="background-color: {{company.category.color}};">
+             <img ng-src="{{company.category.icon.src}}" alt="{{ company.category.icon.alt }}">
           </div>
 
           <div class="text">

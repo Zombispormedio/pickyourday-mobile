@@ -139,7 +139,7 @@ pydmCtrl.LoginCtrl = function ($rootScope, $scope, $http, $ionicModal, ngFB, $io
             .success(function(data) {
 	    		var id = data.id;
 	    		var googleEmail = data.emails[0].value;
-	    		//$scope.openModal(JSON.stringify(data));
+
 	 			saveLocal("google", $scope.accessToken);
 	    		existsUser(id, googleEmail);
 	    	})

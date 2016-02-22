@@ -1,9 +1,11 @@
-pydmCtrl.LoginCtrl = function ($rootScope, $scope, $http, $ionicModal, ngFB, $ionicSlideBoxDelegate, OauthService, CustomerService, $ionicLoading) {
+pydmCtrl.LoginCtrl = function ($rootScope, $scope, $http, $ionicModal, ngFB, $ionicSlideBoxDelegate, OauthService, CustomerService, $ionicLoading, $cordovaOauth) {
 	$scope.error="";
 	$scope.exists = "";
 	$scope.user = {};
 	$scope.userR = {};
 	$scope.accessToken = "";
+
+
 	$scope.login = function (id, email) {
 
 		if ( ($scope.user.email && $scope.user.password ) || (id && email ) ) {
@@ -18,12 +20,9 @@ pydmCtrl.LoginCtrl = function ($rootScope, $scope, $http, $ionicModal, ngFB, $io
 			}
 
 			OauthService.login().Session(obj , function(result){
-	            var res = result;
-	            if (!res.error) {       
-	              	saveLocal("user", res.data);
-	              	if(email && id)
-						saveLocal("userFB", id);
-
+	            var res = result;				            
+	            if (!res.error) {       	       
+	            	saveLocal("user", res.data);       
 					$rootScope.go("app.dashboard");
 	            } else {
 	               	$scope.error=res.error;
@@ -39,7 +38,6 @@ pydmCtrl.LoginCtrl = function ($rootScope, $scope, $http, $ionicModal, ngFB, $io
 
 	function existsUser(id, email){
 		if (email !== "") {
-
 			OauthService.check().list({email: email}, {} , function(result){
 	            var res = result;
 	            $scope.exists = res.data;
@@ -72,9 +70,6 @@ pydmCtrl.LoginCtrl = function ($rootScope, $scope, $http, $ionicModal, ngFB, $io
 			if($scope.exists == true){
 				$scope.login(id, email);
 			}else{
-
-
-		
 				CustomerService.register().create({}, obj , function(result){
 		            var res = result;
 		            if (!res.error) {
@@ -92,67 +87,71 @@ pydmCtrl.LoginCtrl = function ($rootScope, $scope, $http, $ionicModal, ngFB, $io
 		}
 	}
 
-	$scope.registerWithFb = function (){
+
+	
+	$scope.registerWithFb = function (token){
+ 		console.log(token);
+	 	$http.get("https://graph.facebook.com/v2.2/me", {params: {access_token: token, fields: "email", format: "json" }}).then(function(result) {
+    		var id = result.data.id;
+    		var facebookEmail = result.data.email;
+    		saveLocal("facebook", $scope.accessToken);
+    		existsUser(id, facebookEmail);
+	    }, function(error) {
+	        $scope.openModal("Error: " + error);
+	    });
+		/*
 		ngFB.api({
 	        path: '/me',
 	        params: {fields: 'id, email'}
 	    }).then(
 	    function (user) {
 	        existsUser(user.id, user.email);
+	        $scope.openModal(JSON.stringify(user));
+	        if(email && id)
+				saveLocal("userFB", id);
 	    },
 	    function (error) {
 	    	$scope.error=  error.error_description;
 			$scope.openModal(error.error_description);
 	    });
+	    */
 	}
-
+	
+	
 	$scope.fbLogin = function () {
 	    ngFB.login({scope: 'email'}).then(
 	        function (response) {
 	            if (response.status === 'connected') {
 	                console.log('Facebook login succeeded');
-	                $scope.registerWithFb();
+	                $scope.accessToken = response.authResponse.accessToken;
+	                $scope.registerWithFb(response.authResponse.accessToken);
 	            } else {
 	                alert('Facebook login failed');
 	            }
 	        });
 	};
-
-
-
-	var requestToken = "";
-	var accessToken = "";
-	var clientId = "492674088302-eg1tjtks9t05qen8u753fjvbde4ndb1e.apps.googleusercontent.com";
-	var clientSecret = "1KpoioqUOY-dRG_XTKbDa1iV";
 	
-    $scope.googleSignIn = function() {
-    	//$http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-        var ref = window.open('https://accounts.google.com/o/oauth2/auth?client_id=' + clientId + '&redirect_uri=http://localhost/callback&scope=https://www.googleapis.com/auth/userinfo.email+https://www.googleapis.com/auth/userinfo.profile&approval_prompt=force&response_type=code&access_type=offline', '_blank', 'location=no');
-        ref.addEventListener('loadstart', function(event) { 
-            if((event.url).startsWith("http://localhost/callback")) {
-                requestToken = (event.url).split("code=")[1];
-                $http({method: "post", url: "https://accounts.google.com/o/oauth2/token", data: "client_id=" + clientId + "&client_secret=" + clientSecret + "&redirect_uri=http://localhost/callback" + "&grant_type=authorization_code" + "&code=" + requestToken, headers: {'Content-Type':  'application/x-www-form-urlencoded' }})
-                    .success(function(data) {
-                        $scope.accessToken = data.access_token;
+	var clientId = "492674088302-eg1tjtks9t05qen8u753fjvbde4ndb1e.apps.googleusercontent.com";
+	$scope.googleSignIn = function(){
+		$cordovaOauth.google(clientId, ["email", "profile"]).then(function(result) {
+		    $scope.accessToken = result.access_token;
+		    $http({method: "get", url: "https://www.googleapis.com/plus/v1/people/me", headers: {'Content-Type': 'application/json', 'Authorization':  'Bearer '+result.access_token }})
+            .success(function(data) {
+	    		var id = data.id;
+	    		var googleEmail = data.emails[0].value;
+	    		//$scope.openModal(JSON.stringify(data));
+	 			saveLocal("google", $scope.accessToken);
+	    		existsUser(id, googleEmail);
+	    	})
+	    	.error(function(data, status) {
+	    		$scope.openModal(data);
+	    	});        
 
- 						$http({method: "get", url: "https://www.googleapis.com/plus/v1/people/me", headers: {'Content-Type': 'application/json', 'Authorization':  'Bearer '+data.access_token }})
-                        .success(function(data) {
-				    		var id = data.id;
-				    		var googleEmail = data.emails[0].value;
-				    		existsUser(id, googleEmail);
-				    	})
-				    	.error(function(data, status) {
-				    		$scope.openModal(data);
-				    	});                               
-                    })
-                    .error(function(data, status) {
-                    	$scope.openModal(data);
-                    });
-                ref.close();
-            }
-        });
-    }
-
+		}, function(error) {
+		    $scope.openModal(error);
+		});
+	}
+				
 
     if (typeof String.prototype.startsWith != 'function') {
         String.prototype.startsWith = function (str){

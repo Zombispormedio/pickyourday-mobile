@@ -1,41 +1,41 @@
 <ion-view>
 
-	<ion-header-bar class="bar-light bar-subheader">
-	  <input type="search"
-	         placeholder="Filter companies..."
-	         ng-model="search"
-	         ng-change="scrollTop()"
-	         class="full-width">
-	</ion-header-bar>
+    <ion-header-bar class="bar-light bar-subheader">
+        <input type="search"
+               placeholder="Filter companies..."
+               ng-model="search"
+               ng-change="scrollTop()"
+               class="full-width">
+    </ion-header-bar>
 
-  <ion-content class="padding profile has-header">
+    <ion-content class="padding profile has-header">
 
-	<ion-refresher
-	    pulling-text="Pull to refresh..."
-	    on-refresh="doRefresh()">
-	</ion-refresher>
-	
-	<ion-list> 
+        <ion-refresher
+                       pulling-text="Pull to refresh..."
+                       on-refresh="doRefresh()">
+        </ion-refresher>
 
-	  <ion-item ng-repeat="company in companies" class="my-item" ng-click="goDetail(company._id)"> 
-	      {{ company.name }}
-	  </ion-item>
+        <ion-list>
 
-	</ion-list>
+            <ion-item ng-repeat="company in companies" class="my-item" ng-click="goDetail(company._id)">
+                {{ company.name }}
+            </ion-item>
 
-<!--
- 	<ion-header-bar class="bar-light bar-subheader">
-      <input type="text" placeholder="Search Force" data-ng-model="searchForce">
-      <button ng-if="searchForce.length"
-              class="button button-icon ion-android-close input-button"
-              ng-click="clearSearch()">
-      </button>
-	</ion-header-bar>
+        </ion-list>
+
+        <!--
+<ion-header-bar class="bar-light bar-subheader">
+<input type="text" placeholder="Search Force" data-ng-model="searchForce">
+<button ng-if="searchForce.length"
+class="button button-icon ion-android-close input-button"
+ng-click="clearSearch()">
+</button>
+</ion-header-bar>
 -->
 
 
 
 
 
-  </ion-content>
+    </ion-content>
 </ion-view>

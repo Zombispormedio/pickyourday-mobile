@@ -1,50 +1,54 @@
 <ion-side-menus>
-	<ion-side-menu-content>
-		
-		<ion-nav-bar class="bar-positive " align-title="center">
+    <ion-side-menu-content>
 
-		 	<ion-nav-back-button>
-      		</ion-nav-back-button>
+        <ion-nav-bar class="bar-positive " align-title="center">
 
-			<ion-nav-buttons side="left">
-				<button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
-			</ion-nav-buttons>
+             <ion-nav-back-button>
+              </ion-nav-back-button>
 
-			<ion-nav-buttons side="right">
-				<button class="button button-icon icon ion-ios-clock-outline"  ui-sref="app.dashboard"></button>
-				<button class="button button-icon icon ion-ios-lightbulb-outline"  ui-sref="app.prepicks"></button>
-				<button class="button button-icon icon ion-ios-albums-outline"  ui-sref="app.categories"></button>
-				<button class="button button-icon icon ion-ios-search"  ui-sref="app.search"></button>
-			</ion-nav-buttons>
+            <ion-nav-buttons side="left">
+                <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+            </ion-nav-buttons>
 
-		</ion-nav-bar>
+            <ion-nav-buttons side="right">
+                <button class="button button-icon icon ion-ios-clock-outline"  ui-sref="app.dashboard"></button>
+                <button class="button button-icon icon ion-ios-lightbulb-outline"  ui-sref="app.prepicks"></button>
+                <button class="button button-icon icon ion-ios-albums-outline"  ui-sref="app.categories"></button>
+                <button class="button button-icon icon ion-ios-search"  ui-sref="app.search"></button>
+            </ion-nav-buttons>
 
-		<ui-view name="content" ></ui-view>
+        </ion-nav-bar>
 
-	</ion-side-menu-content>
+        <ui-view name="content" ></ui-view>
 
-	<ion-side-menu side="left" id="menu"  enable-menu-with-back-views="true">
+    </ion-side-menu-content>
 
-		<div class="row cabecera">
-	  		<div class="col"> 
-	  			<a nav-clear menu-close ui-sref="app.dashboard">
-	  				<img src="assets/img/picker.png" id="logo" class="mt20"><br>
-	  			</a>
-	  			Pick your day
-	  		</div>
-		</div>
-		<a nav-clear menu-close ui-sref="app.dashboard" class="item item-icon-left pointer">
-			<i class="icon ion-calendar"></i>Dashboard
-		</a>
-		<a nav-clear menu-close ui-sref="app.profile" class="item item-icon-left pointer">
-			<i class="icon ion-person"></i>Mi perfil
-		</a>
-		<a nav-clear menu-close  ui-sref="app.companies" class="item item-icon-left pointer">
-			<i class="icon ion-pie-graph"></i>Negocios
-		</a>
-		<a nav-clear menu-close ng-click="logout()" class="item item-icon-left pointer">
-			<i class="icon ion-log-out"></i>Cerrar Sesión
-		</a>
-	</ion-side-menu>
+    <ion-side-menu side="left" id="menu"  enable-menu-with-back-views="true">
+
+        <div class="row cabecera">
+              <div class="col">
+                  <a nav-clear menu-close ui-sref="app.dashboard">
+                      <img src="assets/img/picker.png" id="logo" class="mt20"><br>
+                  </a>
+                  Pick your day
+              </div>
+        </div>
+        <a nav-clear menu-close ui-sref="app.dashboard" class="item item-icon-left pointer">
+            <i class="icon ion-calendar"></i>Inicio
+        </a>
+        <a nav-clear menu-close ui-sref="app.profile" class="item item-icon-left pointer">
+            <i class="icon ion-person"></i>Mi perfil
+        </a>
+        <a nav-clear menu-close  ui-sref="app.companies" class="item item-icon-left pointer">
+            <i class="icon ion-pie-graph"></i>Negocios
+        </a>
+        <a nav-clear menu-close  ui-sref="app.preferences" class="item item-icon-left pointer">
+            <i class="icon ion-ios-color-wand"></i>Personalizar
+        </a>
+
+        <a nav-clear menu-close ng-click="logout()" class="item item-icon-left pointer">
+            <i class="icon ion-log-out"></i>Cerrar Sesión
+        </a>
+    </ion-side-menu>
 
 </ion-side-menus>

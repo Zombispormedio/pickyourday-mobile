@@ -27,6 +27,23 @@ pydmCtrl.PreferencesCtrl = function($scope, CustomerService, $ionicModal,  $ioni
         $scope.selectedPref=null;
         $scope.closeModal();
     }
+    
+    $scope.save=function(question, answer){
+        question.answer=answer;
+        
+        CustomerService.preferences().save({},{question:question._id, answer:answer}, function(result){
+            
+            console.log(result);
+        }, function(){
+            
+        });
+    }
+    
+    $scope.answerQuestion=function(question, option){
+       
+        return question.answer===option;
+    }
+    
 
 
     $scope.activeQuestion=function(question){
@@ -58,9 +75,8 @@ pydmCtrl.PreferencesCtrl = function($scope, CustomerService, $ionicModal,  $ioni
         });
 
         myPopup.then(function(res) {
-            question.answer=$scope.aux.keyword;
+            $scope.save(question, $scope.aux.keyword);
         
-       
             myPopup.close();
         });
     }

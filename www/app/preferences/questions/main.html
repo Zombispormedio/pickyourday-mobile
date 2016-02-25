@@ -11,6 +11,7 @@
                 <div ng-switch-when="false">
                     <h2>¿{{question.text}}?</h2>
                     <div ng-switch="question.type">
+                        <p ng-switch-when="yes_no">{{(question.answer | yes_no) || 'Sin respuesta'}}</p>
                         <p ng-switch-default>{{question.answer || 'Sin respuesta'}}</p>
                     </div>
                 </div>
@@ -20,12 +21,17 @@
                     <h2>¿{{question.text}}?</h2>
                     <div ng-switch="question.type">
                         <p ng-switch-when="yes_no">
-                            <a href="#" class="subdued" ng-class="{'blue': question.answer}">NO</a>
-                            <a href="#" class="subdued">SÍ</a>
+                            <button class="button button-clear" ng-class="{'blue':answerQuestion(question, 'no'), 'button-stable':!answerQuestion(question, 'no')}" ng-click="save(question, 'no')">
+                                NO
+                            </button>
+                              <button class="button button-clear" ng-class="{'blue':answerQuestion(question, 'yes'), 'button-stable':!answerQuestion(question, 'yes')}" ng-click="save(question, 'yes')">
+                                SÍ
+                            </button>
+                            
                         </p>
 
                         <div class="list" ng-switch-when="options">
-                            <a class="item" ng-repeat="option in question.options">
+                            <a class="item" ng-repeat="option in question.options" ng-click="save(question, option)" ng-class="{'blue':answerQuestion(question, option)}">
                                 {{option}}
                             </a>
                         </div>

@@ -111,3 +111,11 @@ pydmFiltr.healthy = function(){
   return str.toLowerCase();
   };
 }
+
+pydmFiltr.yes_no = function(){
+    var show={yes:"Sí", no:"No"};
+	return function(str) {
+        return show[str];
+    };
+}
+

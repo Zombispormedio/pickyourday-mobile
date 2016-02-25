@@ -9885,5 +9885,5 @@ h2 {
     width: 30%; }
     .preference .card p a:last-child {
       margin-left: 40%; }
-    .preference .card p .blue {
-      color: #2196F3; }
+  .preference .card .blue {
+    color: #2196F3 !important; }

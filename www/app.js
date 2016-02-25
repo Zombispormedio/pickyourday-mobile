@@ -206,7 +206,7 @@ var app = angular.module('starter', ['ionic', 'ngOpenFB', "ngResource", 'ui.boot
             }
         })
         .state("app.preferences", {
-            url: "/search",
+            url: "/preferences",
             onEnter: function ($rootScope) {
                 if (!getJSONLocal("user")) {
                     $rootScope.go("login");

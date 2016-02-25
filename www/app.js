@@ -22,7 +22,7 @@ var app = angular.module('starter', ['ionic', 'ngOpenFB', "ngResource", 'ui.boot
             url: "/login",
             onEnter: function ($rootScope) {
                 if (getJSONLocal("user")) {
-                    $rootScope.go("app.dashboard");
+                    $rootScope.go("app.preferences");
                 }
             },
             templateUrl: 'app/login/main.html',

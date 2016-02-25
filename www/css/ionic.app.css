@@ -9855,3 +9855,35 @@ h2 {
   text-align: center; }
   .profile img {
     width: 100%; }
+
+.preference h2 {
+  font-weight: bold; }
+
+.preference ion-item h2 {
+  text-align: left;
+  margin: auto;
+  overflow: initial;
+  text-overflow: initial;
+  white-space: initial; }
+
+.preference ion-item p {
+  font-size: 13px; }
+
+.preference .item.activated {
+  background-color: #ffffff !important; }
+
+.preference .card {
+  margin: 0;
+  padding: 8%; }
+  .preference .card h2 {
+    margin-left: -6%;
+    margin-top: -6%; }
+  .preference .card p {
+    float: right;
+    position: relative;
+    top: 1em;
+    width: 30%; }
+    .preference .card p a:last-child {
+      margin-left: 40%; }
+    .preference .card p .blue {
+      color: #2196F3; }

@@ -1,0 +1,39 @@
+<ion-modal-view>
+    <ion-header-bar class="bar-positive" align-title="center">
+
+        <button class="button button-icon icon ion-arrow-left-c" ng-click="closeGroup()"></button>
+
+        <h1 class="title">{{selectedPref.name_group}}</h1>
+    </ion-header-bar>
+    <ion-content class="preference">
+        <ion-list>
+            <ion-item ng-repeat="question in selectedPref.questions" ng-init="question.active=false" ng-switch="question.active" ng-click="activeQuestion(question)">
+                <div ng-switch-when="false">
+                    <h2>¿{{question.text}}?</h2>
+                    <div ng-switch="question.type">
+                        <p ng-switch-default>{{question.answer || 'Sin respuesta'}}</p>
+                    </div>
+                </div>
+
+
+                <div class="card"  ng-switch-when="true">
+                    <h2>¿{{question.text}}?</h2>
+                    <div ng-switch="question.type">
+                        <p ng-switch-when="yes_no">
+                            <a href="#" class="subdued" ng-class="{'blue': question.answer}">NO</a>
+                            <a href="#" class="subdued">SÍ</a>
+                        </p>
+
+                        <div class="list" ng-switch-when="options">
+                            <a class="item" ng-repeat="option in question.options">
+                                {{option}}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-modal-view>

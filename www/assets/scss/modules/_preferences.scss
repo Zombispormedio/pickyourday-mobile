@@ -1,0 +1,44 @@
+.preference{
+    h2{
+        font-weight: bold;
+    }
+    ion-item{
+        h2{
+            text-align: left;
+            margin: auto;
+            overflow: initial;
+            text-overflow: initial;
+            white-space: initial;
+
+        }
+        p{
+            font-size: 13px;
+        }
+
+    }
+    .item.activated{
+        background-color: $white !important;
+    }
+    .card{
+        margin: 0;
+        padding: 8%;
+        h2{
+            margin-left: -6%;
+            margin-top: -6%;
+        }
+        p{
+            float: right;
+            position: relative;
+            top: 1em;
+            width: 30%;
+            a:last-child{
+                margin-left: 40%;
+
+            }
+
+            .blue{
+                color: $blue;
+            }
+        }
+    }
+}

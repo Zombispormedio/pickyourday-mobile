@@ -1,5 +1,12 @@
-<ion-view>
-     <ion-content class="padding dashboard has-header">
-     hola
+<ion-view >
+
+   <ion-content class="has-header">
+    <ion-list >
+        <ion-item ng-repeat="preference in preferences" ng-click="selectGroup(preference)">
+            {{preference.name_group}}
+            <span class="badge">{{preference.questions.length}}</span>
+        </ion-item>
+    </ion-list>
     </ion-content>
+
 </ion-view>

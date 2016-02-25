@@ -9879,10 +9879,10 @@ h2 {
     margin-left: -6%;
     margin-top: -6%; }
   .preference .card p {
-    float: right;
     position: relative;
     top: 1em;
-    width: 30%; }
+    width: 30%;
+    left: 60%; }
     .preference .card p a:last-child {
       margin-left: 40%; }
   .preference .card .blue {

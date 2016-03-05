@@ -9853,6 +9853,9 @@ h2 {
 
 .profile {
   text-align: center; }
+  .profile .header {
+    min-height: 200px;
+    background-color: #ccddcc; }
   .profile img {
     width: 100%; }
 
@@ -9887,3 +9890,5 @@ h2 {
       margin-left: 40%; }
   .preference .card .blue {
     color: #2196F3 !important; }
+    width: 100px;
+    border-radius: 50%; }

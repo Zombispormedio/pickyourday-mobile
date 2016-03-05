@@ -1,7 +1,12 @@
 .profile{
 	text-align: center;
-
+	
+	.header{
+		min-height: 200px;
+		background-color: #ccddcc;
+	}
 	img{
-		width: 100%;
+		width: 100px;
+		border-radius: 50%;
 	}
 }

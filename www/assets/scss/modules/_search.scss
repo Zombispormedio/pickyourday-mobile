@@ -1,0 +1,265 @@
+.search-bar{
+	height: 85px;
+    padding: 0;
+    border: 0;
+    border-bottom: 1px solid #ddd;
+    
+    .item-input-inset{
+        padding: 0;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .bar.item-input-inset .item-input-wrapper{
+        height: 100%;
+        background-color: #fff;
+        height: 45px;
+        margin: 0;
+    }
+
+    .button.button-clear{
+        height: 100%;
+        margin: 0;
+        padding: 0 10px;
+        font-size: 14px;
+        color: $teal;
+        height: 45px;
+        border-radius: 0;
+        border-left: 1px solid #ddd;
+    }
+
+
+    .wide-as-needed {
+      white-space: nowrap;
+
+      &.scroll-view{
+        margin: 0;
+      }
+    }
+    .scroll-bar-indicator{
+        background: transparent;
+    }
+    .scroll { 
+      min-width: 100%;
+      padding: 5px 0;
+    }
+    .tags{
+        height: 45px;
+        @include flexbox();
+        @include flex-justify(flex-start);
+
+        span{
+            max-width: 100px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        div{
+            padding: 0px 10px;
+            margin: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: $white;
+
+            i{
+                color: $white;
+            }
+
+            &.categories{
+                background-color: $blueGrey;
+            }
+
+            &.locations{
+                background-color: $teal;
+            }
+
+            &.dateFrom{
+                background-color: $orange;
+            }
+
+            &.dateTo{
+                background-color: $red;
+            }
+        }
+    }
+    
+}
+
+.popup{
+    width: 95%;
+    height: 95%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    margin: auto;
+    min-height: 0;
+    border: 0;
+    padding: 5px;
+
+    .scroll{
+        height: 95%;
+    }
+
+    h2{
+        margin: 15px 0;
+        text-transform: uppercase;
+    }
+
+    .button{
+        margin: 10px auto;
+        display: block;
+        border: 0;
+        text-transform: uppercase;
+        background-color: $teal;
+        color: #fff;
+
+        &.over{
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            margin: 0;
+        }
+    }
+
+    .ion-place-tools-autocomplete{
+        max-height: 200px;
+        padding: 5px 10px;
+    }
+
+    .ion-place-tools-autocomplete input{
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: 5px;
+        padding: 0;
+    }
+
+    .search_location{
+        font-size: 16px;
+
+        .subtitle{
+            text-align: center;
+        }
+
+        .data{
+            display: block;
+            margin: 5px 0;
+
+            p{
+                display: inline-block;
+                vertical-align: middle;
+                max-width: 90%;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                vertical-align: middle;
+
+                strong{
+                    margin-left: 5px;
+                }
+            }
+
+            i{
+                margin-left: 5px;
+                color: #666;
+                vertical-align: middle;
+            }
+        }
+    }
+}
+
+.search-tabs{
+	display: block;
+    position: relative;
+    top: 90px;
+    height: calc(100% - 90px);
+    
+    .tab-nav.tabs{
+		top: 46px;
+    }
+
+    .tabs-top.tabs-striped .tab-item:hover{
+    	color: $teal;
+    }
+
+    .tabs-top.tabs-striped .tab-item.tab-item-active{
+    	border-color: $positive;
+    }
+
+    .tabs-top.tabs-striped .tab-item{
+    	//border-color: $positive;
+    }
+
+    .search_prepicks, .search_services, .search_companies{
+    	top: 95px;
+    }
+}
+
+//Locations
+.ion-place-tools-autocomplete {
+    position: relative;
+    width: 100%;
+    overflow: visible;
+}
+
+.ion-place-tools-autocomplete input {
+    width: 100%;
+}
+
+.ion-place-tools-autocomplete-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    max-height: 300px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    z-index: 10;
+}
+
+.ion-place-tools-map-holder {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    left: -100%;
+}
+.ion-place-tools-map-holder.visible {
+    left: 0;
+}
+
+.ion-place-tools-map {
+    width: 100%;
+    height: 100%;
+}
+
+.ion-place-tools-map-holder
+.autocomplete-wrap {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    left: 130px;
+}
+
+.ion-place-tools-map-holder
+.autocomplete-wrap .item {
+    padding: 4px 10px;
+}
+
+.ion-place-tools-map-holder
+.controls {
+    position: absolute;
+    bottom: 20px;
+    text-align: center;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.ion-place-tools-map-wrapper {
+    position: relative;
+    height: 100%;
+}

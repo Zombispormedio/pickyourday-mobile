@@ -1,0 +1,23 @@
+<ion-view>
+	<ion-content class="search_services has-tabs-top padding">
+		
+		<ion-list ng-if="services.length > 0">
+		    <ion-item ng-repeat="service in services" class="my-item">
+		       	<p>{{ service.services.id_name.name }}</p>
+		        <p>{{ service.name }}</p>
+		    </ion-item>
+		</ion-list>
+
+		<ion-infinite-scroll
+		  ng-if="moreDataCanBeLoaded()"
+		  icon="ion-loading-c"
+		  on-infinite="loadMoreData()">
+
+		</ion-infinite-scroll>
+
+		<div ng-if="services.length <= 0">
+			<p>No hay resultados.</p>
+		</div>
+
+	</ion-content>
+</ion-view>

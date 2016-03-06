@@ -1,0 +1,15 @@
+<ion-view>
+	<ion-content class="search_companies has-tabs-top padding">
+
+		<ion-list ng-if="companies.length > 0">
+		    <ion-item ng-repeat="company in companies" class="my-item">
+		        <p>{{ company.name }}</p>
+		    </ion-item>
+		</ion-list>
+
+		<div ng-if="companies.length <= 0">
+			<p>No hay resultados.</p>
+		</div>
+
+	</ion-content>
+</ion-view>

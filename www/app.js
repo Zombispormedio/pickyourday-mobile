@@ -273,7 +273,7 @@ var app = angular.module('starter', ['ionic', 'ngOpenFB', "ngResource", 'ui.boot
 
 
 
-.run(function ($ionicPlatform, $rootScope, $state, $ionicModal, $ionicPopup, ngFB) {
+.run(function ($ionicPlatform, $rootScope, $state, $ionicModal, $ionicPopup, ngFB, $templateCache) {
 
     ngFB.init({
         appId: '122387958132479'
@@ -335,4 +335,23 @@ var app = angular.module('starter', ['ionic', 'ngOpenFB', "ngResource", 'ui.boot
             StatusBar.styleDefault();
         }
     });
+
+
+
+
+
+    var template = '<div class="item ion-place-tools-autocomplete">' +
+                    '<i class="icon ion-ios-search placeholder-icon"></i>' +
+                    '<input type="text" autocomplete="off" ng-model="searchQuery">' +
+                    '<div class="ion-place-tools-autocomplete-dropdown" ng-if="dropDownActive">' +
+                        '<ion-list>' +
+                            '<ion-item ng-repeat="location in locations" ng-click="selectLocation(location)">' +
+                                '{{location.description}}' +
+                            '</ion-item>' +
+                        '</ion-list>' +
+                    '</div>' +
+                '</div>';
+
+    $templateCache.put("src/ionGooglePlaceTemplate.html",template);
+    //placeTools.run(["$templateCache", function($templateCache) {$templateCache.put("src/ionGooglePlaceTemplate.html",template);}]);
 })

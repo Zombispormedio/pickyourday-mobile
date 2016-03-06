@@ -9,26 +9,30 @@
       Opciones
     </button>
   </div>
-
+  
   <ion-scroll direction="x" class="wide-as-needed">
     
     <div class="tags">
-      <div class="categories">
-        <span>Category</span>
+      <div class="categories" ng-click="openCategories()">
+        <span ng-if='!data.selCategory'>Categoría</span>
+        <span ng-if="data.selCategory != ''">{{data.selCategory.name}}</span>
         <i class="icon ion-android-arrow-dropdown placeholder-icon"></i>
       </div>
 
-      <div class="locations">
-        <span>Locations</span>
+      <div class="locations" ng-click="openLocation()">
+        <span ng-if='city == "" && country == ""'>Localización</span>
+        <span ng-if='city != ""'>{{city}}</span>
+        <span ng-if='city != "" && country != ""'>-</span>
+        <span ng-if='country != ""'>{{country}}</span>
         <i class="icon ion-android-arrow-dropdown placeholder-icon"></i>
       </div>
 
-      <div class="dateFrom">
+      <div class="dateFrom" ng-click="openPopup()">
         <span>Fecha desde</span>
         <i class="icon ion-android-arrow-dropdown placeholder-icon"></i>
       </div>
 
-      <div class="dateTo">
+      <div class="dateTo" ng-click="openPopup()">
         <span>Fecha hasta</span>
         <i class="icon ion-android-arrow-dropdown placeholder-icon"></i>
       </div>

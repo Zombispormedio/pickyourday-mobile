@@ -1,0 +1,23 @@
+<ion-modal-view class="popup">
+
+    <ion-content class="search_location padding">
+		
+		<h2>Localización</h2>
+    	<p class="subtitle">Se filtrará por la ciudad y el país encontrados</p>
+		
+		<div class="data">
+	    	<p class="data">Pais: <strong>{{country}}</strong></p>
+	    	<i ng-if='country!=""' class="ion-close-round" ng-click="clearCountry()"></i>
+	    </div>
+
+	    <div class="data">
+	    	<p class="data">Ciudad: <strong>{{city}}</strong></p>
+	    	<i ng-if='city!=""' class="ion-close-round" ng-click="clearCity()"></i>
+	    </div>
+
+	<button class="button over" ng-click="closeLocation()">Aceptar</button>
+
+    <ion-google-place placeholder="Dirección" ng-model="data.address" name="address" location-changed="locationChanged"/>
+
+    </ion-content>
+</ion-modal-view>

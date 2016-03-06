@@ -9221,7 +9221,7 @@ h2 {
 
 .modal-backdrop,
 .modal-backdrop-bg {
-  background-color: transparent; }
+  background-color: rgba(0, 0, 0, 0.5); }
 
 .scale-in {
   -webkit-transform: scale(0);
@@ -9984,6 +9984,10 @@ h2 {
     -webkit-justify-items: flex-start;
     -moz-justify-items: flex-start;
     -ms-justify-items: flex-start; }
+    .search-bar .tags span {
+      max-width: 100px;
+      overflow: hidden;
+      text-overflow: ellipsis; }
     .search-bar .tags div {
       padding: 0px 10px;
       margin: 5px;
@@ -10002,10 +10006,71 @@ h2 {
       .search-bar .tags div.dateTo {
         background-color: #F44336; }
 
+.popup {
+  width: 95%;
+  height: 95%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  margin: auto;
+  min-height: 0;
+  border: 0;
+  padding: 5px; }
+  .popup .scroll {
+    height: 95%; }
+  .popup h2 {
+    margin: 15px 0;
+    text-transform: uppercase; }
+  .popup .button {
+    margin: 10px auto;
+    display: block;
+    border: 0;
+    text-transform: uppercase;
+    background-color: #009688;
+    color: #fff; }
+    .popup .button.over {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      margin: 0; }
+  .popup .ion-place-tools-autocomplete {
+    max-height: 200px;
+    padding: 5px 10px; }
+  .popup .ion-place-tools-autocomplete input {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 5px;
+    padding: 0; }
+  .popup .search_location {
+    font-size: 16px; }
+    .popup .search_location .subtitle {
+      text-align: center; }
+    .popup .search_location .data {
+      display: block;
+      margin: 5px 0; }
+      .popup .search_location .data p {
+        display: inline-block;
+        vertical-align: middle;
+        max-width: 90%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        vertical-align: middle; }
+        .popup .search_location .data p strong {
+          margin-left: 5px; }
+      .popup .search_location .data i {
+        margin-left: 5px;
+        color: #666;
+        vertical-align: middle; }
+
 .search-tabs {
   display: block;
   position: relative;
-  top: 90px; }
+  top: 90px;
+  height: calc(100% - 90px); }
   .search-tabs .tab-nav.tabs {
     top: 46px; }
   .search-tabs .tabs-top.tabs-striped .tab-item:hover {
@@ -10014,3 +10079,60 @@ h2 {
     border-color: #05564b; }
   .search-tabs .search_prepicks, .search-tabs .search_services, .search-tabs .search_companies {
     top: 95px; }
+
+.ion-place-tools-autocomplete {
+  position: relative;
+  width: 100%;
+  overflow: visible; }
+
+.ion-place-tools-autocomplete input {
+  width: 100%; }
+
+.ion-place-tools-autocomplete-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  max-height: 300px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  z-index: 10; }
+
+.ion-place-tools-map-holder {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  left: -100%; }
+
+.ion-place-tools-map-holder.visible {
+  left: 0; }
+
+.ion-place-tools-map {
+  width: 100%;
+  height: 100%; }
+
+.ion-place-tools-map-holder
+.autocomplete-wrap {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  left: 130px; }
+
+.ion-place-tools-map-holder
+.autocomplete-wrap .item {
+  padding: 4px 10px; }
+
+.ion-place-tools-map-holder
+.controls {
+  position: absolute;
+  bottom: 20px;
+  text-align: center;
+  left: 50%;
+  transform: translateX(-50%); }
+
+.ion-place-tools-map-wrapper {
+  position: relative;
+  height: 100%; }

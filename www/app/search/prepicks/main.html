@@ -1,0 +1,15 @@
+<ion-view>
+	<ion-content class="search_prepicks padding has-tabs-top">
+
+		<ion-list ng-if="prepicks.length > 0">
+		    <ion-item ng-repeat="prepick in prepicks" class="my-item">
+		        {{ prepick.name }}
+		    </ion-item>
+		</ion-list>
+
+		<div ng-if="prepicks.length <= 0">
+			<p>No hay resultados.</p>
+		</div>
+
+	</ion-content>
+</ion-view>

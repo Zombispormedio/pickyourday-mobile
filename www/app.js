@@ -132,19 +132,20 @@ var app = angular.module('starter', ['ionic', 'ngOpenFB', "ngResource", 'ui.boot
                 }
             }
         })
-        .state('app.companyDetail.services', {
-            url: '/companyDetail/services',
-            onEnter: function ($rootScope) {
-                if (!getJSONLocal("user")) {
-                    $rootScope.go("login");
-                }
-            },
-            views: {
-                'services': {
-                    templateUrl: 'app/companyDetail/services/main.html'
-                }
+
+    .state('app.companyDetail.services', {
+        url: '/companyDetail/services',
+        onEnter: function ($rootScope) {
+            if (!getJSONLocal("user")) {
+                $rootScope.go("login");
             }
-        })
+        },
+        views: {
+            'services': {
+                templateUrl: 'app/companyDetail/services/main.html'
+            }
+        }
+    })
 
     .state('app.companyDetail.reviews', {
         url: '/companyDetail/reviews',
@@ -192,33 +193,76 @@ var app = angular.module('starter', ['ionic', 'ngOpenFB', "ngResource", 'ui.boot
     })
 
     .state("app.search", {
-            url: "/search",
-            onEnter: function ($rootScope) {
-                if (!getJSONLocal("user")) {
-                    $rootScope.go("login");
-                }
-            },
-            views: {
-                'content': {
-                    templateUrl: 'app/search/main.html',
-                    controller: 'SearchCtrl'
-                }
+        url: "/search",
+        onEnter: function ($rootScope) {
+            if (!getJSONLocal("user")) {
+                $rootScope.go("login");
             }
-        })
-        .state("app.preferences", {
-            url: "/preferences",
-            onEnter: function ($rootScope) {
-                if (!getJSONLocal("user")) {
-                    $rootScope.go("login");
-                }
-            },
-            views: {
-                'content': {
-                    templateUrl: 'app/preferences/main.html',
-                    controller: 'PreferencesCtrl'
-                }
+        },
+        views: {
+            'content': {
+                templateUrl: 'app/search/main.html',
+                controller: 'SearchCtrl'
             }
-        })
+        }
+    })
+
+    .state('app.search.prepicks', {
+        url: '/search/prepicks',
+        onEnter: function ($rootScope) {
+            if (!getJSONLocal("user")) {
+                $rootScope.go("login");
+            }
+        },
+        views: {
+            'search_prepicks': {
+                templateUrl: 'app/search/prepicks/main.html'
+            }
+        }
+    })
+
+    .state('app.search.services', {
+        url: '/search/services',
+        onEnter: function ($rootScope) {
+            if (!getJSONLocal("user")) {
+                $rootScope.go("login");
+            }
+        },
+        views: {
+            'search_services': {
+                templateUrl: 'app/search/services/main.html'
+            }
+        }
+    })
+
+    .state('app.search.companies', {
+        url: '/search/companies',
+        onEnter: function ($rootScope) {
+            if (!getJSONLocal("user")) {
+                $rootScope.go("login");
+            }
+        },
+        views: {
+            'search_companies': {
+                templateUrl: 'app/search/companies/main.html'
+            }
+        }
+    })
+
+    .state("app.preferences", {
+        url: "/preferences",
+        onEnter: function ($rootScope) {
+            if (!getJSONLocal("user")) {
+                $rootScope.go("login");
+            }
+        },
+        views: {
+            'content': {
+                templateUrl: 'app/preferences/main.html',
+                controller: 'PreferencesCtrl'
+            }
+        }
+    })
 
     $urlRouterProvider.otherwise("/login");
     $httpProvider.interceptors.push('AuthInterceptor');

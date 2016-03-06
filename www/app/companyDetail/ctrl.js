@@ -82,7 +82,7 @@ pydmCtrl.CompaniesDetailCtrl = function ($rootScope, $scope, $http, $stateParams
       $(".timetable .down").addClass("open");
       setTimeout(function(){
         $ionicScrollDelegate.resize();
-      }, 200);
+      }, 300);
 
       
     }

@@ -9144,6 +9144,9 @@ h2 {
 .bar.bar-positive {
   border: 0; }
 
+.tabs-top.tabs-striped .tab-item {
+  border-color: #05564b; }
+
 .green {
   background-color: #05564b; }
 
@@ -9215,6 +9218,47 @@ h2 {
     -moz-justify-items: space-between;
     -ms-justify-items: space-between;
     -webkit-user-select: none; }
+
+.modal-backdrop,
+.modal-backdrop-bg {
+  background-color: transparent; }
+
+.scale-in {
+  -webkit-transform: scale(0);
+  transform: scale(0);
+  opacity: 0; }
+
+.scale-in.ng-enter,
+.scale-in > .ng-enter {
+  -webkit-transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms;
+  transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms; }
+
+.scale-in.ng-enter-active,
+.scale-in > .ng-enter-active {
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  opacity: 1; }
+
+.scale-in.ng-leave,
+.scale-in > .ng-leave {
+  -webkit-transition: all ease-in-out 250ms;
+  transition: all ease-in-out 250ms; }
+
+.slide-in-right {
+  -webkit-transform: translateX(100%);
+  transform: translateX(100%); }
+
+.slide-in-right.ng-enter, .slide-in-right > .ng-enter {
+  -webkit-transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms;
+  transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms; }
+
+.slide-in-right.ng-enter-active, .slide-in-right > .ng-enter-active {
+  -webkit-transform: translateX(0);
+  transform: translateX(0); }
+
+.slide-in-right.ng-leave, .slide-in-right > .ng-leave {
+  -webkit-transition: all ease-in-out 250ms;
+  transition: all ease-in-out 250ms; }
 
 .dashboard p {
   text-align: center; }
@@ -9857,7 +9901,8 @@ h2 {
     min-height: 200px;
     background-color: #ccddcc; }
   .profile img {
-    width: 100%; }
+    width: 100px;
+    border-radius: 50%; }
 
 .preference h2 {
   font-weight: bold; }
@@ -9890,5 +9935,82 @@ h2 {
       margin-left: 40%; }
   .preference .card .blue {
     color: #2196F3 !important; }
-    width: 100px;
-    border-radius: 50%; }
+
+.search-bar {
+  height: 85px;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid #ddd; }
+  .search-bar .item-input-inset {
+    padding: 0;
+    border-bottom: 1px solid #ddd; }
+  .search-bar .bar.item-input-inset .item-input-wrapper {
+    height: 100%;
+    background-color: #fff;
+    height: 45px;
+    margin: 0; }
+  .search-bar .button.button-clear {
+    height: 100%;
+    margin: 0;
+    padding: 0 10px;
+    font-size: 14px;
+    color: #009688;
+    height: 45px;
+    border-radius: 0;
+    border-left: 1px solid #ddd; }
+  .search-bar .wide-as-needed {
+    white-space: nowrap; }
+    .search-bar .wide-as-needed.scroll-view {
+      margin: 0; }
+  .search-bar .scroll-bar-indicator {
+    background: transparent; }
+  .search-bar .scroll {
+    min-width: 100%;
+    padding: 5px 0; }
+  .search-bar .tags {
+    height: 45px;
+    display: -webkit-box;
+    /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+    display: -ms-flexbox;
+    /* TWEENER - IE 10 */
+    display: -webkit-flex;
+    /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+    display: flex;
+    /* NEW, Spec - Firefox, Chrome, Opera */
+    justify-content: flex-start;
+    -webkit-justify-content: flex-start;
+    -moz-justify-content: flex-start;
+    -ms-justify-content: flex-start;
+    -webkit-justify-items: flex-start;
+    -moz-justify-items: flex-start;
+    -ms-justify-items: flex-start; }
+    .search-bar .tags div {
+      padding: 0px 10px;
+      margin: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff; }
+      .search-bar .tags div i {
+        color: #ffffff; }
+      .search-bar .tags div.categories {
+        background-color: #607D8B; }
+      .search-bar .tags div.locations {
+        background-color: #009688; }
+      .search-bar .tags div.dateFrom {
+        background-color: #FF9800; }
+      .search-bar .tags div.dateTo {
+        background-color: #F44336; }
+
+.search-tabs {
+  display: block;
+  position: relative;
+  top: 90px; }
+  .search-tabs .tab-nav.tabs {
+    top: 46px; }
+  .search-tabs .tabs-top.tabs-striped .tab-item:hover {
+    color: #009688; }
+  .search-tabs .tabs-top.tabs-striped .tab-item.tab-item-active {
+    border-color: #05564b; }
+  .search-tabs .search_prepicks, .search-tabs .search_services, .search-tabs .search_companies {
+    top: 95px; }

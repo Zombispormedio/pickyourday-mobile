@@ -37,6 +37,11 @@ pydmFtry.CustomerService = function(ApiService){
                 list:{method:"GET", params:{}},
                 save:{method:"POST", params:{}}
             });
+        },
+        search:function(){
+            return ApiService.rest(this.base+"/search",{
+                list:{method:"GET", params:{}}
+            });
         }
 
 

@@ -4,7 +4,7 @@ pydmCtrl.PreferencesCtrl = function($scope, CustomerService, $ionicModal,  $ioni
 
     $ionicModal.fromTemplateUrl('app/preferences/questions/main.html', {
         scope: $scope,
-        animation: 'slide-in-up'
+        animation: 'slide-in-right'
     }).then(function(modal) {
         $scope.modal = modal;
     });

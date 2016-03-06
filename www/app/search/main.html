@@ -1,41 +1,54 @@
-<ion-view>
+<ion-header-bar class="bar-light bar-subheader search-bar">
 
-    <ion-header-bar class="bar-light bar-subheader">
-        <input type="search"
-               placeholder="Filter companies..."
-               ng-model="search"
-               ng-change="scrollTop()"
-               class="full-width">
-    </ion-header-bar>
+  <div class="bar bar-header item-input-inset">
+    <label class="item-input-wrapper">
+      <i class="icon ion-ios-search placeholder-icon"></i>
+      <input id="searchText" type="search" placeholder="Búsqueda..." ng-model="searchText" >
+    </label>
+    <button class="button button-clear" ng-click="openModal()">
+      Opciones
+    </button>
+  </div>
 
-    <ion-content class="padding profile has-header">
+  <ion-scroll direction="x" class="wide-as-needed">
+    
+    <div class="tags">
+      <div class="categories">
+        <span>Category</span>
+        <i class="icon ion-android-arrow-dropdown placeholder-icon"></i>
+      </div>
 
-        <ion-refresher
-                       pulling-text="Pull to refresh..."
-                       on-refresh="doRefresh()">
-        </ion-refresher>
+      <div class="locations">
+        <span>Locations</span>
+        <i class="icon ion-android-arrow-dropdown placeholder-icon"></i>
+      </div>
 
-        <ion-list>
+      <div class="dateFrom">
+        <span>Fecha desde</span>
+        <i class="icon ion-android-arrow-dropdown placeholder-icon"></i>
+      </div>
 
-            <ion-item ng-repeat="company in companies" class="my-item" ng-click="goDetail(company._id)">
-                {{ company.name }}
-            </ion-item>
-
-        </ion-list>
-
-        <!--
-<ion-header-bar class="bar-light bar-subheader">
-<input type="text" placeholder="Search Force" data-ng-model="searchForce">
-<button ng-if="searchForce.length"
-class="button button-icon ion-android-close input-button"
-ng-click="clearSearch()">
-</button>
+      <div class="dateTo">
+        <span>Fecha hasta</span>
+        <i class="icon ion-android-arrow-dropdown placeholder-icon"></i>
+      </div>
+    </div>
+  </ion-scroll>
+  
 </ion-header-bar>
--->
 
 
+<ion-pane class="search-tabs">
+  <ion-tabs class="tabs-icon-only">
+    <ion-tab title="Servicios" ui-sref="app.search.services">
+      <ion-nav-view name="search_services"></ion-nav-view>
+    </ion-tab>
+    <ion-tab title="Sugerencias" ui-sref="app.search.prepicks">
+      <ion-nav-view name="search_prepicks"></ion-nav-view>
+    </ion-tab>
+    <ion-tab title="Empresas"  ui-sref="app.search.companies">
+      <ion-nav-view name="search_companies"></ion-nav-view>
+    </ion-tab>
+  </ion-tabs>  
+</ion-pane>
 
-
-
-    </ion-content>
-</ion-view>

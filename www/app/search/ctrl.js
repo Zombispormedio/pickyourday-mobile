@@ -1,4 +1,4 @@
-pydmCtrl.SearchCtrl = function ($rootScope, $scope, $http, ngFB, CustomerService, $ionicScrollDelegate, $ionicModal) {
+pydmCtrl.SearchCtrl = function ($rootScope, $scope, $http, ngFB, CustomerService, $ionicScrollDelegate, $ionicModal, $ionicSideMenuDelegate, $stateParams) {
 
 	$scope.error="";
 
@@ -14,7 +14,8 @@ pydmCtrl.SearchCtrl = function ($rootScope, $scope, $http, ngFB, CustomerService
     if($scope.data.selCategory)
       category = $scope.data.selCategory._id;
 
-      console.log($scope.city + " - " +  $scope.country);
+
+
       CustomerService.search().list({"name": $scope.searchText, "category": category, "location.city": $scope.city, "location.country": $scope.country}, {}, function(result){
           var res = result;
           if (!res.error) {       
@@ -80,6 +81,22 @@ pydmCtrl.SearchCtrl = function ($rootScope, $scope, $http, ngFB, CustomerService
     selCategory: ''
   };
 
+  if($stateParams.idCategory != ""){
+    var idCat = $stateParams.idCategory;
+    CustomerService.category().getByID({"id": idCat}, {}, function(result){
+        var res = result;
+        if (!res.error) {       
+            $scope.data.selCategory = res.data;    
+            $scope.search();
+        } else {
+           $scope.error=res.error;
+           console.log(res.error);
+        }
+    }, function(){
+
+    });
+  }
+
   $scope.getCategories = function(){
     CustomerService.category().list({}, {} , function(result){
           var res = result;
@@ -140,6 +157,64 @@ pydmCtrl.SearchCtrl = function ($rootScope, $scope, $http, ngFB, CustomerService
 
   $scope.clearCountry = function(){
     $scope.country = "";
+  } 
+
+  //Dates
+  $scope.currentDate = new Date();
+  $scope.minDate = new Date();
+  $scope.maxDate = new Date(2100, 6, 31);
+
+  $scope.date = new Date();
+  $scope.dateFrom = "";
+  $scope.dateTo = "";
+   
+  $scope.datePickerCallback = function (val) {
+    if (!val) { 
+      console.log('Date not selected');
+    } else {
+      console.log('Selected date is : ', val);
+      $scope.date = val;
+    }
+  };
+
+  $scope.onTimeSet = function (newDate, oldDate) {
+    if($scope.dateType == "from")
+      $scope.dateFrom = newDate;
+    else if($scope.dateType == "to")
+      $scope.dateTo = newDate;
+  }
+
+  $scope.beforeRender = function ($view, $dates, $leftDate, $upDate, $rightDate) {
+
+      var threeMonthsLater = moment().add(3, 'months');
+      for(var i=0; i<$dates.length;i++) {
+         if(moment() > $dates[i].utcDateValue && $dates[i].utcDateValue <= threeMonthsLater ) {
+            $dates[i].selectable = false;
+         }
+      }     
+  }
+
+  $ionicModal.fromTemplateUrl('app/search/dates/main.html', {
+      scope: $scope,
+      animation: 'scale-in'
+  }).then(function(modal) {
+      $scope.dates_popup = modal;
+  });
+
+  $scope.openDates = function(t) {
+      $scope.dateType = t;
+      $scope.dates_popup.show();
+  };
+
+  $scope.closeDates = function() {
+      $scope.dates_popup.hide();
+  };
+
+  $scope.clearDate = function(){
+    if($scope.dateType == "from")
+      $scope.dateFrom = "";
+    else if($scope.dateType == "to")
+      $scope.dateTo = "";
   }
 
   //Search input
@@ -149,7 +224,8 @@ pydmCtrl.SearchCtrl = function ($rootScope, $scope, $http, ngFB, CustomerService
       $scope.search();
     }else{
       val = "";
-      $scope.search();
+      if($stateParams.idCategory == "")
+        $scope.search();
     }
   })
 
@@ -163,10 +239,20 @@ pydmCtrl.SearchCtrl = function ($rootScope, $scope, $http, ngFB, CustomerService
     $rootScope.go("app.companyDetail", {idCompany: idCompany });
   }
 
+  $scope.newPick = function (idCompany, idService) {
+    console.log("IDS: " + idCompany + " - " + idService);
+    $rootScope.go("app.newPick", {company: JSON.stringify(idCompany), service: JSON.stringify(idService)} );
+  }
+
   $scope.cleanError=function(){
       $scope.error="";
   }
   
+
+  $rootScope.$on('$ionicView.enter',
+  function(){
+    $ionicSideMenuDelegate.edgeDragThreshold(50);
+  });
   
 
 }

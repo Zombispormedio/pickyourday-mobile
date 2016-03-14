@@ -57,8 +57,8 @@ pydmCtrl.CompaniesDetailCtrl = function ($rootScope, $scope, $http, $stateParams
     
   }
 
-  $scope.newPick = function (company, service) {
-    $rootScope.go("app.newPick", {company: JSON.stringify(company), service: JSON.stringify(service)} );
+  $scope.newPick = function (idCompany, idService) {
+    $rootScope.go("app.newPick", {company: JSON.stringify(idCompany), service: JSON.stringify(idService)} );
   }
 
   $scope.nextSlide = function() {

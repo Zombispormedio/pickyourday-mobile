@@ -1,0 +1,28 @@
+<ion-modal-view class="popup dates">
+
+    <ion-content class="padding">
+		
+		<h2>Fecha desde</h2>
+ 		<div class="dropdown list">
+      
+      <button ng-if='dateType == "from"' class="button button-block button-assertive dropdown-toggle" data-toggle="dropdown" id="dLabel">
+        {{ dateFrom | date:'dd MMMM yyyy HH:mm'}}
+      </button>
+
+      <button ng-if='dateType == "to"' class="button button-block button-assertive dropdown-toggle" data-toggle="dropdown" id="dLabel">
+        {{ dateTo | date:'dd MMMM yyyy HH:mm'}}
+      </button>
+
+      <button class="button clear" ng-click="clearDate()">
+        Limpiar filtro
+      </button>
+
+      <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+          <datetimepicker data-ng-model="date"
+                          data-before-render="beforeRender($view, $dates, $leftDate, $upDate, $rightDate)"
+                          data-on-set-time="onTimeSet(newDate, oldDate)"
+                          data-datetimepicker-config="{ dropdownSelector: '.dropdown-toggle'}"></datetimepicker>
+      </ul>
+      <button class="button" ng-click="closeDates()">Aceptar</button>
+    </div>
+</ion-modal-view>

@@ -27,13 +27,15 @@
         <i class="icon ion-android-arrow-dropdown placeholder-icon"></i>
       </div>
 
-      <div class="dateFrom" ng-click="openPopup()">
-        <span>Fecha desde</span>
+      <div class="dateFrom" ng-click="openDates('from')">
+        <span class="dates" ng-if='dateFrom == ""'>Fecha desde</span>
+        <span class="dates" ng-if='dateFrom != ""'>{{dateFrom | date:'dd MMMM yyyy HH:mm'}}</span>
         <i class="icon ion-android-arrow-dropdown placeholder-icon"></i>
       </div>
 
-      <div class="dateTo" ng-click="openPopup()">
-        <span>Fecha hasta</span>
+      <div class="dateTo" ng-click="openDates('to')">
+        <span class="dates" ng-if='dateTo == ""'>Fecha hasta</span>
+        <span class="dates" ng-if='dateTo != ""'>{{dateTo | date:'dd MMMM yyyy HH:mm'}}</span>
         <i class="icon ion-android-arrow-dropdown placeholder-icon"></i>
       </div>
     </div>

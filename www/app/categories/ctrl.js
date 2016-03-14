@@ -3,15 +3,20 @@ pydmCtrl.CategoriesCtrl = function ($rootScope, $scope, CustomerService) {
 	$scope.categories = "";
 
 	CustomerService.category().list({}, {} , function(result){
-        var res = result;
-        if (!res.error) {       
-          	$scope.categories = res.data;		
-        } else {
-           $scope.error=res.error;
-        }
+      var res = result;
+      if (!res.error) {       
+        	$scope.categories = res.data;		
+      } else {
+         $scope.error=res.error;
+      }
 
-    }, function(){
+  }, function(){
 
-    });
+  });
+
+  $scope.goSearch = function(idCat){
+    console.log(idCat);
+    $rootScope.go("app.search", {idCategory: idCat});
+  }
 
 }

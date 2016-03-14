@@ -4,7 +4,7 @@
      <div ng-if="categories.length > 0">
 	    <div class="categories" ng-repeat="category in categories"> 
 	    	   
-	        <div class="item" style="background-image: url({{ category.image.src }});">	      
+	        <div class="item" style="background-image: url({{ category.image.src }});" ng-click="goSearch(category._id)">	      
 	       		<div class="overlay" style="background-color:{{ category.color }};"></div>   
 	       		<div class="overlay gray"></div>   
 	       		<div class="services">

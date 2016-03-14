@@ -163,7 +163,7 @@ var app = angular.module('starter', ['ionic', 'ngOpenFB', "ngResource", 'ui.boot
 
 
     .state("app.newPick", {
-        url: "/newPick/:company/service/:service",
+        url: "/newPick/:company/:service",
         onEnter: function ($rootScope) {
             if (!getJSONLocal("user")) {
                 $rootScope.go("login");
@@ -193,7 +193,7 @@ var app = angular.module('starter', ['ionic', 'ngOpenFB', "ngResource", 'ui.boot
     })
 
     .state("app.search", {
-        url: "/search",
+        url: "/search:idCategory",
         onEnter: function ($rootScope) {
             if (!getJSONLocal("user")) {
                 $rootScope.go("login");

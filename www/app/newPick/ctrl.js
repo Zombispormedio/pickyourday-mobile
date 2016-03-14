@@ -1,10 +1,14 @@
 pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams,$ionicHistory, CustomerService) {
 
-	var company = JSON.parse($stateParams.company);
-	var service = JSON.parse($stateParams.service);
+	var idCompany = JSON.parse($stateParams.company);
+	var idService = JSON.parse($stateParams.service);
 
-	$scope.company = company;
-	$scope.service = service;
+	$scope.company = [];
+	$scope.service = [];
+
+	$scope.idCompany = idCompany;
+	$scope.idService = idService;
+
 	$scope.date = new Date();
 
 
@@ -13,6 +17,31 @@ pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams,$ionicH
 	$scope.maxDate = new Date(2100, 6, 31);
 
 	$scope.fecha = new Date();
+
+	CustomerService.company().getByID({"id": $scope.idCompany}, {}, function(result){
+        var res = result;
+        if (!res.error) {       
+            $scope.company = res.data;    
+        } else {
+           $scope.error=res.error;
+        }
+    }, function(){
+
+    });
+
+   	CustomerService.service().getByID({"id": $scope.idService, "company": $scope.idCompany }, {}, function(result){
+        var res = result;
+        console.log(result);
+        if (!res.error) {       
+            $scope.service = res.data;    
+        } else {
+           $scope.error=res.error;
+        }
+    }, function(){
+
+    });
+
+
 	 
 	$scope.datePickerCallback = function (val) {
 		if (!val) {	
@@ -26,14 +55,14 @@ pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams,$ionicH
 	$scope.newPick = function () {
 
 
-		if ($scope.company._id !== "" && $scope.service._id !== "" && $scope.date !== "") {
+		if ($scope.idCompany !== "" && $scope.idService !== "" && $scope.date !== "") {
 
 			var obj = {
 				"initDate" : $scope.fecha,
 				"state": "active",
 				"company": {
-					"id_company": $scope.company._id,
-					"id_service": $scope.service._id
+					"id_company": $scope.idCompany,
+					"id_service": $scope.idService
 				}
 			}
 			

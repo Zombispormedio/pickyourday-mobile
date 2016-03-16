@@ -9,7 +9,20 @@
 
     <ion-content class="search_preferences">
 
-        <ion-toggle ng-model="airplaneMode" toggle-class="toggle-calm">Airplane Mode</ion-toggle>
+        <ion-toggle ng-model="airplaneMode" toggle-class="toggle-calm">Activar sugerencias</ion-toggle>
+
+        <div class="list">
+		  <label class="item item-input item-select">
+		    <div class="input-label">
+		      Ordenar por
+		    </div>
+		    <select>
+		      <option>Precio</option>
+		      <option selected>Valoración</option>
+		      <option>Proximidad</option>
+		    </select>
+		  </label>
+		</div>
 
     </ion-content>
 </ion-modal-view>

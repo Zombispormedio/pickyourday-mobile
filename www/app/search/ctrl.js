@@ -19,7 +19,7 @@ pydmCtrl.SearchCtrl = function ($rootScope, $scope, $http, ngFB, CustomerService
       CustomerService.search().list({"name": $scope.searchText, "category": category, "location.city": $scope.city, "location.country": $scope.country}, {}, function(result){
           var res = result;
           if (!res.error) {       
-              console.log(res);
+              //console.log(res);
               $scope.companies = res.data.companies;    
               $scope.services = res.data.services;
               $scope.prepicks = res.data.prepicks;

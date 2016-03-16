@@ -4,8 +4,28 @@
 		font-weight: 600;
 	}
 
+	h2{
+		text-transform: uppercase;
+	    margin: 10px 0;
+	    margin-bottom: 20px;
+	}
+
 	.datos{
 		margin-top: 10px;
+		position: relative;
+
+		span.price{
+			position: absolute;
+		    right: 10px;
+		    top: 0;
+		    background-color: $lightGreen;
+		    color: #fff;
+		    display: flex;
+		    align-items: center;
+		    justify-content: center;
+		    padding: 5px 10px;
+		    border-radius: 2px;
+		}
 		
 		span.strong{
 			text-transform: uppercase;

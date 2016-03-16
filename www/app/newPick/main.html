@@ -1,12 +1,12 @@
 <ion-view>
   <ion-content class="padding newPick has-header">
 	
-	<hr class="positive">
 	<h2>New pick</h2>
 
 	<div class="datos">
 		<p><span class="strong">Compañía:</span> {{company.name}}</p>
-		<p><span class="strong">Servicio:</span> {{service.name}}</p>    
+		<p><span class="strong">Servicio:</span> {{service.id_name.name}}</p>   
+		<span class="price">{{service.price}} €</span> 
 	</div>
 
 	<div class="dropdown list">

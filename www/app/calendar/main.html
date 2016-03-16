@@ -1,7 +1,59 @@
 <ion-view>
-  <ion-content class="has-header">
+  <ion-content class="calendar has-header">
+    
+    <div class="navigation">
+        <button
+          class="button ion-ios-arrow-left"
+          mwl-date-modifier
+          date="viewDate"
+          decrement="calendarView">
+          
+        </button>
+        <button
+          class="button today"
+          mwl-date-modifier
+          date="viewDate"
+          set-to-today>
+          Hoy
+        </button>
+         <button
+          class="button ion-ios-arrow-right"
+          mwl-date-modifier
+          date="viewDate"
+          increment="calendarView">
+        </button>
+    </div>
 
-    <p>Calendar</p>
+    <div class="viewMode">
+        <!--<label class="button" ng-model="calendarView" uib-btn-radio="'year'">Year</label>-->
+        <label class="button" ng-model="calendarView" uib-btn-radio="'month'">Mes</label>
+        <!--<label class="button" ng-model="calendarView" uib-btn-radio="'week'">Week</label>-->
+        <label class="button" ng-model="calendarView" uib-btn-radio="'day'">Día</label>
+    </div>
+
+    <h2 class="text-center">{{ calendarTitle }}</h2>
+
+
+  <mwl-calendar
+    events="events"
+    view="calendarView"
+    view-title="calendarTitle"
+    view-date="viewDate"
+    on-event-click="eventClicked(calendarEvent)"
+    on-event-times-changed="eventTimesChanged(calendarEvent); calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
+    edit-event-html="'<i class=\'glyphicon glyphicon-pencil\'></i>'"
+    delete-event-html="'<i class=\'glyphicon glyphicon-remove\'></i>'"
+    on-edit-event-click="eventEdited(calendarEvent)"
+    on-delete-event-click="eventDeleted(calendarEvent)"
+    cell-is-open="isCellOpen"
+    day-view-start="06:00"
+    day-view-end="22:00"
+    day-view-split="30"
+    cell-modifier="modifyCell(calendarCell)"
+    slide-box-disabled="true"
+    >
+  </mwl-calendar>
+
 
   </ion-content>
 </ion-view>

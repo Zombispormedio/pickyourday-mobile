@@ -8,7 +8,7 @@ var pydmDrctv = {};
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-var app = angular.module('starter', ['ionic', 'ngOpenFB', "ngResource", 'ui.bootstrap.datetimepicker', 'ionic.rating', 'ngCordova', 'ngCordovaOauth'])
+var app = angular.module('starter', ['ionic', 'ngOpenFB', "ngResource", 'ui.bootstrap.datetimepicker', 'ionic.rating', 'ngCordova', 'ngCordovaOauth', 'mwl.calendar', 'ui.bootstrap'])
     .controller(pydmCtrl)
     .factory(pydmFtry)
     .filter(pydmFiltr)
@@ -260,6 +260,21 @@ var app = angular.module('starter', ['ionic', 'ngOpenFB', "ngResource", 'ui.boot
             'content': {
                 templateUrl: 'app/preferences/main.html',
                 controller: 'PreferencesCtrl'
+            }
+        }
+    })
+
+    .state("app.calendar", {
+        url: "/calendar",
+        onEnter: function ($rootScope) {
+            if (!getJSONLocal("user")) {
+                $rootScope.go("login");
+            }
+        },
+        views: {
+            'content': {
+                templateUrl: 'app/calendar/main.html',
+                controller: 'CalendarCtrl'
             }
         }
     })

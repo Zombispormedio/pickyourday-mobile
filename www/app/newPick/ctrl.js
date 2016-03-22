@@ -2,6 +2,8 @@ pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams,$ionicH
 	
 	var idCompany = $stateParams.company;
 	var idService = $stateParams.service;
+	console.log(idCompany);
+	console.log(idService)
 
 	$scope.company = [];
 	$scope.service = [];

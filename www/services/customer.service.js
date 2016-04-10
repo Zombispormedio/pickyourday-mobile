@@ -53,7 +53,13 @@ pydmFtry.CustomerService = function(ApiService){
             return ApiService.rest(this.base+"/timeLine/?initDate=:initDate&endDate=:endDate",{
                 list:{method:"GET", params:{initDate: "@initDate", endDate: "@endDate"}}
             });
+        },
+        event: function(){
+            return ApiService.rest(this.base + "/event",{
+                create:{method:"POST", params:{}},
+            });
         }
+
 
 
 

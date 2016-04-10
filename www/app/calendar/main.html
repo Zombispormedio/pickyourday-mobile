@@ -26,9 +26,9 @@
 
     <div class="viewMode">
         <!--<label class="button" ng-model="calendarView" uib-btn-radio="'year'">Year</label>-->
-        <label class="button" ng-model="calendarView" uib-btn-radio="'month'">Mes</label>
+        <label class="button month" ng-model="calendarView" uib-btn-radio="'month'">Mes</label>
         <!--<label class="button" ng-model="calendarView" uib-btn-radio="'week'">Week</label>-->
-        <label class="button" ng-model="calendarView" uib-btn-radio="'day'">Día</label>
+        <label class="button day" ng-model="calendarView" uib-btn-radio="'day'">Día</label>
     </div>
 
     <h2 class="text-center">{{ calendarTitle }}</h2>
@@ -51,6 +51,7 @@
     cell-modifier="vm.cellModifier(calendarCell)"
     on-timespan-click="vm.timespanClicked(calendarDate)"
     slide-box-disabled="true"
+    on-view-change-click="vm.viewChangeClicked(calendarDate, calendarNextView)"
     >
   </mwl-calendar>
 

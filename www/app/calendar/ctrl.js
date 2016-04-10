@@ -12,8 +12,9 @@ pydmCtrl.CalendarCtrl = function ($rootScope, $scope, $http, $stateParams, Custo
 	        var res = result;
 	        console.log(res);
 	        if (!res.error) {  
-	            $scope.formatEvents(res.data[0].picks);
-	        } else {	        	
+	            $scope.formatPicks(res.data[0].picks, "info");
+              $scope.formatEvents(res.data[1].events, "warning");
+	        }else{	        	
 	           $scope.error=res.error;
 	        }
 
@@ -24,27 +25,44 @@ pydmCtrl.CalendarCtrl = function ($rootScope, $scope, $http, $stateParams, Custo
 	}
 
 
-	$scope.getPicks();
-	
+  //These variables MUST be set as a minimum for the calendar to work
+  $scope.calendarView = 'month';
+  $scope.currentView = 'month';
+  $scope.viewDate = new Date();
+  $scope.currentDate = new Date();
+  $scope.picks = [];
 
-    //These variables MUST be set as a minimum for the calendar to work
-    $scope.calendarView = 'month';
-    $scope.viewDate = new Date();
-    $scope.picks = [];
+  var startDate = moment($scope.currentDate).startOf('month');
+  var endDate = moment(startDate).endOf('month');
 
+  $scope.getPicks(startDate.toDate(), endDate.toDate());
 
-    $scope.formatEvents = function(picks){
+    $scope.formatPicks = function(picks, type){
    
     	picks.forEach(function(pick){
       		var obj = {
       			title : pick.pick.service.metadata.name,
-      			type : "info",
+      			type : type,
       			startsAt : moment(pick.init).toDate(),
       			endsAt : moment(pick.end).toDate(),
             cssClass: 'my-custom-class'
       		};
       		vm.events.push(obj);
   		}); 
+    }
+
+    $scope.formatEvents = function(events, type){
+   
+      events.forEach(function(event){
+          var obj = {
+            title : event.name,
+            type : type,
+            startsAt : moment(event.initDate).toDate(),
+            endsAt : moment(event.endDate).toDate(),
+            cssClass: 'my-custom-class'
+          };
+          vm.events.push(obj);
+      }); 
     }
 
      vm.cellModifier = function(cell) {
@@ -111,6 +129,7 @@ pydmCtrl.CalendarCtrl = function ($rootScope, $scope, $http, $stateParams, Custo
 
     $scope.closeModal = function() {
         $scope.modal.hide();
+        $("#eventName").val("");
     };
 
 
@@ -140,24 +159,46 @@ pydmCtrl.CalendarCtrl = function ($rootScope, $scope, $http, $stateParams, Custo
       }else if(eventName == ""){
         $scope.error = "El nombre no puede estar vacío.";
       }else{
-        $scope.error = "";
+        
+        var endDate = vm.endDateEvent;
 
         if(vm.endDateEvent == vm.lastDateClicked)
-          vm.endDateEvent = moment(vm.endDateEvent).add(10, 'minutes'); 
+          endDate = moment(vm.endDateEvent).add(10, 'minutes'); 
 
-        var obj = {
-          title : eventName,
-          type : "warning",
-          startsAt : moment(vm.lastDateClicked).toDate(),
-          endsAt : moment(vm.endDateEvent).toDate(),
-          cssClass: 'my-custom-class'
-        };
-        vm.events.push(obj);
+        var event = {
+          "initDate" : new Date(vm.lastDateClicked), 
+          "endDate" : new Date(endDate),
+          "name": eventName,
+          "description" : ""     
+        }
 
-        $(".cal-day-hour-part").removeClass("selected");
-        $(".createEvent").remove();
+        CustomerService.event().create({}, event , function(result){
+          var res = result;
 
-        $scope.closeModal();
+          if (!res.error) {     
+            $scope.error = "";
+
+            var obj = {
+              title : eventName,
+              type : "warning",
+              startsAt : moment(vm.lastDateClicked).toDate(),
+              endsAt : moment(endDate).toDate(),
+              cssClass: 'my-custom-class'
+            };
+            vm.events.push(obj);
+
+            $(".cal-day-hour-part").removeClass("selected");
+            $(".createEvent").remove();
+
+            $scope.closeModal();
+
+          } else {
+            $scope.error = res.error;
+          }
+        }, function(){
+
+        });
+
       }
       
     }
@@ -181,69 +222,49 @@ pydmCtrl.CalendarCtrl = function ($rootScope, $scope, $http, $stateParams, Custo
     $scope.onTimeSet2 = function (newDate, oldDate) {
       $scope.fechaEnd = newDate;
     }
-    
-    /*vm.events = [
-      {
-        title: 'Cortar el pelo',
-        type: 'warning',
-        startsAt: moment().startOf('day').add(7, 'hours').toDate(),
-        endsAt: moment().startOf('day').add(9, 'hours').toDate()
-      }, {
-        title: 'Comida de empresa',
-        type: 'info',
-        startsAt: moment().startOf('day').add(10, 'hours').toDate(),
-        endsAt: moment().startOf('day').add(16, 'hours').toDate()
-      },
-      {
-        title: 'Cambio de aceite',
-        type: 'important',
-        startsAt: moment().startOf('day').add(1, 'day').add(10, 'hours').toDate(),
-        endsAt: moment().startOf('day').add(1, 'day').add(16, 'hours').toDate()
-      },
-      {
-        title: 'Cambio de aceite',
-        type: 'warning',
-        startsAt: moment().startOf('day').add(3, 'day').add(6, 'hours').toDate(),
-        endsAt: moment().startOf('day').add(3, 'day').add(10, 'hours').toDate()
-      },
-      {
-        title: 'Cambio de aceite',
-        type: 'info',
-        startsAt: moment().startOf('day').add(6, 'day').add(10, 'hours').toDate(),
-        endsAt: moment().startOf('day').add(6, 'day').add(16, 'hours').toDate()
-      }
-    ]; */
-    //console.log($scope.events);
 
-    //$scope.isCellOpen = true;
-    /*
-    $scope.eventClicked = function(event) {
-      alert.show('Clicked', event);
+    //CAMBIO DE MES
+    vm.viewChangeClicked = function(date, nextView) {
+
+      $scope.currentView = nextView;
+      $scope.currentDate = date;
+
+      $scope.sendDates();
+
+      return vm.viewChangeEnabled;
     };
 
-    $scope.eventEdited = function(event) {
-      alert.show('Edited', event);
-    };
-
-    $scope.eventDeleted = function(event) {
-      alert.show('Deleted', event);
-    };
-
-    $scope.eventTimesChanged = function(event) {
-      alert.show('Dropped or resized', event);
-    };*/
-/*
-    $scope.toggle = function($event, field, event) {
-      $event.preventDefault();
-      $event.stopPropagation();
-      event[field] = !event[field];
-    };
-*/
-/*
-     $scope.$on('$destroy', function() {
-      calendarConfig.templates.calendarMonthCell = 'mwl/calendarMonthCell.html';
+    $(".button.month").on("click", function(){
+        $scope.currentView = 'month';
+        $scope.sendDates();
     });
-    */
-    
 
+    $(".button.day").on("click", function(){
+        $scope.currentView = 'day';
+        $scope.sendDates();
+    });
+
+    $(".button.ion-ios-arrow-right").on("click", function(){
+        $scope.currentDate = moment($scope.currentDate).add(1, $scope.currentView).toDate();
+        $scope.sendDates();
+    });
+
+    $(".button.ion-ios-arrow-left").on("click", function(){
+        $scope.currentDate = moment($scope.currentDate).subtract(1, $scope.currentView).toDate();
+        $scope.sendDates();
+    });
+
+    $(".button.today").on("click", function(){
+        $scope.currentDate = new Date();
+        $scope.sendDates();
+    })
+
+    $scope.sendDates = function(){
+        var startDate = moment($scope.currentDate).startOf($scope.currentView);
+        var endDate = moment(startDate).endOf($scope.currentView);
+        vm.events = [];
+        $scope.getPicks(startDate.toDate(), endDate.toDate());
+        console.log(startDate.toDate() + "," + endDate.toDate());
+    }
+    
 }

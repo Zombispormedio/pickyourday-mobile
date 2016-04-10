@@ -3,7 +3,7 @@ pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams,$ionicH
 	var idCompany = $stateParams.company;
 	var idService = $stateParams.service;
 	console.log(idCompany);
-	console.log(idService)
+	console.log(idService);
 
 	$scope.company = [];
 	$scope.service = [];
@@ -22,6 +22,7 @@ pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams,$ionicH
 
 	CustomerService.company().getByID({"id": $scope.idCompany}, {}, function(result){
         var res = result;
+        console.log(result);
         if (!res.error) {       
             $scope.company = res.data;    
         } else {

@@ -240,8 +240,7 @@ pydmCtrl.SearchCtrl = function ($rootScope, $scope, $http, ngFB, CustomerService
   }
 
   $scope.newPick = function (idCompany, idService) {
-    console.log("IDS: " + idCompany + " - " + idService);
-    $rootScope.go("app.newPick", {company: JSON.stringify(idCompany), service: JSON.stringify(idService)} );
+    $rootScope.go("app.newPick", {company: idCompany, service: idService} );
   }
 
   $scope.cleanError=function(){

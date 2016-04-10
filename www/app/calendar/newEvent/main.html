@@ -1,106 +1,44 @@
+<ion-modal-view>
 
-  <br><br><br>
+    <ion-header-bar class="bar-positive" align-title="center">
+        <button class="button button-icon icon ion-arrow-left-c" ng-click="closeModal()"></button>
+        <h1 class="title">
+            Crear Evento
+        </h1>
+    </ion-header-bar>
 
-  <h3 id="event-editor">
-    Edit events
-    <button
-      class="btn btn-primary pull-right"
-      ng-click="events.push({title: 'New event', type: 'important', draggable: true, resizable: true})">
-      Add new
-    </button>
-    <div class="clearfix"></div>
-  </h3>
+    <ion-content class="newEventModal">
+        
+        <label for="eventName" class="labelC">Nombre del evento:</label>
+        <input type="text" name="eventName" class="input">
 
-  <table class="table table-bordered">
-
-    <thead>
-      <tr>
-        <th>Title</th>
-        <th>Type</th>
-        <th>Starts at</th>
-        <th>Ends at</th>
-        <th>Remove</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <tr ng-repeat="event in events track by $index">
-        <td>
-          <input
-            type="text"
-            class="form-control"
-            ng-model="event.title">
-        </td>
-        <td>
-          <select ng-model="event.type" class="form-control">
-            <option value="important">Important</option>
-            <option value="warning">Warning</option>
-            <option value="info">Info</option>
-            <option value="inverse">Inverse</option>
-            <option value="success">Success</option>
-            <option value="special">Special</option>
-          </select>
-        </td>
-        <td>
-          <p class="input-group" style="max-width: 250px">
-            <input
-              type="text"
-              class="form-control"
-              readonly
-              uib-datepicker-popup="dd MMMM yyyy"
-              ng-model="event.startsAt"
-              is-open="event.startOpen"
-              close-text="Close" >
-            <span class="input-group-btn">
-              <button
-                type="button"
-                class="btn btn-default"
-                ng-click="toggle($event, 'startOpen', event)">
-                <i class="glyphicon glyphicon-calendar"></i>
-              </button>
-            </span>
-          </p>
-          <uib-timepicker
-            ng-model="event.startsAt"
-            hour-step="1"
-            minute-step="15"
-            show-meridian="true">
-          </uib-timepicker>
-        </td>
-        <td>
-          <p class="input-group" style="max-width: 250px">
-            <input
-              type="text"
-              class="form-control"
-              readonly
-              uib-datepicker-popup="dd MMMM yyyy"
-              ng-model="event.endsAt"
-              is-open="event.endOpen"
-              close-text="Close">
-            <span class="input-group-btn">
-              <button
-                type="button"
-                class="btn btn-default"
-                ng-click="toggle($event, 'endOpen', event)">
-                <i class="glyphicon glyphicon-calendar"></i>
-              </button>
-            </span>
-          </p>
-          <uib-timepicker
-            ng-model="event.endsAt"
-            hour-step="1"
-            minute-step="15"
-            show-meridian="true">
-          </uib-timepicker>
-        </td>
-        <td>
-          <button
-            class="btn btn-danger"
-            ng-click="events.splice($index, 1)">
-            Delete
+        <span class="labelC">Desde:</span>
+        <div class="dropdown">
+          <button class="button button-block button-assertive dropdown-toggle" data-toggle="dropdown" id="dLabel">
+            {{ vm.lastDateClicked | date:'dd MMMM yyyy HH:mm'}}
           </button>
-        </td>
-      </tr>
-    </tbody>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+              <datetimepicker data-ng-model="vm.lastDateClicked"
+                              data-on-set-time="onTimeSet(newDate, oldDate)"
+                              data-datetimepicker-config="{ dropdownSelector: '.dropdown-toggle'}"></datetimepicker>
+          </ul>
+        </div>
+        
+        <span class="labelC">Hasta:</span>
+        <div class="dropdown">
+          <button class="button button-block button-assertive dropdown-toggle2" data-toggle="dropdown" id="dLabel">
+            {{ vm.endDateEvent | date:'dd MMMM yyyy HH:mm'}}
+          </button>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+              <datetimepicker data-ng-model="vm.endDateEvent"
+                              data-on-set-time="onTimeSet2(newDate, oldDate)"
+                              data-datetimepicker-config="{ dropdownSelector: '.dropdown-toggle2'}"></datetimepicker>
+          </ul>
+        </div>
 
-  </table>
+      <div ng-if="error!=''" class="error">{{error}}</div>
+
+      <button class="button button-block button-positive buttonCr" ng-click="newEvent()">Crear Evento</button>
+
+    </ion-content>
+</ion-modal-view>

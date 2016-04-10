@@ -10875,10 +10875,44 @@ h2 {
   white-space: nowrap; }
 
 .calendar .cal-month-box [class*=cal-cell], .calendar .cal-year-box [class*=span] {
-  min-height: 80px; }
+  min-height: 70px; }
+
+.calendar .cal-month-box .cal-day-today span[data-cal-date] {
+  font-size: 1.5em; }
 
 .calendar .cal-month-day {
-  height: 80px; }
+  height: 70px; }
+
+.calendar .cal-day-box .day-event {
+  width: 270px; }
+
+.calendar .cal-day-box .cal-day-hour-part {
+  position: relative; }
+  .calendar .cal-day-box .cal-day-hour-part.selected {
+    background-color: rgba(255, 152, 0, 0.78); }
+  .calendar .cal-day-box .cal-day-hour-part .createEvent {
+    position: absolute;
+    left: 70px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    display: -webkit-box;
+    /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+    display: -ms-flexbox;
+    /* TWEENER - IE 10 */
+    display: -webkit-flex;
+    /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+    display: flex;
+    /* NEW, Spec - Firefox, Chrome, Opera */
+    align-items: center;
+    -webkit-box-pack: center;
+    -moz-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-box-align: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    width: calc(100% - 70px); }
 
 .calendar .cal-month-box .cal-row-fluid .span3, .calendar .cal-year-box .row .span3 {
   -webkit-box-flex: 1;
@@ -10926,3 +10960,20 @@ h2 {
     padding: 0;
     text-align: center;
     font-size: 12px; }
+
+.newEventModal {
+  padding: 10px; }
+  .newEventModal .inputName {
+    display: inline-block;
+    width: 100%;
+    border: 1px solid #ccc;
+    margin: 10px 0;
+    padding: 5px 10px;
+    font-size: 16px;
+    height: 40px; }
+  .newEventModal .labelC {
+    color: #333;
+    font-size: 16px;
+    display: inline-block; }
+  .newEventModal .buttonCr {
+    margin-top: 20px; }

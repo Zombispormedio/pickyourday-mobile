@@ -48,6 +48,11 @@ pydmFtry.CustomerService = function(ApiService){
             return ApiService.rest(this.base+"/search",{
                 list:{method:"GET", params:{}}
             });
+        },
+        calendar:function(){
+            return ApiService.rest(this.base+"/timeLine/?initDate=:initDate&endDate=:endDate",{
+                list:{method:"GET", params:{initDate: "@initDate", endDate: "@endDate"}}
+            });
         }
 
 

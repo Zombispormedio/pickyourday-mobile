@@ -55,11 +55,37 @@
 	}
 
 	.cal-month-box [class*=cal-cell], .cal-year-box [class*=span]{
-		min-height: 80px;
+		min-height: 70px;
+	}
+	.cal-month-box .cal-day-today span[data-cal-date] {
+	    font-size: 1.5em;
+	}
+	.cal-month-day{
+		height: 70px;
 	}
 
-	.cal-month-day{
-		height: 80px;
+	//Day View
+	.cal-day-box .day-event{
+		width: 270px;
+	}
+	
+	.cal-day-box .cal-day-hour-part{
+		position: relative;
+
+		&.selected{
+			background-color: rgba(255, 152, 0, 0.78);
+		}
+
+		.createEvent{
+			position: absolute;
+		    left: 70px;
+		    top: 0;
+		    bottom: 0;
+		    margin: auto;
+		    @include flexbox();
+		    @include flex-align(center);
+		    width: calc(100% - 70px);
+		}
 	}
 
 	//Year View
@@ -94,5 +120,30 @@
 		    text-align: center;
 		    font-size: 12px;
 	    }
+	}
+}
+
+//New Event
+.newEventModal{
+	padding: 10px;
+
+	.inputName{
+		display: inline-block;
+		width: 100%;
+	    border: 1px solid #ccc;
+	    margin: 10px 0;
+	    padding: 5px 10px;
+	    font-size: 16px;
+	    height: 40px;
+	}
+
+	.labelC{
+		color: #333;
+	    font-size: 16px;
+	    display: inline-block;
+	}
+
+	.buttonCr{
+		margin-top: 20px;
 	}
 }

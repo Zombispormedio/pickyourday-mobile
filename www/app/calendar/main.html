@@ -33,9 +33,8 @@
 
     <h2 class="text-center">{{ calendarTitle }}</h2>
 
-
   <mwl-calendar
-    events="events"
+    events="vm.events"
     view="calendarView"
     view-title="calendarTitle"
     view-date="viewDate"
@@ -46,10 +45,11 @@
     on-edit-event-click="eventEdited(calendarEvent)"
     on-delete-event-click="eventDeleted(calendarEvent)"
     cell-is-open="isCellOpen"
-    day-view-start="06:00"
-    day-view-end="22:00"
-    day-view-split="30"
-    cell-modifier="modifyCell(calendarCell)"
+    day-view-start="08:00"
+    day-view-end="23:00"
+    day-view-split="10"
+    cell-modifier="vm.cellModifier(calendarCell)"
+    on-timespan-click="vm.timespanClicked(calendarDate)"
     slide-box-disabled="true"
     >
   </mwl-calendar>

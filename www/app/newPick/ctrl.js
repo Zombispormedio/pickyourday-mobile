@@ -59,8 +59,9 @@ pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams,$ionicH
 
 		if ($scope.idCompany !== "" && $scope.idService !== "" && $scope.date !== "") {
 
+			console.log("FECHAAAA: " + new Date($scope.fecha) );
 			var obj = {
-				"initDate" : $scope.fecha,
+				"initDate" : new Date($scope.fecha),
 				"state": "active",
 				"company": {
 					"id_company": $scope.idCompany,
@@ -94,9 +95,9 @@ pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams,$ionicH
 
 	$scope.beforeRender = function ($view, $dates, $leftDate, $upDate, $rightDate) {
 
-	    var threeMonthsLater = moment().add(3, 'months');
+	    var threeMonthsLater = moment().add(3, 'years');
 	    for(var i=0; i<$dates.length;i++) {
-	       if(moment() > $dates[i].utcDateValue && $dates[i].utcDateValue <= threeMonthsLater ) {
+	       if(moment().subtract(1, 'days') > $dates[i].utcDateValue && $dates[i].utcDateValue < threeMonthsLater ) {
 	          $dates[i].selectable = false;
 	       }
 	    }     

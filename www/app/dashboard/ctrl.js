@@ -5,11 +5,13 @@ pydmCtrl.DashboardCtrl = function ($rootScope, $scope, $http, $ionicHistory, Cus
 
 	$scope.getPicks = function(){
 
+    
 		CustomerService.pick().list({afterInitDate: new Date()}, {} , function(result){
             var res = result;
             if (!res.error) {       
               	var picksAux = res.data;
-        				$scope.picks = picksAux;			
+        				$scope.picks = picksAux;		
+                console.log(picksAux);	
         				$scope.$broadcast('scroll.refreshComplete');	
             } else {
                	$scope.error=res.error;

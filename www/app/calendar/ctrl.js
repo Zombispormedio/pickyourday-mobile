@@ -64,11 +64,23 @@ pydmCtrl.CalendarCtrl = function ($rootScope, $scope, $http, $stateParams, Custo
 
       var obj = $(".cal-day-hour-part.activated");
 
-      if($(obj).hasClass("selected")){
+      var aux = vm.events;
+      var res = aux.filter(function (e) { 
+        var d1 = new Date(e.startsAt);
+        var d2 = new Date(date);
+        var d3 = new Date(e.endsAt);
+        return ( d1.getTime() === d2.getTime() || (d2 > d1 && d2 < d3)) && (e.type === "warning");
+      });
 
+      console.log(res);
+ 
+      if(res.length > 0){
+        console.log("No cabe");
+        $(".cal-day-hour-part").removeClass("selected");
+        $(".createEvent").remove();
+      }else if($(obj).hasClass("selected")){
         vm.endDateEvent = vm.lastDateClicked;
         $scope.openModal();
-
       }else{
 
         $(".cal-day-hour-part").removeClass("selected");
@@ -76,7 +88,7 @@ pydmCtrl.CalendarCtrl = function ($rootScope, $scope, $http, $stateParams, Custo
         $(".createEvent").remove();
 
         var html = "";
-        html += "<div class='createEvent' id='newEvent'>+ Crear Evento</div>";
+        html += "<div class='createEvent' id='newEvent'>Crear Evento</div>";
 
         $(obj).append(html);
 
@@ -85,7 +97,6 @@ pydmCtrl.CalendarCtrl = function ($rootScope, $scope, $http, $stateParams, Custo
       }
 
     };
-
 
     $ionicModal.fromTemplateUrl('app/calendar/newEvent/main.html', {
         scope: $scope,
@@ -104,16 +115,49 @@ pydmCtrl.CalendarCtrl = function ($rootScope, $scope, $http, $stateParams, Custo
 
 
     $scope.error = "";
-    
+
     $scope.newEvent = function(){
-      console.log("nuevo Evento");
-      console.log(vm.lastDateClicked);
-      console.log(vm.endDateEvent);
+      //console.log("nuevo Evento");
+      //console.log(vm.lastDateClicked);
+      //console.log(vm.endDateEvent);
+
+      var eventName = $("#eventName").val();
+
+      var aux = vm.events;
+      var res = aux.filter(function (e) { 
+        var d1 = new Date(e.startsAt);
+        var d2 = new Date(vm.lastDateClicked);
+        var d3 = new Date(e.endsAt);
+        var d4 = new Date(vm.endDateEvent);
+        return ( (d1.getTime() === d2.getTime() || (d2 > d1 && d2 < d3)) || (d1.getTime() === d4.getTime() || (d4 > d1 && d4 < d3)) )
+              && (e.type === "warning");
+      });
 
       if(vm.endDateEvent < vm.lastDateClicked){
         $scope.error = "La fecha de fin debe ser mayor que la de inicio.";
+      }else if(res.length > 0){
+        $scope.error = "Los eventos no pueden solaparse.";
+      }else if(eventName == ""){
+        $scope.error = "El nombre no puede estar vacío.";
       }else{
         $scope.error = "";
+
+        if(vm.endDateEvent == vm.lastDateClicked)
+          vm.endDateEvent = moment(vm.endDateEvent).add(10, 'minutes'); 
+
+        var obj = {
+          title : eventName,
+          type : "warning",
+          startsAt : moment(vm.lastDateClicked).toDate(),
+          endsAt : moment(vm.endDateEvent).toDate(),
+          cssClass: 'my-custom-class'
+        };
+        vm.events.push(obj);
+
+        $(".cal-day-hour-part").removeClass("selected");
+        $(".createEvent").remove();
+
+        $scope.closeModal();
       }
       
     }

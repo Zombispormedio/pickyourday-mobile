@@ -64,16 +64,23 @@
 		height: 70px;
 	}
 
+	.events-list {
+	    max-height: 29px;
+	    padding-left: 5px;
+	    overflow: scroll;
+	}
+
 	//Day View
 	.cal-day-box .day-event{
-		width: 270px;
+		//width: 270px;
 	}
 	
 	.cal-day-box .cal-day-hour-part{
 		position: relative;
 
 		&.selected{
-			background-color: rgba(255, 152, 0, 0.78);
+			background-color: $teal;
+			z-index: 1;
 		}
 
 		.createEvent{
@@ -82,9 +89,11 @@
 		    top: 0;
 		    bottom: 0;
 		    margin: auto;
+		    color: #FFF;
 		    @include flexbox();
 		    @include flex-align(center);
-		    width: calc(100% - 70px);
+		    width: 100%;
+		    padding-left: 70px;
 		}
 	}
 
@@ -126,6 +135,12 @@
 //New Event
 .newEventModal{
 	padding: 10px;
+	
+	.error{
+		font-size: 16px;
+	    color: #F44336;
+	    font-weight: bold;
+	}
 
 	.inputName{
 		display: inline-block;

@@ -55,6 +55,22 @@ pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams,$ionicH
 		}
 	};
 
+	$scope.activatePick = function(id){
+
+		CustomerService.activePick().active({"id":id}, {} , function(result){
+			var res = result;
+			if (!res.error) {								
+				$rootScope.go("app.dashboard");
+			} else {
+				$scope.error=res.error;
+				$scope.openModal($scope.error);
+			}
+
+        }, function(){
+
+        });
+	}
+
 	$scope.newPick = function () {
 
 
@@ -72,11 +88,12 @@ pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams,$ionicH
 			
 			CustomerService.pick().create({}, obj , function(result){
 				var res = result;
+				console.log(res);
 				if (!res.error) {				
-					$rootScope.go("app.dashboard");
+					$scope.activatePick(res.data._id);
 				} else {
 					$scope.error=res.error;
-					$scope.openModal();
+					$scope.openModal($scope.error);
 				}
 
             }, function(){

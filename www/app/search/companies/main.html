@@ -2,7 +2,7 @@
 	<ion-content class="search_companies has-tabs-top padding">
 
 		<ion-list ng-if="companies.length > 0">
-		    <ion-item ng-repeat="company in companies" class="my-item">
+		    <ion-item ng-repeat="company in companies" class="my-item" ng-click="goDetail(company._id)">
 		        <p>{{ company.name }}</p>
 		    </ion-item>
 		</ion-list>

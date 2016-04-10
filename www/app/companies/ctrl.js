@@ -4,6 +4,7 @@ pydmCtrl.CompaniesCtrl = function ($rootScope, $scope, $http, $stateParams, Cust
 
 	CustomerService.company().list({}, {}, function(result){
         var res = result;
+        console.log(res);
         if (!res.error) {       
           	$scope.companies = res.data;		
         } else {

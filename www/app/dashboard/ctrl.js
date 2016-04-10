@@ -1,4 +1,4 @@
-pydmCtrl.DashboardCtrl = function ($rootScope, $scope, $http, $ionicHistory, CustomerService) {
+pydmCtrl.DashboardCtrl = function ($rootScope, $scope, $state, $http, $ionicHistory, CustomerService, $ionicModal, $ionicPopup) {
   	$scope.error="";
   	$scope.picks = "";
 
@@ -51,5 +51,59 @@ pydmCtrl.DashboardCtrl = function ($rootScope, $scope, $http, $ionicHistory, Cus
 		$scope.error="";
 	}
 
+  $scope.pickDetail = function(pick){
+    $scope.currentPick = pick;
+    $scope.openModal();
+  }
+
+  $ionicModal.fromTemplateUrl('app/dashboard/pickDetail/main.html', {
+      scope: $scope,
+      animation: 'slide-in-right'
+  }).then(function(modal) {
+      $scope.modal = modal;
+  });
+
+  $scope.openModal = function() {
+      $scope.modal.show();
+  };
+
+  $scope.closeModal = function() {
+      $scope.modal.hide();
+  };
+
+  $scope.cancelPick = function(id) {
+
+    CustomerService.cancelPick().cancel({"id": id}, {} , function(result){
+        var res = result;
+        console.log(res);
+        if (!res.error) {       
+           $scope.closeModal();
+           $state.go($state.current, {}, {reload: true});
+        } else {
+           $scope.error=res.error;
+           $scope.openModal($scope.error);
+        }
+
+    }, function(){
+
+    });
+
+  }
+
+  $scope.showConfirm = function(id) {
+   var confirmPopup = $ionicPopup.confirm({
+     title: 'Cancelar Pick',
+     template: '¿Estás seguro de que deseas cancelar el pick?'
+   });
+
+   confirmPopup.then(function(res) {
+     if(res) {
+       $scope.cancelPick(id);
+     } else {
+       console.log('You are not sure');
+     }
+   });
+
+ };
 
 }

@@ -24,7 +24,6 @@ pydmCtrl.CalendarCtrl = function ($rootScope, $scope, $http, $stateParams, Custo
 
 	}
 
-
   //These variables MUST be set as a minimum for the calendar to work
   $scope.calendarView = 'month';
   $scope.currentView = 'month';

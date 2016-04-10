@@ -26,12 +26,12 @@
 	</div>
 
 	<div class="icons">
-		<button ng-if="company.phone[0]" 
-			href="tel:{{company.phone[0]}}" class="button button-icon icon ion-ios-telephone">Llamar</button>	
-		<button ng-if="company.email" 
-			href="mailto:{{company.email}}" class="button button-icon icon ion-ios-email">Mail</button>	
-		<button ng-if="company.web" 
-			href="{{company.web}}" class="button button-icon icon ion-ios-world">Website</button>	
+		<a ng-if="company.phone[0]" 
+			href="tel:{{company.phone[0]}}" class="button button-icon icon ion-ios-telephone">Llamar</a>	
+		<a ng-if="company.email" 
+			href="mailto:{{company.email}}" class="button button-icon icon ion-ios-email">Mail</a>	
+		<a ng-if="company.web" 
+			href="{{company.web}}" class="button button-icon icon ion-ios-world">Website</a>	
 	</div>
 
 	<div class="info">

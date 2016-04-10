@@ -11,7 +11,7 @@
     
     <div ng-if="picks.length > 0"  class="list">
 
-      <div ng-repeat="pick in picks | orderBy: 'initDate'" class="pick"> 
+      <div ng-repeat="pick in picks | orderBy: 'initDate'" class="pick" ng-click="pickDetail(pick)"> 
       
             <div class="iconCat" style="background-color: {{pick.company.category.color}};">
               <img ng-src="{{ pick.company.category.icon.src}}" alt="{{ pick.company.category.icon.alt}}">

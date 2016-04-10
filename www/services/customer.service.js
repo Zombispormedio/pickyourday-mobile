@@ -16,6 +16,16 @@ pydmFtry.CustomerService = function(ApiService){
                 delete:{method:"DELETE", params:{id:"@id"}}
             });
         },
+        cancelPick:function(){
+            return ApiService.rest(this.base+"/cancelPick/:id",{
+                cancel:{method:"PUT", params:{id:"@id"}}
+            });
+        },
+        activePick:function(){
+            return ApiService.rest(this.base+"/activePick/:id",{
+                active:{method:"PUT", params:{id:"@id"}}
+            });
+        },
         profile:function(){
             return ApiService.rest(this.base+"/profile",{
                 list:{method:"GET", params:{}}              

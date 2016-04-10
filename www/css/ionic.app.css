@@ -9873,6 +9873,17 @@ h2 {
 .modal-backdrop-bg {
   background-color: rgba(0, 0, 0, 0.5); }
 
+.popup-container .popup {
+  width: 90%;
+  height: auto; }
+  .popup-container .popup .button {
+    margin: 0;
+    margin-right: 5px; }
+  .popup-container .popup .popup-title {
+    font-size: 18px; }
+  .popup-container .popup .popup-body {
+    font-size: 16px; }
+
 .scale-in {
   -webkit-transform: scale(0);
   transform: scale(0);
@@ -9960,6 +9971,57 @@ h2 {
 
 .dashboard .noPicks {
   margin-top: 10px; }
+
+.pickDetail {
+  padding: 10px; }
+  .pickDetail p {
+    font-size: 16px; }
+  .pickDetail .price {
+    position: absolute;
+    padding: 10px;
+    background-color: #8BC34A;
+    color: #fff;
+    border-radius: 5px;
+    right: 10px; }
+  .pickDetail .icons {
+    display: -webkit-box;
+    /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+    display: -ms-flexbox;
+    /* TWEENER - IE 10 */
+    display: -webkit-flex;
+    /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+    display: flex;
+    /* NEW, Spec - Firefox, Chrome, Opera */
+    color: #3A6964;
+    margin-top: 20px; }
+    .pickDetail .icons .button-icon.icon:before {
+      display: block;
+      line-height: 30px; }
+    .pickDetail .icons .button {
+      flex: 1;
+      color: #000;
+      line-height: 35px;
+      border-radius: 0px;
+      border-right: 1px solid #BBB; }
+      .pickDetail .icons .button:last-child {
+        border-right: 0px; }
+      .pickDetail .icons .button:before {
+        color: #3A6964; }
+  .pickDetail .location {
+    display: block;
+    text-align: left;
+    color: #000;
+    margin-top: 15px;
+    border: 1px solid #BBB;
+    padding: 5px 10px;
+    border-left: 0;
+    border-right: 0;
+    border-radius: 0; }
+    .pickDetail .location:before {
+      color: #3A6964;
+      margin-right: 10px; }
+  .pickDetail .buttonCr {
+    margin-top: 20px; }
 
 .login {
   background-image: url("../assets/img/login.jpg");

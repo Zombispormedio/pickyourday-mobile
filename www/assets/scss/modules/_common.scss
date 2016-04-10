@@ -82,6 +82,24 @@ h2{
 	background-color: rgba(0,0,0,0.5);
 }
 
+.popup-container .popup{
+	width: 90%;
+	height: auto;
+
+	.button{
+		margin: 0;
+		margin-right: 5px;
+	}
+
+	.popup-title{
+		font-size: 18px;
+	}
+
+	.popup-body{
+		font-size: 16px;
+	}
+}
+
 //MODAL ANIMATIONS
 
 //scale-in

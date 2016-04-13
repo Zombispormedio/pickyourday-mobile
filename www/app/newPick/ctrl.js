@@ -63,7 +63,7 @@ pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams,$ionicH
 				$rootScope.go("app.dashboard");
 			} else {
 				$scope.error=res.error;
-				$scope.openModal($scope.error);
+				$scope.openModal($scope.error.message);
 			}
 
         }, function(){
@@ -79,7 +79,7 @@ pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams,$ionicH
 			console.log("FECHAAAA: " + new Date($scope.fecha) );
 			var obj = {
 				"initDate" : new Date($scope.fecha),
-				"state": "active",
+				"origin" : "mobile",
 				"company": {
 					"id_company": $scope.idCompany,
 					"id_service": $scope.idService
@@ -93,7 +93,7 @@ pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams,$ionicH
 					$scope.activatePick(res.data._id);
 				} else {
 					$scope.error=res.error;
-					$scope.openModal($scope.error);
+					$scope.openModal($scope.error.message);
 				}
 
             }, function(){

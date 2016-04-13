@@ -33,7 +33,7 @@ pydmCtrl.CalendarCtrl = function ($rootScope, $scope, $http, $stateParams, Custo
 
   var startDate = moment($scope.currentDate).startOf('month');
   var endDate = moment(startDate).endOf('month');
-
+  vm.events = [];
   $scope.getPicks(startDate.toDate(), endDate.toDate());
 
     $scope.formatPicks = function(picks, type){
@@ -44,7 +44,7 @@ pydmCtrl.CalendarCtrl = function ($rootScope, $scope, $http, $stateParams, Custo
       			type : type,
       			startsAt : moment(pick.init).toDate(),
       			endsAt : moment(pick.end).toDate(),
-            cssClass: 'my-custom-class'
+            cssClass: pick.pick._id
       		};
       		vm.events.push(obj);
   		}); 
@@ -58,7 +58,7 @@ pydmCtrl.CalendarCtrl = function ($rootScope, $scope, $http, $stateParams, Custo
             type : type,
             startsAt : moment(event.initDate).toDate(),
             endsAt : moment(event.endDate).toDate(),
-            cssClass: 'my-custom-class'
+            cssClass: event._id
           };
           vm.events.push(obj);
       }); 
@@ -97,7 +97,7 @@ pydmCtrl.CalendarCtrl = function ($rootScope, $scope, $http, $stateParams, Custo
         $(".createEvent").remove();
       }else if($(obj).hasClass("selected")){
         vm.endDateEvent = vm.lastDateClicked;
-        $scope.openModal();
+        $scope.openModalEvent();
       }else{
 
         $(".cal-day-hour-part").removeClass("selected");
@@ -119,15 +119,15 @@ pydmCtrl.CalendarCtrl = function ($rootScope, $scope, $http, $stateParams, Custo
         scope: $scope,
         animation: 'slide-in-right'
     }).then(function(modal) {
-        $scope.modal = modal;
+        $scope.modalEvent = modal;
     });
 
-    $scope.openModal = function() {
-        $scope.modal.show();
+    $scope.openModalEvent = function() {
+        $scope.modalEvent.show();
     };
 
-    $scope.closeModal = function() {
-        $scope.modal.hide();
+    $scope.closeModalEvent = function() {
+        $scope.modalEvent.hide();
         $("#eventName").val("");
     };
 
@@ -265,5 +265,42 @@ pydmCtrl.CalendarCtrl = function ($rootScope, $scope, $http, $stateParams, Custo
         $scope.getPicks(startDate.toDate(), endDate.toDate());
         console.log(startDate.toDate() + "," + endDate.toDate());
     }
+
+    $ionicModal.fromTemplateUrl('app/dashboard/pickDetail/main.html', {
+        scope: $scope,
+        animation: 'slide-in-right'
+    }).then(function(modal) {
+        $scope.modalPick = modal;
+    });
+
+    $scope.openPickDetail = function() {
+        $scope.modalPick.show();
+    };
+
+    $scope.closePickDetail = function() {
+        $scope.modalPick.hide();
+    };
+
+    $scope.currentPick = [];
+    vm.eventClicked = function(event) {
+
+      if($scope.currentView == "day" && event.type == "info"){
+
+          CustomerService.pick().getByID({"id": event.cssClass}, {}, function(result){
+              var res = result;
+              if (!res.error) {  
+                  $scope.currentPick = res.data[0];
+                  console.log($scope.currentPick);
+                  $scope.openPickDetail();
+              }else{            
+                 $scope.openModal(res.error);
+              }
+
+          }, function(){
+
+          });
+      }
+      console.log(event);
+    };
     
 }

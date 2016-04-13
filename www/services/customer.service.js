@@ -1,6 +1,5 @@
 pydmFtry.CustomerService = function(ApiService){
     return {
-
         base:"customer",
         register:function(){
             return ApiService.rest(this.base,{

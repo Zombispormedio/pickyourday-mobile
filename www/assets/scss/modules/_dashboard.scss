@@ -49,19 +49,81 @@
 }
 
 .pickDetail{
-	padding: 10px;
+
+	.companyHeader{
+		height: 100px;
+    	background-position: center center;
+    	background-size: cover;
+    	position: relative;
+    	color: #FFF;
+    	z-index: 0;
+    	padding: 10px;
+    	@include flexbox();
+    	@include flex-align(center);
+    	@include flex-justify(center);
+
+    	.overlay{
+    		height: 100%;
+    		width: 100%;
+    		position: absolute;
+    		left: 0;
+    		top: 0;
+    		background-color: rgba(0,0,0,0.6);
+    		z-index: -1;
+    	}
+
+    	h3,h4{
+    		color: #FFF;
+    		display: inline-block;
+    		z-index: 1;
+    	}
+
+    	h3{
+    		margin: 0;
+    		margin-bottom: 5px;
+    	}
+	}
+
+	.subtitle{
+		padding: 10px;
+		background-color: $detail;
+		position: relative;
+
+		.price{
+			position: absolute;
+		    padding: 10px;
+		    background-color: #FFFFFF;
+		    color: $detail;
+		    border-radius: 5px;
+		    right: 10px;
+		    top: -20px;
+		    font-size: 16px;
+		    font-weight: bold;
+		}
+
+		h4{
+			font-size: 20px;
+			margin: 0;
+			margin-bottom: 5px;
+		}
+
+		p{
+			font-size: 15px;
+			margin: 0;
+		}
+
+		h4,p{
+			color: #FFF;
+		}
+	}
+
+	.content{
+		padding: 10px;
+		position: relative;
+	}
 
 	p{
 		font-size: 16px;
-	}
-
-	.price{
-		position: absolute;
-	    padding: 10px;
-	    background-color: $lightGreen;
-	    color: #fff;
-	    border-radius: 5px;
-	    right: 10px;
 	}
 
 	.icons{

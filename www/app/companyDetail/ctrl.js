@@ -111,5 +111,10 @@ pydmCtrl.CompaniesDetailCtrl = function ($rootScope, $scope, $http, $stateParams
     console.log(nums);
   })
 
+  //RATE
+  $(".userRating li").on("click", function(){
+    console.log($scope.userRate);
+  });
+
 
 }

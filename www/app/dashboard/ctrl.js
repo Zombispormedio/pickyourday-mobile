@@ -24,7 +24,27 @@ pydmCtrl.DashboardCtrl = function ($rootScope, $scope, $state, $http, $ionicHist
 	}
 
   $scope.getPicks();
+  /*
+  $scope.promotions = [];
 
+  $scope.getPromotions = function(){
+
+    CompanyService.promotion().list({}, {} , function(result){
+      var res = result;
+      console.log(res);
+      if (!res.error) {       
+          $scope.promotions = res.data;    
+      } else {
+          $scope.error=res.error;
+      }
+
+    }, function(){
+
+    });
+  } 
+
+  $scope.getPromotions(); */
+  
 	$scope.category = "";
 
 	CustomerService.category().list({}, {} , function(result){
@@ -53,7 +73,7 @@ pydmCtrl.DashboardCtrl = function ($rootScope, $scope, $state, $http, $ionicHist
 
   $scope.pickDetail = function(pick){
     $scope.currentPick = pick;
-    $scope.openModal();
+    $scope.openPickDetail();
   }
 
   $ionicModal.fromTemplateUrl('app/dashboard/pickDetail/main.html', {
@@ -63,11 +83,11 @@ pydmCtrl.DashboardCtrl = function ($rootScope, $scope, $state, $http, $ionicHist
       $scope.modal = modal;
   });
 
-  $scope.openModal = function() {
+  $scope.openPickDetail = function() {
       $scope.modal.show();
   };
 
-  $scope.closeModal = function() {
+  $scope.closePickDetail = function() {
       $scope.modal.hide();
   };
 
@@ -77,7 +97,7 @@ pydmCtrl.DashboardCtrl = function ($rootScope, $scope, $state, $http, $ionicHist
         var res = result;
         console.log(res);
         if (!res.error) {       
-           $scope.closeModal();
+           $scope.closePickDetail();
            $state.go($state.current, {}, {reload: true});
         } else {
            $scope.error=res.error;
@@ -105,5 +125,10 @@ pydmCtrl.DashboardCtrl = function ($rootScope, $scope, $state, $http, $ionicHist
    });
 
  };
+
+ $scope.goCompany = function(id){
+    $scope.closePickDetail();
+    $rootScope.go("app.companyDetail", {idCompany: id });
+ }
 
 }

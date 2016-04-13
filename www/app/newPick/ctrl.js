@@ -1,4 +1,4 @@
-pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams,$ionicHistory, CustomerService) {
+pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams,$ionicHistory, CustomerService, calendarConfig) {
 	
 	var idCompany = $stateParams.company;
 	var idService = $stateParams.service;
@@ -20,32 +20,37 @@ pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams,$ionicH
 
 	$scope.fecha = new Date();
 
-	CustomerService.company().getByID({"id": $scope.idCompany}, {}, function(result){
-        var res = result;
-        console.log(result);
-        if (!res.error) {       
-            $scope.company = res.data;    
-        } else {
-           $scope.error=res.error;
-        }
-    }, function(){
+	$scope.getCompany = function(){
+		CustomerService.company().getByID({"id": $scope.idCompany}, {}, function(result){
+	        var res = result;
+	        console.log(result);
+	        if (!res.error) {       
+	            $scope.company = res.data;    
+	        } else {
+	           $scope.error=res.error;
+	        }
+	    }, function(){
 
-    });
+	    });
+	}
 
-   	CustomerService.service().getByID({"id": $scope.idService, "company": $scope.idCompany }, {}, function(result){
-        var res = result;
-        console.log(result);
-        if (!res.error) {       
-            $scope.service = res.data;    
-        } else {
-           $scope.error=res.error;
-        }
-    }, function(){
+	$scope.getService = function(){
+		CustomerService.service().getByID({"id": $scope.idService, "company": $scope.idCompany }, {}, function(result){
+	        var res = result;
+	        console.log(result);
+	        if (!res.error) {       
+	            $scope.service = res.data;    
+	        } else {
+	           $scope.error=res.error;
+	        }
+	    }, function(){
 
-    });
+	    });
+	}
 
+	$scope.getCompany();
+	$scope.getService();
 
-	 
 	$scope.datePickerCallback = function (val) {
 		if (!val) {	
 			console.log('Date not selected');
@@ -136,6 +141,39 @@ pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams,$ionicH
 	    console.log(oldDate);
 	}
 
+	//CALENDARIO
+	calendarConfig.dateFormatter = 'moment'; // use moment to format dates
+
+	var vm = this;
+	vm.events = [];
+	$scope.vm=vm;
+
+	$scope.calendarView = 'month';
+  	$scope.viewDate = new Date();
+
+  	$scope.getPicks = function(initDate, endDate){
+
+		CustomerService.calendar().list({"initDate": initDate, "endDate": endDate, "service": $scope.idService, "company": $scope.idCompany}, {}, function(result){
+	        var res = result;
+	        console.log("EH");
+	        console.log(res);
+	        if (!res.error) {  
+	           // $scope.formatPicks(res.data[0].picks, "info");
+              	//$scope.formatEvents(res.data[1].events, "warning");
+	        }else{	        	
+	           $scope.error=res.error;
+	        }
+
+	    }, function(){
+
+	    });
+
+	}
+
+	$scope.currentDate = new Date();
+	var startDate = moment($scope.currentDate).startOf('month');
+  	var endDate = moment(startDate).endOf('month');
+  	$scope.getPicks(startDate.toDate(), endDate.toDate());
 
 	
 

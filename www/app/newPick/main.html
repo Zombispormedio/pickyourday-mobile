@@ -1,5 +1,5 @@
 <ion-view>
-  <ion-content class="padding newPick has-header">
+  <ion-content class="newPick has-header">
 	
 	<h2>New pick</h2>
 
@@ -9,20 +9,58 @@
 		<span class="price">{{service.price}} €</span> 
 	</div>
 
-	<div class="dropdown list">
-	    <button class="button button-block button-assertive dropdown-toggle" data-toggle="dropdown" id="dLabel">
-	    	{{ fecha | date:'dd MMMM yyyy HH:mm'}}
-	    </button>
-	    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-	        <datetimepicker data-ng-model="data.date"
-	        				data-before-render="beforeRender($view, $dates, $leftDate, $upDate, $rightDate)"
-	        				data-on-set-time="onTimeSet(newDate, oldDate)"
-	                        data-datetimepicker-config="{ dropdownSelector: '.dropdown-toggle'}"></datetimepicker>
-	    </ul>
-	</div>
+	<div class="viewMode">
+		<button
+          class="button ion-ios-arrow-left"
+          mwl-date-modifier
+          date="viewDate"
+          decrement="calendarView">
+          
+        </button>
 
-    <button class="button button-block button-positive" ng-click="newPick()">Crear pick</button>
+        <label class="button month" ng-model="calendarView" uib-btn-radio="'month'">Mes</label>
 
+        <button
+          class="button today"
+          mwl-date-modifier
+          date="viewDate"
+          set-to-today>
+          Hoy
+        </button>
+        
+        <label class="button day" ng-model="calendarView" uib-btn-radio="'day'">Día</label>
+       
+         <button
+          class="button ion-ios-arrow-right"
+          mwl-date-modifier
+          date="viewDate"
+          increment="calendarView">
+        </button>
+    </div>
+
+    <h2 class="text-center">{{ calendarTitle }}</h2>
+
+	<mwl-calendar
+	    events="vm.events"
+	    view="calendarView"
+	    view-title="calendarTitle"
+	    view-date="viewDate"
+	    on-event-click="vm.eventClicked(calendarEvent)"
+	    on-event-times-changed="eventTimesChanged(calendarEvent); calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
+	    edit-event-html="'<i class=\'glyphicon glyphicon-pencil\'></i>'"
+	    delete-event-html="'<i class=\'glyphicon glyphicon-remove\'></i>'"
+	    on-edit-event-click="eventEdited(calendarEvent)"
+	    on-delete-event-click="eventDeleted(calendarEvent)"
+	    cell-is-open="isCellOpen"
+	    day-view-start="08:00"
+	    day-view-end="23:00"
+	    day-view-split="5"
+	    cell-modifier="vm.cellModifier(calendarCell)"
+	    on-timespan-click="vm.timespanClicked(calendarDate)"
+	    slide-box-disabled="true"
+	    on-view-change-click="vm.viewChangeClicked(calendarDate, calendarNextView)"
+	    >
+	</mwl-calendar>
 
   </ion-content>
 </ion-view>

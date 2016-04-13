@@ -10693,6 +10693,75 @@ h2 {
   background-color: transparent;
   color: #000; }
 
+.newPick .cal-month-day .cal-events-num {
+  display: none; }
+
+.newPick .cal-row-head [class*=cal-cell], .newPick .cal-row-head [class*=cal-cell]:first-child {
+  padding: 5px 10px; }
+
+.newPick .cal-row-head [class*=cal-cell], .newPick .cal-row-head [class*=cal-cell]:first-child {
+  white-space: nowrap; }
+
+.newPick .cal-month-box [class*=cal-cell], .newPick .cal-year-box [class*=span] {
+  min-height: 60px; }
+
+.newPick .cal-month-box .cal-day-today span[data-cal-date], .newPick span[data-cal-date] {
+  font-size: 1.2em;
+  margin-top: 10px;
+  margin-right: 10px; }
+
+.newPick .cal-month-day {
+  height: 60px; }
+
+.newPick .events-list {
+  max-height: 29px;
+  padding-left: 5px;
+  overflow: scroll; }
+
+.newPick .text-center {
+  margin: 0;
+  margin-bottom: 10px;
+  color: #fff;
+  background: #F44336;
+  padding: 5px 0;
+  font-size: 14px; }
+
+.newPick .viewMode {
+  display: -webkit-box;
+  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+  display: -ms-flexbox;
+  /* TWEENER - IE 10 */
+  display: -webkit-flex;
+  /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+  display: flex;
+  /* NEW, Spec - Firefox, Chrome, Opera */
+  justify-content: space-between;
+  -webkit-justify-content: space-between;
+  -moz-justify-content: space-between;
+  -ms-justify-content: space-between;
+  -webkit-justify-items: space-between;
+  -moz-justify-items: space-between;
+  -ms-justify-items: space-between; }
+  .newPick .viewMode label, .newPick .viewMode button {
+    -webkit-box-flex: 1;
+    /* OLD - iOS 6-, Safari 3.1-6 */
+    -webkit-flex: 1;
+    /* Safari 6.1+. iOS 7.1+, BB10 */
+    -ms-flex: 1;
+    /* IE 10 */
+    flex: 1;
+    /* NEW, Spec - Firefox, Chrome, Opera */
+    font-size: 14px;
+    padding: 0;
+    min-height: 0;
+    line-height: normal;
+    border-radius: 0;
+    padding: 5px 0;
+    color: #FFF;
+    background-color: #C5392F; }
+  .newPick .viewMode .ion-ios-arrow-right, .newPick .viewMode .ion-ios-arrow-left {
+    background-color: #A33027; }
+
 .profile {
   text-align: center; }
   .profile .header {

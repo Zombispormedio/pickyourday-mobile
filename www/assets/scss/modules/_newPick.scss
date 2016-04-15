@@ -42,6 +42,11 @@
 	.cal-month-day .cal-events-num{
 		display: none;
 	}
+	
+	.cal-month-day.available{
+		background-color: #E0FCC1;
+	}
+
 
 	.cal-row-head [class*=cal-cell], .cal-row-head [class*=cal-cell]:first-child{
 		padding: 5px 10px;
@@ -69,6 +74,43 @@
 	    max-height: 29px;
 	    padding-left: 5px;
 	    overflow: scroll;
+
+	    .event-important{
+	    	display: none;
+	    }
+	}
+
+	//Day view
+	.createPick{
+		background: $teal;
+		text-align: center;
+		color: #FFF;
+		height: 30px;
+	}
+	.cal-day-box .cal-day-hour:nth-child(odd){
+		background: transparent;
+	}
+	.cal-day-box .day-highlight.dh-event-important{
+		border: 0;
+		background-color: #E0FCC1;
+		color: #333;
+		height: 30px !important;
+		left: 0 !important;
+		width: 100%;
+		z-index: -1;
+
+		.event-item{
+			display: none;
+		}
+
+		.cal-hours{
+			margin-left: 60px;
+		}
+
+		&:after{
+			content: "Disponible";
+			margin-left: 5px;
+		}
 	}
 
 	//Controles

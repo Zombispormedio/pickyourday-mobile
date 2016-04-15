@@ -9973,7 +9973,7 @@ h2 {
   margin-top: 10px; }
 
 .pickDetail .companyHeader {
-  height: 100px;
+  height: 150px;
   background-position: center center;
   background-size: cover;
   position: relative;
@@ -10696,6 +10696,9 @@ h2 {
 .newPick .cal-month-day .cal-events-num {
   display: none; }
 
+.newPick .cal-month-day.available {
+  background-color: #E0FCC1; }
+
 .newPick .cal-row-head [class*=cal-cell], .newPick .cal-row-head [class*=cal-cell]:first-child {
   padding: 5px 10px; }
 
@@ -10717,6 +10720,33 @@ h2 {
   max-height: 29px;
   padding-left: 5px;
   overflow: scroll; }
+  .newPick .events-list .event-important {
+    display: none; }
+
+.newPick .createPick {
+  background: #009688;
+  text-align: center;
+  color: #FFF;
+  height: 30px; }
+
+.newPick .cal-day-box .cal-day-hour:nth-child(odd) {
+  background: transparent; }
+
+.newPick .cal-day-box .day-highlight.dh-event-important {
+  border: 0;
+  background-color: #E0FCC1;
+  color: #333;
+  height: 30px !important;
+  left: 0 !important;
+  width: 100%;
+  z-index: -1; }
+  .newPick .cal-day-box .day-highlight.dh-event-important .event-item {
+    display: none; }
+  .newPick .cal-day-box .day-highlight.dh-event-important .cal-hours {
+    margin-left: 60px; }
+  .newPick .cal-day-box .day-highlight.dh-event-important:after {
+    content: "Disponible";
+    margin-left: 5px; }
 
 .newPick .text-center {
   margin: 0;

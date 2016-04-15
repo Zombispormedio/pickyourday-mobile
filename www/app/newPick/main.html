@@ -52,7 +52,7 @@
 	    on-edit-event-click="eventEdited(calendarEvent)"
 	    on-delete-event-click="eventDeleted(calendarEvent)"
 	    cell-is-open="isCellOpen"
-	    day-view-start="08:00"
+	    day-view-start="06:00"
 	    day-view-end="23:00"
 	    day-view-split="5"
 	    cell-modifier="vm.cellModifier(calendarCell)"
@@ -62,5 +62,19 @@
 	    >
 	</mwl-calendar>
 
+	<script id="customMonthCell.html" type="text/ng-template">
+	  <div class="cal-month-day">
+
+	    <span
+	      class="pull-right"
+	      data-cal-date
+	      ng-click="vm.calendarCtrl.dateClicked(day.date)"
+	      ng-bind="day.label">
+	    </span>
+
+	  </div>
+	</script>
+
   </ion-content>
 </ion-view>
+

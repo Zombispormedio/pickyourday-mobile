@@ -1,4 +1,4 @@
-pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams,$ionicHistory, CustomerService, calendarConfig) {
+pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams,$ionicHistory, CustomerService, calendarConfig, $ionicPopup) {
 	
 	var idCompany = $stateParams.company;
 	var idService = $stateParams.service;
@@ -23,7 +23,7 @@ pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams,$ionicH
 	$scope.getCompany = function(){
 		CustomerService.company().getByID({"id": $scope.idCompany}, {}, function(result){
 	        var res = result;
-	        console.log(result);
+	        //console.log(result);
 	        if (!res.error) {       
 	            $scope.company = res.data;    
 	        } else {
@@ -37,7 +37,7 @@ pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams,$ionicH
 	$scope.getService = function(){
 		CustomerService.service().getByID({"id": $scope.idService, "company": $scope.idCompany }, {}, function(result){
 	        var res = result;
-	        console.log(result);
+	        //console.log(result);
 	        if (!res.error) {       
 	            $scope.service = res.data;    
 	        } else {
@@ -53,9 +53,9 @@ pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams,$ionicH
 
 	$scope.datePickerCallback = function (val) {
 		if (!val) {	
-			console.log('Date not selected');
+			//console.log('Date not selected');
 		} else {
-			console.log('Selected date is : ', val);
+			//console.log('Selected date is : ', val);
 			$scope.date = val;
 		}
 	};
@@ -76,26 +76,47 @@ pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams,$ionicH
         });
 	}
 
-	$scope.newPick = function () {
+	$scope.deletePick = function(id){
 
+		CustomerService.pick().delete({"id":id}, {} , function(result){
+			var res = result;
+			if (!res.error) {								
+				console.log("eliminado correctamente");
+			} else {
+				$scope.error=res.error;
+				$scope.openModal($scope.error.message);
+			}
 
-		if ($scope.idCompany !== "" && $scope.idService !== "" && $scope.date !== "") {
+        }, function(){
 
-			console.log("FECHAAAA: " + new Date($scope.fecha) );
+        });
+	}
+
+	$scope.newPick = function (obj) {
+
+		if (obj) {
+
 			var obj = {
-				"initDate" : new Date($scope.fecha),
+				"initDate" : new Date(obj.startsAt),
 				"origin" : "mobile",
 				"company": {
 					"id_company": $scope.idCompany,
 					"id_service": $scope.idService
-				}
+				},
+				"resource": obj.title
 			}
 			
 			CustomerService.pick().create({}, obj , function(result){
 				var res = result;
 				console.log(res);
-				if (!res.error) {				
-					$scope.activatePick(res.data._id);
+				if (!res.error) {		
+					var objData = {
+						"service" : $scope.service.id_name.name,
+						"company": $scope.company.name,
+						"date": moment(obj.startsAt).format("MM/DD/YYYY hh:mm"),
+						"id": res.data._id
+					}
+					$scope.showConfirm(objData);
 				} else {
 					$scope.error=res.error;
 					$scope.openModal($scope.error.message);
@@ -108,6 +129,28 @@ pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams,$ionicH
 		}
 
 	}
+
+	$scope.showConfirm = function(obj) {
+
+		var html  = "¿Deseas crear el siguiente pick?<br>";
+		html += obj.service + "<br>";
+		html += obj.company + "<br>";
+		html += obj.date;
+
+	   var confirmPopup = $ionicPopup.confirm({
+	     title: 'Cancelar Pick',
+	     template: html
+	   });
+
+	   confirmPopup.then(function(res) {
+	     if(res) {
+	       $scope.activatePick(obj.id);
+	     }else {
+	       console.log('Delete pick');
+	     }
+	   });
+
+	 };
 
 	$scope.$on('$ionicView.enter', function() {
 		var back = $ionicHistory.backView().stateName;
@@ -137,8 +180,8 @@ pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams,$ionicH
 
 	$scope.onTimeSet = function (newDate, oldDate) {
 		$scope.fecha = newDate;
-	    console.log(newDate);
-	    console.log(oldDate);
+	    //console.log(newDate);
+	    //console.log(oldDate);
 	}
 
 	//CALENDARIO
@@ -149,17 +192,19 @@ pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams,$ionicH
 	$scope.vm=vm;
 
 	$scope.calendarView = 'month';
+  	$scope.currentView = 'month';
   	$scope.viewDate = new Date();
+  	$scope.currentDate = new Date();
 
   	$scope.getPicks = function(initDate, endDate){
 
 		CustomerService.calendar().list({"initDate": initDate, "endDate": endDate, "service": $scope.idService, "company": $scope.idCompany}, {}, function(result){
 	        var res = result;
-	        console.log("EH");
 	        console.log(res);
 	        if (!res.error) {  
-	           // $scope.formatPicks(res.data[0].picks, "info");
-              	//$scope.formatEvents(res.data[1].events, "warning");
+	           	$scope.formatPicks(res.data[0].picks, "info");
+              	$scope.formatEvents(res.data[1].events, "warning");
+              	$scope.formatAvailables(res.data[2].availables, "important");
 	        }else{	        	
 	           $scope.error=res.error;
 	        }
@@ -170,11 +215,159 @@ pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams,$ionicH
 
 	}
 
+	$scope.formatPicks = function(picks, type){
+   
+    	picks.forEach(function(pick){
+      		var obj = {
+      			title : pick.pick.service.metadata.name,
+      			type : type,
+      			startsAt : moment(pick.init).toDate(),
+      			endsAt : moment(pick.end).toDate(),
+            cssClass: pick.pick._id
+      		};
+      		vm.events.push(obj);
+  		}); 
+    }
+
+    $scope.formatEvents = function(events, type){
+   
+      events.forEach(function(event){
+          var obj = {
+            title : event.name,
+            type : type,
+            startsAt : moment(event.initDate).toDate(),
+            endsAt : moment(event.endDate).toDate(),
+            cssClass: event._id
+          };
+          vm.events.push(obj);
+      }); 
+    }
+
+
+    $scope.formatAvailables = function(availables, type){
+   
+      availables.forEach(function(available){
+          var obj = {
+            title : available.resource,
+            type : type,
+            startsAt : moment(available.initDate).toDate(),
+            endsAt : moment(available.endDate).toDate(),
+            cssClass: "available"
+          };
+          vm.events.push(obj);          
+      }); 
+    }
+
+
+    vm.cellModifier = function(cell) {
+     // console.log(cell);
+
+      var res = cell.events.filter(function (e) { 
+        return (e.type === "important");
+      });
+
+      if(res.length > 0){
+      	cell.cssClass = 'available';
+      }else{
+      	cell.cssClass = 'no-available';
+      }
+
+      cell.label = cell.label;
+    };
+
+
+    vm.lastDateClicked = "";
+
+    vm.timespanClicked = function(date) {
+      console.log(date);
+
+    	var obj = $(".cal-day-hour-part.activated");
+
+    	var aux = vm.events;
+    	var res = aux.filter(function (e) { 
+	        var d1 = new Date(e.startsAt);
+	        var d2 = new Date(date);
+	        var d3 = new Date(e.endsAt);
+	        return ( d1.getTime() === d2.getTime() || (d2 > d1 && d2 < d3)) && (e.type === "important");
+	    });
+
+      console.log(res);
+ 
+      if($(obj).hasClass("selected")){
+        console.log("new pick");
+        if(res.length > 0)
+        	$scope.newPick(res[0]);
+      }else if(res.length > 0){
+        console.log("Bieen");
+        $(".cal-day-hour-part").removeClass("selected");
+        $(obj).addClass("selected");
+        $(".createPick").remove();
+
+        var hora = moment(res[0].startsAt).format('hh:mm');
+        var html = "";
+        html += "<div class='createPick' id='createPick'>Hacer pick - "+ hora +"</div>";
+
+        $(obj).append(html);
+
+        vm.lastDateClicked = date;
+      }
+
+    };
+
+    $("#createPick").on("click", function(){
+    	console.log(this);
+    	console.log("pick click");
+    })
+   
+
+
 	$scope.currentDate = new Date();
 	var startDate = moment($scope.currentDate).startOf('month');
   	var endDate = moment(startDate).endOf('month');
   	$scope.getPicks(startDate.toDate(), endDate.toDate());
 
 	
+  	//CAMBIO DE MES
+    vm.viewChangeClicked = function(date, nextView) {
 
+      $scope.currentView = nextView;
+      $scope.currentDate = date;
+
+      $scope.sendDates();
+
+      return vm.viewChangeEnabled;
+    };
+
+    $(".button.month").on("click", function(){
+        $scope.currentView = 'month';
+        $scope.sendDates();
+    });
+
+    $(".button.day").on("click", function(){
+        $scope.currentView = 'day';
+        $scope.sendDates();
+    });
+
+    $(".button.ion-ios-arrow-right").on("click", function(){
+        $scope.currentDate = moment($scope.currentDate).add(1, $scope.currentView).toDate();
+        $scope.sendDates();
+    });
+
+    $(".button.ion-ios-arrow-left").on("click", function(){
+        $scope.currentDate = moment($scope.currentDate).subtract(1, $scope.currentView).toDate();
+        $scope.sendDates();
+    });
+
+    $(".button.today").on("click", function(){
+        $scope.currentDate = new Date();
+        $scope.sendDates();
+    })
+
+    $scope.sendDates = function(){
+        var startDate = moment($scope.currentDate).startOf($scope.currentView);
+        var endDate = moment(startDate).endOf($scope.currentView);
+        vm.events = [];
+        $scope.getPicks(startDate.toDate(), endDate.toDate());
+        console.log(startDate.toDate() + "," + endDate.toDate());
+    }
 }

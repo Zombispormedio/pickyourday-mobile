@@ -59,7 +59,7 @@ pydmFtry.CustomerService = function(ApiService){
             });
         },
         calendar:function(){
-            return ApiService.rest(this.base+"/timeLine/?initDate=:initDate&endDate=:endDate&company=:company&service=:service",{
+            return ApiService.rest(this.base+"/timeLine/?initDate=:initDate&endDate=:endDate",{
                 list:{method:"GET", params:{initDate: "@initDate", endDate: "@endDate", company: "@company", service: "@service"}}
             });
         },

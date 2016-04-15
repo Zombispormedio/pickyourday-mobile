@@ -1,4 +1,4 @@
-pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams,$ionicHistory, CustomerService, calendarConfig, $ionicPopup) {
+pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams,$ionicHistory, CustomerService, calendarConfig, $ionicPopup, $ionicLoading) {
 	
 	var idCompany = $stateParams.company;
 	var idService = $stateParams.service;
@@ -184,6 +184,16 @@ pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams,$ionicH
 	    //console.log(oldDate);
 	}
 
+	$scope.showLoading = function() {
+		$ionicLoading.show({
+			template: 'Cargando...'
+		});
+	};
+
+	$scope.hideLoading = function(){
+		$ionicLoading.hide();
+	};
+
 	//CALENDARIO
 	calendarConfig.dateFormatter = 'moment'; // use moment to format dates
 
@@ -198,15 +208,21 @@ pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams,$ionicH
 
   	$scope.getPicks = function(initDate, endDate){
 
+  		$scope.showLoading();
+
 		CustomerService.calendar().list({"initDate": initDate, "endDate": endDate, "service": $scope.idService, "company": $scope.idCompany}, {}, function(result){
 	        var res = result;
 	        console.log(res);
 	        if (!res.error) {  
 	           	$scope.formatPicks(res.data[0].picks, "info");
               	$scope.formatEvents(res.data[1].events, "warning");
-              	$scope.formatAvailables(res.data[2].availables, "important");
+              	$.when($scope.formatAvailables(res.data[2].availables, "important")).then(function( x ) {
+				 $scope.hideLoading();
+				});
 	        }else{	        	
-	           $scope.error=res.error;
+	        	$scope.hideLoading();
+	          	$scope.error=res.error;
+	          	$scope.openModal(res.error);
 	        }
 
 	    }, function(){
@@ -370,4 +386,5 @@ pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams,$ionicH
         $scope.getPicks(startDate.toDate(), endDate.toDate());
         console.log(startDate.toDate() + "," + endDate.toDate());
     }
+
 }

@@ -1,4 +1,4 @@
-pydmCtrl.CompaniesDetailCtrl = function ($rootScope, $scope, $http, $stateParams, CustomerService, $ionicSlideBoxDelegate, $ionicScrollDelegate) {
+pydmCtrl.CompaniesDetailCtrl = function ($rootScope, $scope, $http, $stateParams, CustomerService, $ionicSlideBoxDelegate, $ionicScrollDelegate, $ionicModal) {
 
 
   var idCompany = $stateParams.idCompany;
@@ -111,10 +111,119 @@ pydmCtrl.CompaniesDetailCtrl = function ($rootScope, $scope, $http, $stateParams
     console.log(nums);
   })
 
-  //RATE
-  $(".userRating li").on("click", function(){
-    console.log($scope.userRate);
-  });
+   $scope.ratingsObject = {
+      iconOn: 'ion-ios-star',
+      iconOff: 'ion-ios-star-outline',
+      iconOnColor: '#FF9800',
+      iconOffColor: '#FF9800',
+      rating: 0,
+      minRating: 0,
+      readOnly:false,
+      callback: function(rating) {
+        $scope.ratingsCallback(rating);
+      }
+    };
 
+    $scope.ratingsObject2 = {
+      iconOn: 'ion-ios-star',
+      iconOff: 'ion-ios-star-outline',
+      iconOnColor: '#FF9800',
+      iconOffColor: '#FF9800',
+      rating: 0,
+      minRating: 0,
+      readOnly:false,
+      callback: function(rating) {
+        $scope.ratingsCallback2(rating);
+      }
+    };
+
+    $scope.colourStars = function(rate){
+      for(var i=1; i<=10; i+=2){
+        if(i<(rate*2)){
+          $(".userRating span:nth-child("+i+")").addClass("ng-hide");
+          $(".userRating span:nth-child("+ (i+1) +")").removeClass("ng-hide");
+        }else{
+          $(".userRating span:nth-child("+i+")").removeClass("ng-hide");
+          $(".userRating span:nth-child("+ (i+1) +")").addClass("ng-hide");
+        }
+      }
+    }
+
+
+    $scope.ratingsCallback = function(rating) {
+        $scope.userRate = rating;
+        $scope.openNewReview();  
+        $scope.colourStars(rating); 
+        console.log('Selected rating is : ', rating);
+    };
+
+    $scope.ratingsCallback2 = function(rating) {      
+        $scope.userRate = rating;
+        $scope.colourStars(rating); 
+        console.log('Selected rating 2 is : ', rating);
+    };
+
+    $ionicModal.fromTemplateUrl('app/companyDetail/reviews/newReview/main.html', {
+      scope: $scope,
+      animation: 'slide-in-right'
+    }).then(function(modal) {
+        $scope.modal = modal;
+    });
+
+    $scope.openNewReview = function() {
+        $scope.modal.show();       
+    };
+
+    $scope.closeNewReview = function() {
+        $scope.modal.hide();
+    };
+
+    $scope.textReview = "";
+
+    $scope.sendReview = function(){
+      var msg = $("#textReview").val();
+      var rate = $scope.userRate;
+      console.log(msg + " - " + rate);
+
+      var obj = {
+          "company_id" : idCompany, 
+          "rating": rate, 
+          "description": msg
+      }
+
+      CustomerService.review().create({}, obj, function(result){
+            var res = result;
+            console.log(res);
+            if (!res.error) {       
+                $scope.prepareGraphic();
+                $scope.closeNewReview();
+            } else {
+               $scope.error=res.error;
+               $scope.openModal(res.error);
+            }
+      }, function(){
+
+      });
+
+    }
+
+    $scope.getUserReview = function(){
+
+      CustomerService.review().create({"company": idCompany}, {}, function(result){
+          var res = result;
+          console.log(res);
+          if (!res.error) {       
+
+          } else {
+             $scope.error=res.error;           
+          }
+
+      }, function(){
+
+      });
+
+    }
+
+   
 
 }

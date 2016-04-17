@@ -1,15 +1,26 @@
 <ion-modal-view>
 
     <ion-header-bar class="bar-positive" align-title="center">
-        <button class="button button-icon icon ion-arrow-left-c" ng-click="closeModal()"></button>
+        <button class="button button-icon icon ion-arrow-left-c" ng-click="closeNewReview()"></button>
         <h1 class="title">
             Nueva review
         </h1>
     </ion-header-bar>
 
-    <ion-content class="review">
-        
-      <h3>New review</h3>
+    <ion-content class="newReview">
+       
+       <div class="content">
+			<h2>{{company.name}}</h2>
+			<p>Valora esta empresa</p>
+
+			<ionic-ratings class="userRating" ratingsobj='ratingsObject2'></ionic-ratings>
+
+			<textarea name="textReview" cols="30" rows="10" id="textReview" placeholder="Escribe aquí tu valoración"></textarea>
+		</div>
+
+		<button ng-click="sendReview()" class="button button-block button-positive buttonCr">
+			Enviar valoración
+		</button>
 
     </ion-content>
 </ion-modal-view>

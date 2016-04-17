@@ -232,31 +232,45 @@ pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams,$ionicH
 	}
 
 	$scope.formatPicks = function(picks, type){
-   
-    	picks.forEach(function(pick){
-      		var obj = {
-      			title : pick.pick.service.metadata.name,
-      			type : type,
-      			startsAt : moment(pick.init).toDate(),
-      			endsAt : moment(pick.end).toDate(),
-            cssClass: pick.pick._id
-      		};
-      		vm.events.push(obj);
-  		}); 
+   		
+   		var aux = vm.events;
+    	var res = aux.filter(function (e) { 	      
+	        return (e.type === "info");
+	    });
+   		
+   		if(res.length == 0){
+	    	picks.forEach(function(pick){
+	      		var obj = {
+	      			title : pick.pick.service.metadata.name,
+	      			type : type,
+	      			startsAt : moment(pick.init).toDate(),
+	      			endsAt : moment(pick.end).toDate(),
+	            cssClass: pick.pick._id
+	      		};
+	      		vm.events.push(obj);
+	  		}); 
+	    }
     }
 
     $scope.formatEvents = function(events, type){
-   
-      events.forEach(function(event){
-          var obj = {
-            title : event.name,
-            type : type,
-            startsAt : moment(event.initDate).toDate(),
-            endsAt : moment(event.endDate).toDate(),
-            cssClass: event._id
-          };
-          vm.events.push(obj);
-      }); 
+
+    	var aux = vm.events;
+    	var res = aux.filter(function (e) { 	      
+	        return (e.type === "warning");
+	    });
+   		
+   		if(res.length == 0){
+	      events.forEach(function(event){
+	          var obj = {
+	            title : event.name,
+	            type : type,
+	            startsAt : moment(event.initDate).toDate(),
+	            endsAt : moment(event.endDate).toDate(),
+	            cssClass: event._id
+	          };
+	          vm.events.push(obj);
+	      }); 
+	  }
     }
 
 
@@ -272,11 +286,12 @@ pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams,$ionicH
           };
           vm.events.push(obj);          
       }); 
+      console.log(vm.events);
     }
 
 
     vm.cellModifier = function(cell) {
-     // console.log(cell);
+      //console.log(cell);
 
       var res = cell.events.filter(function (e) { 
         return (e.type === "important");
@@ -382,7 +397,10 @@ pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams,$ionicH
     $scope.sendDates = function(){
         var startDate = moment($scope.currentDate).startOf($scope.currentView);
         var endDate = moment(startDate).endOf($scope.currentView);
-        vm.events = [];
+
+        if($scope.currentView == "month")
+       		vm.events = [];
+
         $scope.getPicks(startDate.toDate(), endDate.toDate());
         console.log(startDate.toDate() + "," + endDate.toDate());
     }

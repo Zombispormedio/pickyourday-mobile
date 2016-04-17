@@ -21,7 +21,7 @@
 		</div>
 
 		<h2 class="evaluate">Valora la empresa</h2>
-		<rating class="userRating" ng-model="userRate" max="5"></rating>
+		<ionic-ratings class="userRating" ratingsobj='ratingsObject'></ionic-ratings>
 
 		<h3>Todas las reseñas</h3>
 		<div ng-if="reviews.length > 0">
@@ -31,7 +31,7 @@
 	            	<div class="userPhoto ion-person"></div>
 	            	<div class="text">
 		              	<h4>{{ review.id_customer.name }}</h4>
-		              	<span class="date">Hace dos años</p>
+		              	<span class="date">{{review.date | formatDate}}</p>
 		              	<div class="review">
 			            	<span class="rate">{{review.rating}}</span>
 							<rating readonly="true" ng-model="review.rating" max="5"></rating>

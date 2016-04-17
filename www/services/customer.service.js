@@ -67,6 +67,12 @@ pydmFtry.CustomerService = function(ApiService){
             return ApiService.rest(this.base + "/event",{
                 create:{method:"POST", params:{}},
             });
+        },
+        review: function(){
+             return ApiService.rest(this.base + "/reviewCompany",{
+                create: {method:"POST", params:{}},
+                list: {method:"GET", params:{}}               
+            });
         }
 
 

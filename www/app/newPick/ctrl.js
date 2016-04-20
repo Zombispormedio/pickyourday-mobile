@@ -1,4 +1,4 @@
-pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams,$ionicHistory, CustomerService, calendarConfig, $ionicPopup, $ionicLoading) {
+pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams,$ionicHistory, CustomerService, calendarConfig, $ionicPopup, $ionicLoading, $ionicScrollDelegate) {
 	
 	var idCompany = $stateParams.company;
 	var idService = $stateParams.service;
@@ -110,12 +110,13 @@ pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams,$ionicH
 				var res = result;
 				console.log(res);
 				if (!res.error) {		
+					var date = new Date(obj.initDate);
 					var objData = {
 						"service" : $scope.service.id_name.name,
 						"company": $scope.company.name,
-						"date": moment(obj.startsAt).format("MM/DD/YYYY hh:mm"),
+						"date":  moment(date).format('DD/MM/YYYY HH:mm'),
 						"id": res.data._id
-					}
+					} 
 					$scope.showConfirm(objData);
 				} else {
 					$scope.error=res.error;
@@ -334,7 +335,7 @@ pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams,$ionicH
         $(obj).addClass("selected");
         $(".createPick").remove();
 
-        var hora = moment(res[0].startsAt).format('hh:mm');
+        var hora = moment(res[0].startsAt).format('HH:mm');
         var html = "";
         html += "<div class='createPick' id='createPick'>Hacer pick - "+ hora +"</div>";
 
@@ -404,5 +405,17 @@ pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams,$ionicH
         $scope.getPicks(startDate.toDate(), endDate.toDate());
         console.log(startDate.toDate() + "," + endDate.toDate());
     }
+
+	$scope.getScrollPosition = function(){
+		var st = $ionicScrollDelegate.getScrollPosition().top;
+    	if(st > 160){
+    		var date = $(".newPick .text-center").html();
+    		$(".date-on-scroll .date").html(date);
+    		$(".date-on-scroll").addClass("active");	    		
+    	}else{
+    		$(".date-on-scroll").removeClass("active");	
+    	}
+    }
+
 
 }

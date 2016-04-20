@@ -2,7 +2,7 @@
 	<ion-content class="company has-header">
 
 				
-	<ion-slide-box ng-if="company.images.length > 0" show-pager="false" disable-scroll="true">
+	<ion-slide-box ng-if="company.images.length > 0" show-pager="false" disable-scroll="false">
 		<ion-slide ng-repeat="image in company.images" class="slide">
 			<button ng-if="company.images.length > 1 && $index != 0"
 				ng-click="previousSlide()" class="button button-icon icon ion-ios-arrow-left"></button>	

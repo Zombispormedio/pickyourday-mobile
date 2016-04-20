@@ -197,6 +197,7 @@ pydmCtrl.CompaniesDetailCtrl = function ($rootScope, $scope, $http, $stateParams
             if (!res.error) {       
                 $scope.prepareGraphic();
                 $scope.closeNewReview();
+                window.location.reload(true);
             } else {
                $scope.error=res.error;
                $scope.openModal(res.error);
@@ -207,13 +208,16 @@ pydmCtrl.CompaniesDetailCtrl = function ($rootScope, $scope, $http, $stateParams
 
     }
 
+    $scope.userReview = [];
+
     $scope.getUserReview = function(){
 
-      CustomerService.review().create({"company": idCompany}, {}, function(result){
+      CustomerService.review().list({"company": idCompany}, {}, function(result){
           var res = result;
           console.log(res);
           if (!res.error) {       
-
+            $scope.userReview = res.data;
+            console.log($scope.userReview.length);
           } else {
              $scope.error=res.error;           
           }
@@ -223,6 +227,8 @@ pydmCtrl.CompaniesDetailCtrl = function ($rootScope, $scope, $http, $stateParams
       });
 
     }
+
+    $scope.getUserReview();
 
    
 

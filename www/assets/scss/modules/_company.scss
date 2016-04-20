@@ -379,11 +379,15 @@
 			border-top: 1px solid #ccc;
 		}
 
-		.userRating{
+		p{
+			margin-top: 5px;
+		}
+
+		.userRating, .rating {
 			justify-content: space-between;
 			width: 80%;
 			margin: 0 auto;
-			span{
+			span, i{
 				font-size: 35px;
 				margin: 0 5px;
 				color: $orange;

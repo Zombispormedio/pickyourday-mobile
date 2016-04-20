@@ -216,6 +216,82 @@
     .search_prepicks, .search_services, .search_companies{
     	top: 95px;
     }
+
+
+    .services{
+        .service{
+            text-align: left;
+            position: relative;
+            padding: 15px;
+            margin: 20px 10px;
+            overflow: visible;
+
+            .service_title{
+                text-align: left;
+                background-color: transparent;
+                border-bottom: 1px solid #ccc;
+                padding-bottom: 10px;
+
+                h2,p{
+                    text-align: left;
+                    white-space: pre-line;
+                }
+
+                p{
+                    font-size: 15px;
+                }
+
+                h2{
+                    font-size: 18px;
+                }
+            }
+
+            .pick{
+                position: absolute;
+                right: 10px;
+                bottom: -10px;
+                width: 40px;
+                height: 40px;
+                padding: 5px;
+                background-color: $detail;
+                z-index: 2;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #fff;
+                border-radius: 50%;
+
+                &:before{
+                    font-size: 20px;
+                }
+            }
+
+            .price{
+                position: absolute;
+                right: 10px;
+                top: 10px;
+                font-weight: bold;
+            }
+
+            .review{
+                padding-top: 10px;
+            }
+            
+
+            .ratingContainer{
+                .rate{
+                    color: $orange;
+                    font-weight: bold;
+                }
+                .rating{
+                    i {
+                        color: $orange;
+                    }
+                }
+            }
+            
+        }
+    }
 }
 
 //Locations

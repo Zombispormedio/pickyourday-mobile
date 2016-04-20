@@ -20,7 +20,8 @@ pydmCtrl.LoginCtrl = function ($rootScope, $scope, $http, $ionicModal, ngFB, $io
 			}
 
 			OauthService.login().Session(obj , function(result){
-	            var res = result;				            
+	            var res = result;		
+
 	            if (!res.error) {       	       
 	            	saveLocal("user", res.data);       
 					$rootScope.go("app.dashboard");
@@ -91,11 +92,13 @@ pydmCtrl.LoginCtrl = function ($rootScope, $scope, $http, $ionicModal, ngFB, $io
 	
 	$scope.registerWithFb = function (token){
  		console.log(token);
-	 	$http.get("https://graph.facebook.com/v2.2/me", {params: {access_token: token, fields: "email", format: "json" }}).then(function(result) {
+
+ 		$http.get("https://graph.facebook.com/v2.2/me", {params: {access_token: token, fields: "email,age_range,name,gender,location,picture.width(400)", format: "json" }}).then(function(result) {
     		var id = result.data.id;
     		var facebookEmail = result.data.email;
     		saveLocal("facebook", $scope.accessToken);
     		existsUser(id, facebookEmail);
+    			            console.log(result.data);	
 	    }, function(error) {
 	        $scope.openModal("Error: " + error);
 	    });

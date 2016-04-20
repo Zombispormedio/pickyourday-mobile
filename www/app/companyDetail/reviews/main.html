@@ -19,9 +19,14 @@
 	            </div>
 			</div>
 		</div>
+		
 
-		<h2 class="evaluate">Valora la empresa</h2>
-		<ionic-ratings class="userRating" ratingsobj='ratingsObject'></ionic-ratings>
+		<h2 ng-if="userReview.length == 0" class="evaluate">Valora la empresa</h2>
+		<ionic-ratings ng-if="userReview.length == 0" class="userRating" ratingsobj='ratingsObject'></ionic-ratings>
+
+		<h2 ng-if="!userReview.length" class="evaluate">Ya has valorado a esta empresa</h2>
+		<p>Tu valoración es:</p>
+		<rating readonly="true" ng-model="userReview.rating" max="5"></rating>
 
 		<h3>Todas las reseñas</h3>
 		<div ng-if="reviews.length > 0">

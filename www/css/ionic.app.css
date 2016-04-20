@@ -10617,11 +10617,13 @@ h2 {
           color: #FF9800; }
   .company.reviewsDetail h2.evaluate {
     border-top: 1px solid #ccc; }
-  .company.reviewsDetail .userRating {
+  .company.reviewsDetail p {
+    margin-top: 5px; }
+  .company.reviewsDetail .userRating, .company.reviewsDetail .rating {
     justify-content: space-between;
     width: 80%;
     margin: 0 auto; }
-    .company.reviewsDetail .userRating span {
+    .company.reviewsDetail .userRating span, .company.reviewsDetail .userRating i, .company.reviewsDetail .rating span, .company.reviewsDetail .rating i {
       font-size: 35px;
       margin: 0 5px;
       color: #FF9800; }
@@ -10840,12 +10842,35 @@ h2 {
   .newPick .viewMode .ion-ios-arrow-right, .newPick .viewMode .ion-ios-arrow-left {
     background-color: #A33027; }
 
+.date-on-scroll {
+  color: #fff;
+  background: #F44336;
+  padding: 0;
+  font-size: 14px;
+  position: fixed;
+  top: 44px;
+  left: 0;
+  width: 100%;
+  max-height: 0;
+  z-index: 10;
+  overflow: hidden;
+  -webkit-transition: max-height 0.3s ease-in-out;
+  -moz-transition: max-height 0.3s ease-in-out;
+  -o-transition: max-height 0.3s ease-in-out;
+  transition: max-height 0.3s ease-in-out; }
+  .date-on-scroll h2 {
+    color: #fff; }
+  .date-on-scroll.active {
+    max-height: 40px;
+    padding: 5px 0; }
+
 .profile {
   text-align: center; }
   .profile .header {
     min-height: 200px;
     background-color: #ccddcc; }
   .profile img {
+    margin: 5px 0;
     width: 100px;
     border-radius: 50%; }
 
@@ -11035,6 +11060,52 @@ h2 {
     border-color: #05564b; }
   .search-tabs .search_prepicks, .search-tabs .search_services, .search-tabs .search_companies {
     top: 95px; }
+  .search-tabs .services .service {
+    text-align: left;
+    position: relative;
+    padding: 15px;
+    margin: 20px 10px;
+    overflow: visible; }
+    .search-tabs .services .service .service_title {
+      text-align: left;
+      background-color: transparent;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 10px; }
+      .search-tabs .services .service .service_title h2, .search-tabs .services .service .service_title p {
+        text-align: left;
+        white-space: pre-line; }
+      .search-tabs .services .service .service_title p {
+        font-size: 15px; }
+      .search-tabs .services .service .service_title h2 {
+        font-size: 18px; }
+    .search-tabs .services .service .pick {
+      position: absolute;
+      right: 10px;
+      bottom: -10px;
+      width: 40px;
+      height: 40px;
+      padding: 5px;
+      background-color: #3A6964;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      border-radius: 50%; }
+      .search-tabs .services .service .pick:before {
+        font-size: 20px; }
+    .search-tabs .services .service .price {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      font-weight: bold; }
+    .search-tabs .services .service .review {
+      padding-top: 10px; }
+    .search-tabs .services .service .ratingContainer .rate {
+      color: #FF9800;
+      font-weight: bold; }
+    .search-tabs .services .service .ratingContainer .rating i {
+      color: #FF9800; }
 
 .ion-place-tools-autocomplete {
   position: relative;

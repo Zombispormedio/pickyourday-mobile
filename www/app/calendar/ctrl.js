@@ -282,15 +282,17 @@ pydmCtrl.CalendarCtrl = function ($rootScope, $scope, $http, $stateParams, Custo
     };
 
     $scope.currentPick = [];
+
     vm.eventClicked = function(event) {
 
       if($scope.currentView == "day" && event.type == "info"){
 
           CustomerService.pick().getByID({"id": event.cssClass}, {}, function(result){
               var res = result;
+              console.log("PIICK");
+              console.log(res);
               if (!res.error) {  
-                  $scope.currentPick = res.data[0];
-                  console.log($scope.currentPick);
+                  $scope.currentPick = res.data;
                   $scope.openPickDetail();
               }else{            
                  $scope.openModal(res.error);

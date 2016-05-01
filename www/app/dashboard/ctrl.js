@@ -6,7 +6,7 @@ pydmCtrl.DashboardCtrl = function ($rootScope, $scope, $state, $http, $ionicHist
 	$scope.getPicks = function(){
 
     
-		CustomerService.pick().list({afterInitDate: new Date()}, {} , function(result){
+		CustomerService.pick().list({fromInitDate: new Date()}, {} , function(result){
             var res = result;
             if (!res.error) {       
               	var picksAux = res.data;

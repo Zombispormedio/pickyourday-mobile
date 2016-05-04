@@ -7,8 +7,8 @@ pydmFtry.CustomerService = function(ApiService){
             });
         },
         pick:function(){
-            return ApiService.rest(this.base+"/pick/:id?toInitDate=:toInitDate",{
-                list:{method:"GET", params:{afterInitDate: "@toInitDate"}},
+            return ApiService.rest(this.base+"/pick/:id?beforeInitDate=:beforeInitDate",{
+                list:{method:"GET", params:{afterInitDate: "@beforeInitDate"}},
                 create:{method:"POST", params:{}},
                 getByID:{method:"GET", params:{id:"@id"}},
                 update:{method:"PUT", params:{id:"@id"}},

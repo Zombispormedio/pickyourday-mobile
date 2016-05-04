@@ -25,28 +25,30 @@
       </div>
     </div>
     <div ng-if="picks.length <= 0">
-      <p class="noPicks">No tienes picks activos.</p>
+      <p class="noPicks">{{msg}}</p>
     </div>
 
-    <hr class="orange">
-    <h2>Promociones</h2>
+    <hr class="orange" ng-if="promotions.length > 0">
+    <h2 ng-if="promotions.length > 0">Promociones</h2>
 
-    <div class="prepicks"> 
+    <div class="prepicks" ng-if="promotions.length > 0" ng-repeat="promotion in promotions" 
+          ng-click="goCompany(promotion._id, true)"> 
 
-      <div class="item left" style="background-image: url('assets/img/promotion.jpg')"></div>
+      <div class="item left" ng-if="promotion.promotions.images.length > 0" 
+           style="background-image: url('{{promotion.promotions.images[0].src}}')"></div>
 
-      <div class="item right" style="background-color: #a62222;">
+      <div class="item right" style="background-color: {{promotion.category.color}};">
         <div class="title">
-          <h3>Corte de pelo gratis</h3>
-          <p>Corte de pelo gratis con tu peinado</p>
-          <p class="city">Elche</p>
+          <h3>{{promotion.promotions.name}}</h3>
+          <p>{{promotion.promotions.description}}</p>
+          <p class="city">Un {{promotion.promotions.discount}}% menos</p>
         </div>
         <div class="info">
           <div class="overlay"></div>
-          <img ng-src="{{ category.icon.src}}" alt="{{ category.icon.alt}}">
+          <img ng-src="{{ promotion.category.icon.src}}" alt="{{ promotion.category.icon.alt}}">
           <div class="text">
-            <h4>Peluquería María</h4>
-            <p>Miércoles 27/07</p>
+            <h4>{{promotion.name}}</h4>
+            <p>Acaba: {{promotion.promotions.endDate | date}}</p>
           </div>
         </div>
       </div>

@@ -3,8 +3,8 @@
 		
 		<ion-list class="services" ng-if="services.length > 0">
 
-			<div ng-repeat="service in services | orderBy:'-avgRating'" 
-				class="service item"> 
+			<div ng-repeat="service in services | orderBy:['-avgRating','promotion']"
+				class="service item" ng-class="{promotion: service.promotion}">  
 				<div class="service_title">
 				      <h2>{{ service.services.id_name.name }}</h2>
 				      <p>{{ service.services.description}}</p>
@@ -20,7 +20,12 @@
 
 				<p class="ratingContainer" ng-if="service.services.rating.length == 0">No tiene reviews</p>
 
-			    <span class="price">{{ service.services.price | currency : ""}} €</span>
+			    <div class="price_container">
+				    <span class="price" ng-class="{oldPrice: service.promotion}">
+				    	{{ service.price | currency : ""}} €
+				    </span>
+				   	<span ng-if="service.promotion" class="price newPrice">{{ service.priceDiscounted | currency : ""}} €</span>
+				</div>
 			    <div class="pick ion-android-add" ng-click="newPick(service._id, service.services._id)"></div>
 
 			</div>
@@ -35,7 +40,7 @@
 		</ion-infinite-scroll>
 
 		<div ng-if="services.length <= 0">
-			<p>No hay resultados.</p>
+			<p class="no-data">{{msgS}}</p>
 		</div>
 
 	</ion-content>

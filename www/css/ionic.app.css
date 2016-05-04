@@ -10181,27 +10181,13 @@ h2 {
   max-height: 200px;
   margin-top: 15px; }
   .prepicks .item.left {
-    -webkit-box-flex: 1;
-    /* OLD - iOS 6-, Safari 3.1-6 */
-    -webkit-flex: 1;
-    /* Safari 6.1+. iOS 7.1+, BB10 */
-    -ms-flex: 1;
-    /* IE 10 */
-    flex: 1;
-    /* NEW, Spec - Firefox, Chrome, Opera */
+    width: 40%;
     border: 0;
     padding: 0;
     background-size: cover;
     background-position: bottom center; }
   .prepicks .item.right {
-    -webkit-box-flex: 1;
-    /* OLD - iOS 6-, Safari 3.1-6 */
-    -webkit-flex: 1;
-    /* Safari 6.1+. iOS 7.1+, BB10 */
-    -ms-flex: 1;
-    /* IE 10 */
-    flex: 1;
-    /* NEW, Spec - Firefox, Chrome, Opera */
+    width: 60%;
     display: -webkit-box;
     /* OLD - iOS 6-, Safari 3.1-6, BB7 */
     display: -ms-flexbox;
@@ -10234,6 +10220,7 @@ h2 {
         white-space: pre-line;
         text-align: left; }
       .prepicks .item.right .title p.city {
+        margin-top: 10px;
         text-align: right; }
     .prepicks .item.right .info {
       position: relative;
@@ -10248,7 +10235,7 @@ h2 {
         z-index: -1;
         background-color: rgba(0, 0, 0, 0.2); }
       .prepicks .item.right .info img {
-        height: 30px;
+        height: 25px;
         margin-right: 10px;
         vertical-align: middle; }
       .prepicks .item.right .info .text {
@@ -10257,11 +10244,11 @@ h2 {
         width: 70%; }
         .prepicks .item.right .info .text h4 {
           color: #FFF;
-          font-size: 13px;
+          font-size: 11px;
           white-space: pre-line; }
         .prepicks .item.right .info .text p {
           color: #FFF;
-          font-size: 12px;
+          font-size: 10px;
           font-weight: 100;
           text-align: left;
           white-space: pre-line; }
@@ -10443,8 +10430,8 @@ h2 {
       color: #fff; }
     .company .title .ratingContainer .rating i {
       color: #fff; }
-  .company .suscribe {
-    color: #3A6964;
+  .company .subscribe {
+    color: #888888;
     background-color: #FFF;
     border: 0;
     outline: 0;
@@ -10455,7 +10442,13 @@ h2 {
     border-radius: 50%;
     position: absolute;
     right: 10px;
-    top: 130px; }
+    top: 130px;
+    -webkit-transition: color 0.3s ease-in-out;
+    -moz-transition: color 0.3s ease-in-out;
+    -o-transition: color 0.3s ease-in-out;
+    transition: color 0.3s ease-in-out; }
+    .company .subscribe.active {
+      color: #F44336; }
   .company .icons {
     display: flex;
     color: #3A6964;
@@ -10544,6 +10537,8 @@ h2 {
     padding: 15px;
     margin: 20px 10px;
     overflow: visible; }
+    .company .services .service.promotion {
+      border: 2px dashed #009688; }
     .company .services .service .service_title {
       text-align: left;
       background-color: transparent;
@@ -10572,11 +10567,17 @@ h2 {
       border-radius: 50%; }
       .company .services .service .pick:before {
         font-size: 20px; }
-    .company .services .service .price {
+    .company .services .service .price_container {
       position: absolute;
       right: 10px;
       top: 10px;
       font-weight: bold; }
+    .company .services .service .oldPrice {
+      right: 70px;
+      font-size: 14px;
+      text-decoration: line-through;
+      color: #666;
+      margin-right: 5px; }
     .company .services .service .review {
       padding-top: 10px; }
     .company .services .service .ratingContainer .rate {
@@ -10752,7 +10753,16 @@ h2 {
 
 .newPick .datos {
   margin-top: 10px;
+  padding: 0 10px;
   position: relative; }
+  .newPick .datos span.oldPrice {
+    -webkit-transform: translate(0, -25px);
+    -moz-transform: translate(0, -25px);
+    -o-transform: translate(0, -25px);
+    transform: translate(0, -25px);
+    background: 0;
+    text-decoration: line-through;
+    color: #000; }
   .newPick .datos span.price {
     position: absolute;
     right: 10px;
@@ -10899,10 +10909,52 @@ h2 {
   .profile .header {
     min-height: 200px;
     background-color: #ccddcc; }
+  .profile .image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: 10px auto;
+    background-color: #009688;
+    position: relative; }
+    .profile .image:before {
+      position: absolute;
+      right: 0;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      height: 50px;
+      font-size: 50px;
+      color: #fff; }
   .profile img {
     margin: 5px 0;
     width: 100px;
     border-radius: 50%; }
+  .profile form {
+    padding: 15px; }
+  .profile .item-stacked-label .input-label {
+    display: block;
+    width: 100%;
+    padding: 0;
+    text-align: left; }
+  .profile .gender .list {
+    display: -webkit-box;
+    /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+    display: -ms-flexbox;
+    /* TWEENER - IE 10 */
+    display: -webkit-flex;
+    /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+    display: flex;
+    /* NEW, Spec - Firefox, Chrome, Opera */ }
+    .profile .gender .list label {
+      -webkit-box-flex: 1;
+      /* OLD - iOS 6-, Safari 3.1-6 */
+      -webkit-flex: 1;
+      /* Safari 6.1+. iOS 7.1+, BB10 */
+      -ms-flex: 1;
+      /* IE 10 */
+      flex: 1;
+      /* NEW, Spec - Firefox, Chrome, Opera */ }
 
 .preference h2 {
   font-weight: bold; }
@@ -11088,6 +11140,8 @@ h2 {
     color: #009688; }
   .search-tabs .tabs-top.tabs-striped .tab-item.tab-item-active {
     border-color: #05564b; }
+  .search-tabs .tabs-top.tabs-striped .tab-item {
+    max-width: 180px; }
   .search-tabs .search_prepicks, .search-tabs .search_services, .search-tabs .search_companies {
     top: 95px; }
   .search-tabs .services .service {
@@ -11124,11 +11178,17 @@ h2 {
       border-radius: 50%; }
       .search-tabs .services .service .pick:before {
         font-size: 20px; }
-    .search-tabs .services .service .price {
+    .search-tabs .services .service .price_container {
       position: absolute;
       right: 10px;
       top: 10px;
       font-weight: bold; }
+    .search-tabs .services .service .oldPrice {
+      right: 70px;
+      font-size: 14px;
+      text-decoration: line-through;
+      color: #666;
+      margin-right: 5px; }
     .search-tabs .services .service .review {
       padding-top: 10px; }
     .search-tabs .services .service .ratingContainer .rate {

@@ -5,10 +5,15 @@ pydmCtrl.SearchCtrl = function ($rootScope, $scope, $http, ngFB, CustomerService
 	$scope.companies = [];
   $scope.services = [];
   $scope.prepicks = [];
+  $scope.msgS = "Cargando ...";
+  $scope.msgC = "Cargando ...";
 
   $scope.searchText = "";
 
   $scope.search = function(){
+
+    $scope.msgS = "Cargando ...";
+    $scope.msgC = "Cargando ...";
 
     var category = "";
     if($scope.data.selCategory)
@@ -21,10 +26,18 @@ pydmCtrl.SearchCtrl = function ($rootScope, $scope, $http, ngFB, CustomerService
           if (!res.error) {       
               console.log(res);
               $scope.companies = res.data.companies;    
+              if($scope.companies.length == 0)
+                $scope.msgC = "No se han encontrado resultados.";
+
               $scope.services = res.data.services;
+              if($scope.services.length == 0)
+                $scope.msgS = "No se han encontrado resultados.";
+
               $scope.prepicks = res.data.prepicks;
           } else {
              $scope.error=res.error;
+             $scope.msgS = "No se han encontrado resultados.";
+             $scope.msgC = "No se han encontrado resultados.";
              console.log(res.error);
           }
       }, function(){

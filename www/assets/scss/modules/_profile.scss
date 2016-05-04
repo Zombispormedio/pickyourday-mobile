@@ -5,9 +5,50 @@
 		min-height: 200px;
 		background-color: #ccddcc;
 	}
+	
+	.image{
+		width: 100px;
+		height: 100px;
+		border-radius: 50%;
+		margin: 10px auto;
+		background-color: $teal;
+		position: relative;
+
+		&:before{
+			position: absolute;
+			right: 0;
+			left: 0;
+			top: 0;
+			bottom: 0;
+			margin: auto;
+			height: 50px;
+			font-size: 50px;
+			color: #fff;
+		}
+	}
+
 	img{
 		margin: 5px 0;
 		width: 100px;
 		border-radius: 50%;
+	}
+
+	form{
+		padding: 15px;
+	}
+	
+	.item-stacked-label .input-label{
+		display: block;
+	    width: 100%;
+	    padding: 0;
+	    text-align: left;
+	}
+
+	.gender .list{
+		@include flexbox();
+
+		label{
+			@include flex(1);
+		}
 	}
 }

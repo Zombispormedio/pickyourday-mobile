@@ -2,8 +2,8 @@
 	<ion-content class="company has-header">
 
 		<div ng-if="services.length > 0" class="services">
-			<div ng-repeat="service in services | orderBy:'-avgRating'" 
-				class="service item"> 
+			<div ng-repeat="service in services | orderBy:['-avgRating','promotion']" 
+				class="service item"  ng-class="{promotion: service.promotion}"> 
 
 			  <div class="service_title">
 			      <h2>{{ service.default.name }}</h2>
@@ -18,15 +18,21 @@
 			</div>
 
 			<p class="ratingContainer" ng-if="service.rating.length == 0">No tiene reviews</p>
+			
+			<div class="price_container">
+			    <span class="price" ng-class="{oldPrice: service.promotion}">
+			    	{{ service.price | currency : ""}} €
+			    </span>
+			   	<span ng-if="service.promotion" class="price newPrice">{{ service.priceDiscounted | currency : ""}} €</span>
+			</div>
 
-		    <span class="price">{{ service.price | currency : ""}} €</span>
 		    <div class="pick ion-android-add" ng-click="newPick(company._id, service._id)"></div>
 
 			</div>
 		</div>
 
 		<div ng-if="services.length <= 0">
-			<p>No hay servicios</p>
+			<p class="no-data">{{msg}}</p>
 		</div>
 	</ion-content>
 </ion-view>

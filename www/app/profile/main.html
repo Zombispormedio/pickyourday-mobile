@@ -2,19 +2,26 @@
   <ion-content class="profile has-header">
     
 
-    <img ng-if="user.picture.data" src="{{user.picture.data.url}}"/>
-    <img ng-if="googleImage" src="{{googleImage}}"/>
-
-   
-    <h2>Tu perfil</h2>
-	
-    <h3 ng-if="user.name && !user.name.givenName">{{user.name}}</h3>
-    <h3 ng-if="user.displayName">{{user.displayName}}</h3>
-
+    <img ng-if="image" src="{{image}}"/>
+    <div class="image ion-person" ng-if="!image"></div>
+ 
     <p ng-if="user.email">{{user.email}}</p>
-    <p ng-id="user.emails[0]">{{user.emails[0].value}}</p>
+    
+    <h3>Tus datos:</h3>
+    <form action="">
+        <div class="list">
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Nombre</span>
+            <input type="text" placeholder="John" ng-model="user.name">
+          </label>
+        </div>
+        <ion-list class="gender">
+          <ion-radio ng-model="user.gender" ng-value="'male'">Hombre</ion-radio>
+          <ion-radio ng-model="user.gender" ng-value="'female'">Mujer</ion-radio>
+        </ion-list>
 
-	<p ng-if="user.age_range">Age Range: {{user.age_range.min}} - {{user.age_range.max}}</p>
+         <button type="submit" class="button button-block button-positive">Guardar</button>
+    </form>
 
   </ion-content>
 </ion-view>

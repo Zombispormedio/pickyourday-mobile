@@ -1,6 +1,8 @@
 pydmCtrl.DashboardCtrl = function ($rootScope, $scope, $state, $http, $ionicHistory, CustomerService, $ionicModal, $ionicPopup) {
-  	$scope.error="";
-  	$scope.picks = "";
+  
+  $scope.error="";
+  $scope.picks = "";
+  $scope.msg = "Cargando ...";
 
 
 	$scope.getPicks = function(){
@@ -11,10 +13,12 @@ pydmCtrl.DashboardCtrl = function ($rootScope, $scope, $state, $http, $ionicHist
             if (!res.error) {       
               	var picksAux = res.data;
         				$scope.picks = picksAux;		
-                console.log(picksAux);	
+                if(picksAux.length == 0)
+                 $scope.msg = "No tienes picks activos";               
         				$scope.$broadcast('scroll.refreshComplete');	
             } else {
                	$scope.error=res.error;
+                $scope.msg = "No tienes picks activos";
 				        $scope.$broadcast('scroll.refreshComplete');
             }
 
@@ -24,16 +28,17 @@ pydmCtrl.DashboardCtrl = function ($rootScope, $scope, $state, $http, $ionicHist
 	}
 
   $scope.getPicks();
-  /*
+  
   $scope.promotions = [];
 
   $scope.getPromotions = function(){
 
-    CompanyService.promotion().list({}, {} , function(result){
+    CustomerService.promotion().list({}, {} , function(result){
       var res = result;
       console.log(res);
       if (!res.error) {       
           $scope.promotions = res.data;    
+          console.log(res.data);
       } else {
           $scope.error=res.error;
       }
@@ -43,7 +48,7 @@ pydmCtrl.DashboardCtrl = function ($rootScope, $scope, $state, $http, $ionicHist
     });
   } 
 
-  $scope.getPromotions(); */
+  $scope.getPromotions(); 
   
 	$scope.category = "";
 
@@ -126,9 +131,13 @@ pydmCtrl.DashboardCtrl = function ($rootScope, $scope, $state, $http, $ionicHist
 
  };
 
- $scope.goCompany = function(id){
+ $scope.goCompany = function(id, services){
     $scope.closePickDetail();
-    $rootScope.go("app.companyDetail", {idCompany: id });
+    if(!services)
+      $rootScope.go("app.companyDetail", {idCompany: id });
+    else
+      $rootScope.go("app.companyDetail.services", {idCompany: id });
  }
+
 
 }

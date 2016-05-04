@@ -37,26 +37,32 @@ pydmCtrl.LoginCtrl = function ($rootScope, $scope, $http, $ionicModal, ngFB, $io
 
 	}
 
-	function existsUser(id, email){
+	function existsUser(id, email, name){
 		if (email !== "") {
 			OauthService.check().list({email: email}, {} , function(result){
 	            var res = result;
 	            $scope.exists = res.data;
-				$scope.register(id, email);
+				$scope.register(id, email, name);
 	        }, function(){
 				$scope.openModal("Server not found");
 	        });
 		}
 	}
 
-	$scope.register = function (id, email){
+	$scope.register = function (id, email, name){
 		if ( ($scope.userR.email  && $scope.userR.password && $scope.userR.password2 ) || (id && email) ) {
 
 			if(id && email){
+
+				if(!name)
+					name = "";
+
 				var obj = {
 					"email" : email,
-					"password" : id
+					"password" : id,
+					"name" : name
 				}
+
 			}else if($scope.userR.password != $scope.userR.password2 ){
 				$scope.openModal("Las contraseñas no coinciden");
 			}else{
@@ -94,11 +100,9 @@ pydmCtrl.LoginCtrl = function ($rootScope, $scope, $http, $ionicModal, ngFB, $io
  		console.log(token);
 
  		$http.get("https://graph.facebook.com/v2.2/me", {params: {access_token: token, fields: "email,age_range,name,gender,location,picture.width(400)", format: "json" }}).then(function(result) {
-    		var id = result.data.id;
-    		var facebookEmail = result.data.email;
     		saveLocal("facebook", $scope.accessToken);
-    		existsUser(id, facebookEmail);
-    			            console.log(result.data);	
+    		existsUser(result.data.id, result.data.email, result.data.name);
+    		console.log(result.data);	
 	    }, function(error) {
 	        $scope.openModal("Error: " + error);
 	    });
@@ -144,7 +148,7 @@ pydmCtrl.LoginCtrl = function ($rootScope, $scope, $http, $ionicModal, ngFB, $io
 	    		var googleEmail = data.emails[0].value;
 
 	 			saveLocal("google", $scope.accessToken);
-	    		existsUser(id, googleEmail);
+	    		existsUser(id, data.emails[0].value, data.displayName);
 	    	})
 	    	.error(function(data, status) {
 	    		$scope.openModal(data);

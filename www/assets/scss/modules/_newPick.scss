@@ -12,7 +12,15 @@
 
 	.datos{
 		margin-top: 10px;
+		padding: 0 10px;
 		position: relative;
+
+		span.oldPrice{
+			@include trf(translate(0,-25px));
+		    background: 0;
+		    text-decoration: line-through;
+		    color: #000;
+		}
 
 		span.price{
 			position: absolute;

@@ -10,7 +10,13 @@
 	<div class="datos">
 		<p><span class="strong">Compañía:</span> {{company.name}}</p>
 		<p><span class="strong">Servicio:</span> {{service.id_name.name}}</p>   
-		<span class="price">{{service.price}} €</span> 
+		<div class="price_container">
+		    <span class="price" ng-class="{oldPrice: service.promotion}">
+		    	{{ service.price | currency : ""}} €
+		    </span>
+		   	<span ng-if="service.promotion" class="price newPrice">{{ service.priceDiscounted | currency : ""}} €</span>
+		</div>
+
 	</div>
 
 	<div class="viewMode">

@@ -5,7 +5,7 @@
 	margin-top: 15px;
 
 	.item.left{
-		@include flex(1);
+		width: 40%;
 		border: 0;
 		padding: 0;
 		background-size: cover;
@@ -13,7 +13,7 @@
 	}
 
 	.item.right{
-		@include flex(1);
+		width: 60%;
 		@include flexbox();
 		@include flex-direction(column);
 		@include flex-justify(space-between);
@@ -37,6 +37,7 @@
 			}
 
 			p.city{
+				margin-top: 10px;
 				text-align: right;
 			}					
 		}		
@@ -57,7 +58,7 @@
 			}
 			
 			img{
-				height: 30px;
+				height: 25px;
 			    margin-right: 10px;
 			    vertical-align: middle;
 			}
@@ -68,12 +69,12 @@
 				width: 70%;
 				h4{
 					color: #FFF;
-					font-size: 13px;
+					font-size: 11px;
 					white-space: pre-line;
 				}
 				p{
 					color: #FFF;
-					font-size: 12px;
+					font-size: 10px;
 					font-weight: 100;
 					text-align: left;
 					white-space: pre-line;

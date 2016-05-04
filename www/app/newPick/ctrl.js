@@ -2,8 +2,8 @@ pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams,$ionicH
 	
 	var idCompany = $stateParams.company;
 	var idService = $stateParams.service;
-	console.log(idCompany);
-	console.log(idService);
+	//console.log(idCompany);
+	//console.log(idService);
 
 	$scope.company = [];
 	$scope.service = [];
@@ -213,7 +213,7 @@ pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams,$ionicH
 
 		CustomerService.calendar().list({"initDate": initDate, "endDate": endDate, "service": $scope.idService, "company": $scope.idCompany}, {}, function(result){
 	        var res = result;
-	        console.log(res);
+	        //console.log(res);
 	        if (!res.error) {  
 	           	$scope.formatPicks(res.data[0].picks, "info");
               	$scope.formatEvents(res.data[1].events, "warning");
@@ -287,7 +287,7 @@ pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams,$ionicH
           };
           vm.events.push(obj);          
       }); 
-      console.log(vm.events);
+      //console.log(vm.events);
     }
 
 
@@ -311,7 +311,7 @@ pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams,$ionicH
     vm.lastDateClicked = "";
 
     vm.timespanClicked = function(date) {
-      console.log(date);
+      //console.log(date);
 
     	var obj = $(".cal-day-hour-part.activated");
 
@@ -323,14 +323,14 @@ pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams,$ionicH
 	        return ( d1.getTime() === d2.getTime() || (d2 > d1 && d2 < d3)) && (e.type === "important");
 	    });
 
-      console.log(res);
+      //console.log(res);
  
       if($(obj).hasClass("selected")){
-        console.log("new pick");
+        //console.log("new pick");
         if(res.length > 0)
         	$scope.newPick(res[0]);
       }else if(res.length > 0){
-        console.log("Bieen");
+        //console.log("Bieen");
         $(".cal-day-hour-part").removeClass("selected");
         $(obj).addClass("selected");
         $(".createPick").remove();
@@ -347,7 +347,7 @@ pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams,$ionicH
     };
 
     $("#createPick").on("click", function(){
-    	console.log(this);
+    	//console.log(this);
     	console.log("pick click");
     })
    
@@ -403,7 +403,7 @@ pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams,$ionicH
        		vm.events = [];
 
         $scope.getPicks(startDate.toDate(), endDate.toDate());
-        console.log(startDate.toDate() + "," + endDate.toDate());
+        //console.log(startDate.toDate() + "," + endDate.toDate());
     }
 
 	$scope.getScrollPosition = function(){

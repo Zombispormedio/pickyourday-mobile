@@ -8,19 +8,20 @@ pydmCtrl.CompaniesDetailCtrl = function ($rootScope, $scope, $http, $stateParams
   $scope.services = [];
   $scope.reviews = [];
   $scope.schedule = [];
+  $scope.msg = "Cargando ...";
 
   CustomerService.company().getByID({"id": idCompany}, {}, function(result){
         var res = result;
         if (!res.error) {       
             $scope.company = res.data;    
             $scope.services = res.data.services;
+            console.log(res.data.services);
             $scope.reviews = res.data.review;
-            $scope.schedule = $scope.orderSchedule(res.data.scheduleActivity);
-            console.log($scope.schedule);
-
+            $scope.schedule = $scope.orderSchedule(res.data.scheduleActivity);            
             $scope.prepareGraphic();
         } else {
            $scope.error=res.error;
+           $scope.msg = "No se han encontrado resultados.";
         }
 
     }, function(){
@@ -268,6 +269,9 @@ pydmCtrl.CompaniesDetailCtrl = function ($rootScope, $scope, $http, $stateParams
 
     $scope.getUserReview();
 
+    $scope.subscribe = function(){
+      $(".subscribe").toggleClass("active");
+    }
    
 
 }

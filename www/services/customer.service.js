@@ -79,6 +79,11 @@ pydmFtry.CustomerService = function(ApiService){
         		create : {method: "POST", params:{}, headers:{Authorization: getJSONLocal("user").token} },
         		list: {method: "GET", params:{}, headers:{Authorization: getJSONLocal("user").token} }
         	});
+        },
+        promotion: function(){
+            return ApiService.rest(this.base + "/promotion",{                
+                list: {method: "GET", params:{} }
+            });
         }
 
     };

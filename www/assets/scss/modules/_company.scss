@@ -377,15 +377,20 @@
 
 		h2.evaluate{
 			border-top: 1px solid #ccc;
+
+			&.done{
+				padding-bottom: 0;
+			}
 		}
 
-		p{
-			margin-top: 5px;
+		p.margin{
+			margin: 0px 10px;
+			margin-bottom: 10px;
+   			font-size: 16px;
 		}
-
 		.userRating, .rating {
-			justify-content: space-between;
-			width: 80%;
+			justify-content: flex-start;
+			width: 90%;
 			margin: 0 auto;
 			span, i{
 				font-size: 35px;
@@ -393,6 +398,21 @@
 				color: $orange;
 			}
 		}
+
+		.userReview{
+			padding: 0 10px;
+			.userStars{
+				width: auto;
+				@include flex-justify(flex-start);
+				i{
+					font-size: 25px;
+					color: #C39C62;
+				}
+			}
+		}
+
+		
+
 
 		h3{
 			font-size: 18px;

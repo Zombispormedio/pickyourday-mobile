@@ -24,9 +24,13 @@
 		<h2 ng-if="userReview.length == 0" class="evaluate">Valora la empresa</h2>
 		<ionic-ratings ng-if="userReview.length == 0" class="userRating" ratingsobj='ratingsObject'></ionic-ratings>
 
-		<h2 ng-if="!userReview.length" class="evaluate">Ya has valorado a esta empresa</h2>
-		<p>Tu valoración es:</p>
-		<rating readonly="true" ng-model="userReview.rating" max="5"></rating>
+		<h2 ng-if="!userReview.length" class="evaluate done">Ya has valorado a esta empresa</h2>
+		<p class="margin">Tu valoración es:</p>
+
+		<div class="userReview">
+			<p>{{userReview.description}}</p>
+			<rating class="userStars" readonly="true" ng-model="userReview.rating" max="5"></rating>
+		</div>
 
 		<h3>Todas las reseñas</h3>
 		<div ng-if="reviews.length > 0">
@@ -35,7 +39,8 @@
 	            <div class="user">
 	            	<div class="userPhoto ion-person"></div>
 	            	<div class="text">
-		              	<h4>{{ review.id_customer.name }}</h4>
+		              	<h4 ng-if="review.id_customer.name">{{ review.id_customer.name }}</h4>
+		              	<h4 ng-if="!review.id_customer.name">Anónimo</h4>
 		              	<span class="date">{{review.date | formatDate}}</p>
 		              	<div class="review">
 			            	<span class="rate">{{review.rating}}</span>

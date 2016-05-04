@@ -18,7 +18,16 @@
 		}
 		
 		.iconCat{
+			padding: 5px;		
+			height: 50px;
+			width: 50px;
 			margin-right: 15px;
+
+			img{
+				width: auto;
+				height: 80%;
+				max-width: 100%;
+			}
 		}
 
 		h3{

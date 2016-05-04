@@ -41,62 +41,27 @@
 			<button class="button button-icon icon ion-ios-location"></button>
 			<p>{{company.location.zipcode}} {{company.location.address}} {{company.location.city}}, {{company.location.province}}, {{company.location.country}}</p> 
 		</div>
+		
 
-		<div class="dateTable">
+		<div class="dateTable" ng-if="schedule.length > 0" >
 			<button class="button button-icon icon ion-ios-clock-outline"></button>
 			<div class="timetable">
 				<button class="down button button-icon icon ion-ios-arrow-down" ng-click="openTimetable()"></button>
 				<p ng-click="openTimetable()">
-					<span class="bold">Abierto ahora:</span>
-					<span>12:00 - 16:00</span>
+					<span class="bold">Hoy</span>
+					<span>{{schedule[0].times[0]}}</span>
 				</p>
 				<ul>
-					<li>
-						<span>Domingo</span>
+					<li ng-repeat="data in schedule.slice(1,schedule.length)">
+						<span>{{data.day}}</span>
 						<div class="hours">
-							<span>12:00 - 16:00</span>
-						</div>
-					</li>
-					<li>
-						<span>Lunes</span>
-						<div class="hours">
-							<span>12:00 - 16:00</span>
-						</div>
-					</li>
-					<li>
-						<span>Martes</span>
-						<div class="hours">
-							<span>12:00 - 16:00</span>
-						</div>
-					</li>
-					<li>
-						<span>Miércoles</span>
-						<div class="hours">
-							<span>12:00 - 16:00</span>
-						</div>
-					</li>
-					<li>
-						<span>Jueves</span>
-						<div class="hours">
-							<span>12:00 - 16:00</span>
-						</div>
-					</li>
-					<li>
-						<span>Viernes</span>
-						<div class="hours">
-							<span>12:00 - 16:00</span>
-						</div>
-					</li>
-					<li>
-						<span>Sábado</span>
-						<div class="hours">
-							<span>12:00 - 16:00</span>
-							<span>17:00 - 21:00</span>
+							<span ng-repeat="hour in data.times">{{hour}}</span>
 						</div>
 					</li>
 				</ul>
 			</div>
 		</div>
+
 
 		<div class="infoContainer phoneContainer" ng-if="company.phone[0]">
 			<button class="button button-icon icon ion-ios-telephone" ></button>

@@ -7,6 +7,7 @@ pydmCtrl.CompaniesDetailCtrl = function ($rootScope, $scope, $http, $stateParams
   $scope.company = [];
   $scope.services = [];
   $scope.reviews = [];
+  $scope.schedule = [];
 
   CustomerService.company().getByID({"id": idCompany}, {}, function(result){
         var res = result;
@@ -14,6 +15,8 @@ pydmCtrl.CompaniesDetailCtrl = function ($rootScope, $scope, $http, $stateParams
             $scope.company = res.data;    
             $scope.services = res.data.services;
             $scope.reviews = res.data.review;
+            $scope.schedule = $scope.orderSchedule(res.data.scheduleActivity);
+            console.log($scope.schedule);
 
             $scope.prepareGraphic();
         } else {
@@ -27,6 +30,41 @@ pydmCtrl.CompaniesDetailCtrl = function ($rootScope, $scope, $http, $stateParams
   $scope.rating = {};
   $scope.rating.rate = 4.3;
   //$scope.rating.max = 5;
+
+  $scope.orderSchedule = function(s){
+
+    var scd = [];
+    var weekday = new Array(7);
+    weekday[0]=  "Sunday";
+    weekday[1] = "Monday";
+    weekday[2] = "Tuesday";
+    weekday[3] = "Wednesday";
+    weekday[4] = "Thursday";
+    weekday[5] = "Friday";
+    weekday[6] = "Saturday";
+
+    if(s.length > 0){
+       var res = s[0].week.filter(function (e) { 
+          var d1 = new Date();
+          var day = d1.getDay();
+          return ( weekday[day] == e.day );
+        });
+
+      if(res.length > 0)
+        scd.push(res[0]);
+
+      angular.forEach(s[0].week, function (data, index) {
+          scd.push(data);
+      });
+
+      return scd;
+
+     }else{
+       return s;
+     }
+
+   
+  }
 
   Array.prototype.max = function() {
     return Math.max.apply(null, this); // <-- passing null as the context

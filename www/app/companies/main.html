@@ -7,9 +7,11 @@
   <div ng-if="companies.length > 0" class="list">
 
     <div ng-repeat="company in companies" class="item" ng-click="goDetail(company._id)"> 
-
-          <div class="iconCat" style="background-color: {{company.category.color}};">
-             <img ng-src="{{company.category.icon.src}}" alt="{{ company.category.icon.alt }}">
+          
+          <div class="image">
+            <div class="iconCat" style="background-color: {{company.category.color}};">
+               <img ng-src="{{company.category.icon.src}}" alt="{{ company.category.icon.alt }}">
+            </div>
           </div>
 
           <div class="text">
@@ -21,8 +23,8 @@
 
   </div>
 
-  <div ng-if="companies.length <= 0">
-    <p>No hay compañías.</p>
+  <div class="no-data" ng-if="companies.length <= 0">
+    <p>{{msg}}</p>
   </div>
 
   </ion-content>

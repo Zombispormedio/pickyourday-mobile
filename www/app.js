@@ -290,30 +290,30 @@ var app = angular.module('starter', ['ionic', 'ngOpenFB', "ngResource", 'ui.boot
 
 
 
-.run(function ($ionicPlatform, $rootScope, $state, $ionicModal, $ionicPopup, ngFB, $templateCache) {
+.run(function ($ionicPlatform, $rootScope, $state, $ionicModal, $ionicPopup, ngFB, $templateCache, $cordovaPush, $cordovaLocalNotification, CustomerService) {
 
     ngFB.init({
         appId: '122387958132479'
     });
 
     $rootScope.go = function (state, params) {
-            $state.go(state, params);
-        }
-        /*
-            $ionicPlatform.registerBackButtonAction(function(event) {
+        $state.go(state, params);
+    }
+    /*
+        $ionicPlatform.registerBackButtonAction(function(event) {
 
-              if($state.current.name=="app.dashboard") {
-                $ionicPopup.confirm({
-                  //title: 'System warning',
-                  template: '¿Seguro que deseas salir de la aplicación?'
-                }).then(function(res) {
-                  if (res) {
-                    ionic.Platform.exitApp();
-                  }
-                })
+          if($state.current.name=="app.dashboard") {
+            $ionicPopup.confirm({
+              //title: 'System warning',
+              template: '¿Seguro que deseas salir de la aplicación?'
+            }).then(function(res) {
+              if (res) {
+                ionic.Platform.exitApp();
               }
-            }, 100);
-            */
+            })
+          }
+        }, 100);
+    */
 
     $ionicModal.fromTemplateUrl('app/modal/modal.html', {
         scope: $rootScope,
@@ -348,14 +348,19 @@ var app = angular.module('starter', ['ionic', 'ngOpenFB', "ngResource", 'ui.boot
         if (window.cordova && window.cordova.plugins.Keyboard) {
             cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         }
+
+        if(window.cordova && window.cordova.plugins.backgroundMode){
+            console.log("Bien");
+            //window.cordova.plugins.backgroundMode.enable();
+        }
+
         if (window.StatusBar) {
             StatusBar.styleDefault();
         }
+
+
+
     });
-
-
-
-
 
     var template = '<div class="item ion-place-tools-autocomplete">' +
                     '<i class="icon ion-ios-search placeholder-icon"></i>' +
@@ -371,4 +376,89 @@ var app = angular.module('starter', ['ionic', 'ngOpenFB', "ngResource", 'ui.boot
 
     $templateCache.put("src/ionGooglePlaceTemplate.html",template);
     //placeTools.run(["$templateCache", function($templateCache) {$templateCache.put("src/ionGooglePlaceTemplate.html",template);}]);
+
+    //NOTIFICACIONES
+    var androidConfig = {
+        "senderID": "197601513734",
+    };
+
+    document.addEventListener("deviceready", function(){
+
+        CustomerService.notification().list({}, {}, function(result){
+          var res = result;
+          if (!res.error) {       
+             if(!res.data){ //Solo lo registramos si no lo está ya.
+                $cordovaPush.register(androidConfig).then(function(result) {
+                   console.log(result);
+                }, function(err) {
+                    console.log(err);
+                });
+             }
+          } else {
+             console.log(res.error);
+          }
+        }, function(){
+
+        });
+
+        $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
+    
+        switch(notification.event) {
+            case 'registered':
+              if (notification.regid.length > 0 ) {
+                console.log('registration ID = ' + notification.regid);
+                CustomerService.notification().create({}, {"token": notification.regid}, function(result){
+                  var res = result;
+                  if (!res.error) { 
+                    console.log("Ok")      
+                  } else {
+                     console.log(res.error);
+                  }
+                }, function(){
+
+                });
+              }
+              break;
+
+            case 'message':
+              // this is the actual push notification. its format depends on the data model from the push server
+              //alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
+              console.log(notification);
+               $cordovaLocalNotification.schedule({
+                id: 1,
+                title: notification.message ,
+                text: 'Prueba :D',
+                data: {
+                  customProperty: 'custom value'
+                }
+              }).then(function (result) {
+               console.log("done");
+              });
+              break;
+
+            case 'error':
+              alert('GCM error = ' + notification.msg);
+              break;
+
+            default:
+              alert('An unknown GCM event has occurred');
+              break;
+          }
+        });
+
+
+        // WARNING: dangerous to unregister (results in loss of tokenID)
+        $cordovaPush.unregister().then(function(result) {
+          // Success!
+          console.log(result);
+        }, function(err) {
+          // Error
+          console.log(err);
+        })
+
+
+       
+
+  }, false);
+
 })

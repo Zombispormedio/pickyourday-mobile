@@ -25,6 +25,34 @@ pydmCtrl.ProfileCtrl = function ($rootScope, $scope, $http, ngFB, CustomerServic
 
     }
 
+    $scope.updateProfile = function(){
+      if($scope.user.name != "" || $scope.user.gender != ""){
+
+      }
+     
+    }
+
+    $scope.locationChanged = function (location) {
+      var aux = location.split(",");
+      var i1 = aux.length - 1;
+      var i2 = aux.length - 2;
+
+      console.log(location);
+      var country = "";
+      var city = "";
+
+      if(aux[i1] )
+        $scope.country = aux[i1];
+      else
+        $scope.country = "";
+
+      if( aux[i2])
+        $scope.city = aux[i2];
+      else
+        $scope.city = "";
+    };
+
+
     if(getJSONLocal("facebook")){
         $http.get("https://graph.facebook.com/v2.2/me", {params: {access_token: getJSONLocal("facebook"), fields: "email,age_range ,name,gender,location,picture.width(400)", format: "json" }}).then(function(result) {
           $scope.image = result.data.picture.data.url;
@@ -43,7 +71,85 @@ pydmCtrl.ProfileCtrl = function ($rootScope, $scope, $http, ngFB, CustomerServic
     }
    
     $scope.getProfile();
+    var id = "maps";
+    var id2 = "localizacion";
+
+    $scope.initMap = function(){
+      
+      var map;
+      var marker;
+      var loc = "";
+      var latIni = "";
+      var lngIni = "";
+
+      if(latIni == "" || lngIni == ""){
+          latIni = "38.5374075";
+          lngIni = "-0.1299955";
+      }
+
+
+      $(function() {
+          function initialize() {
+
+
+              if($('#' +id2).val() != "") {
+                  var latlng = $('#'+id2).val().replace("(", "").replace(")", "").replace(" ", ""); 
+                  $('#'+id2).trigger("change");
+                  var currentLat = latlng.split(',')[0];
+                  var currentLng = latlng.split(',')[1];
+
+                                
+              }
+          }
+
+          google.maps.event.addDomListener(window, 'load', initialize);
+      });
+    }
     
+    var autocomplete1, geocoder1;
+
+        function initialize1() {
+            // Create the autocomplete object, restricting the search
+            // to geographical location types.
+            autocomplete1 = new google.maps.places.Autocomplete(
+                    (document.getElementById(id)),
+                    {
+                        types: ["geocode"], componentRestrictions: {
+                            country: "es"}
+                    });
+                             
+            geocoder1 = new google.maps.Geocoder();
+        }
+
+        function codeAddress1() {
+            var address = document.getElementById(id).value;
+            geocoder1.geocode( {
+                "address": address+", ESPAÑA", "region": "es" }, function(results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    document.getElementById(id2).value = results[0].geometry.location;
+                    $("#" + id2).trigger("change");
+                    
+                    var localizacion = results[0].geometry.location;
+              
+
+                    var latlng = $("#" +id2).val().replace("(", "").replace(")", "").replace(" ", ""); 
+                    var currentLat = latlng.split(",")[0];
+                    var currentLng = latlng.split(",")[1];
+
+                } else {}
+            });
+        }
+        
+    $("#" + id).keyup(function(e) {
+        e.preventDefault();
+        
+        if($(this).val() != "") {
+            codeAddress1();
+        }
+    });
+        
+    $scope.initMap();
+    initialize1();
     /*
 
       name

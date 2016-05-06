@@ -9789,6 +9789,9 @@ h2 {
   font-size: 16px;
   text-align: center; }
 
+.list {
+  display: block; }
+
 .bold {
   font-weight: bold; }
 

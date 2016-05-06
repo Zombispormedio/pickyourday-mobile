@@ -8,17 +8,26 @@
     <p ng-if="user.email">{{user.email}}</p>
     
     <h3>Tus datos:</h3>
-    <form action="">
+    <form ng-submit="updateProfile()">
         <div class="list">
           <label class="item item-input item-stacked-label">
             <span class="input-label">Nombre</span>
             <input type="text" placeholder="John" ng-model="user.name">
           </label>
         </div>
-        <ion-list class="gender">
+        <ion-list class="gender list">
           <ion-radio ng-model="user.gender" ng-value="'male'">Hombre</ion-radio>
           <ion-radio ng-model="user.gender" ng-value="'female'">Mujer</ion-radio>
         </ion-list>
+        
+        <div class="list">
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Localización</span>
+            <input type="text" id="maps">
+          </label>          
+        </div>
+
+        <input disabled type="text" id="localizacion" value="" style="width:100%;">
 
          <button type="submit" class="button button-block button-positive">Guardar</button>
     </form>

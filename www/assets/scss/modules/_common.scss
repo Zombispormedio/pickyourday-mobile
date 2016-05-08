@@ -110,6 +110,42 @@ h2{
 	}
 }
 
+.companies-list{
+	.item{
+		@include flexbox();
+		@include flex-align(center);
+		@include flex-justify(flex-start);
+		border: 0;
+		margin: 5px 0;
+		border-bottom: 1px solid #ddd;
+
+		&:first-child{
+			border-top: 1px solid #ddd;
+		}
+		
+		.iconCat{
+			padding: 5px;		
+			height: 50px;
+			width: 50px;
+			margin-right: 15px;
+
+			img{
+				width: auto;
+				height: 80%;
+				max-width: 100%;
+			}
+		}
+
+		h3{
+			margin-bottom: 0;
+		}
+
+		p{
+			white-space: pre-line;
+		}
+	}
+}
+
 //MODAL ANIMATIONS
 
 //scale-in

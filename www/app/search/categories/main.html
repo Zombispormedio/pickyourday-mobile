@@ -1,18 +1,20 @@
 <ion-modal-view class="popup">
 
-    <ion-content class="search_preferences">
+    <ion-content class="search_preferences padding">
 		
 		<h2>Categorías</h2>
  		 <ion-radio ng-repeat="category in categories"
-                   ng-value="category"
-                   ng-model="data.selCategory"
-                   ng-click="closeCategories()">
+                 ng-value="category"
+                 ng-model="data.selCategory"
+                 ng-click="closeCategories()">
 
-          {{ category.name }}
-        </ion-radio>
-        <ion-radio ng-value="all" ng-click="closeCategories()" ng-model="data.selCategory">
-          Todas
-        </ion-radio>
+        {{ category.name }}
+      </ion-radio>
+      <ion-radio ng-value="all" ng-click="closeCategories()" ng-model="data.selCategory">
+        Todas
+      </ion-radio>
+
+      <button class="button over" ng-click="closeCategories()">Cerrar</button>
 
     </ion-content>
 </ion-modal-view>

@@ -13,7 +13,7 @@ pydmCtrl.DashboardCtrl = function ($rootScope, $scope, $state, $http, $ionicHist
             if (!res.error) {       
               	var picksAux = res.data;
         				$scope.picks = picksAux;		
-                //console.log(picksAux);
+                console.log(picksAux);
                 if(picksAux.length == 0)
                  $scope.msg = "No tienes picks activos";               
         				$scope.$broadcast('scroll.refreshComplete');	
@@ -50,19 +50,6 @@ pydmCtrl.DashboardCtrl = function ($rootScope, $scope, $state, $http, $ionicHist
 
   $scope.getPromotions(); 
   
-	$scope.category = "";
-
-	CustomerService.category().list({}, {} , function(result){
-        var res = result;
-        if (!res.error) {       
-          	$scope.category = res.data[0];		
-        } else {
-           $scope.error=res.error;
-        }
-    }, function(){
-
-    });
-
 
 	$scope.doRefresh = function() {
 		$scope.getPicks();

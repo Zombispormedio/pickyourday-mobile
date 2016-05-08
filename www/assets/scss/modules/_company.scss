@@ -1,6 +1,7 @@
 
 .company{
 	text-align: left;
+	padding: 5px;
 
 	p{
 		margin: 0;
@@ -247,7 +248,21 @@
    			overflow: visible;
 
    			&.promotion{
-   				border: 2px dashed $teal;
+   				 &:before{
+                    content: "%";
+                    display: inline-block;
+                    position: absolute;
+                    font-size: 14px;
+                    line-height: 25px;
+                    left: -10px;
+                    background: $green;
+                    color: #FFF;
+                    border-radius: 50%;
+                    width: 25px;
+                    height: 25px;
+                    text-align: center;
+                    top: -10px;
+                }
    			}
 
 			.service_title{

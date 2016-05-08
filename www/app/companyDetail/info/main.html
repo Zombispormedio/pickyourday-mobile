@@ -11,8 +11,10 @@
 				ng-click="nextSlide()" class="button button-icon icon ion-ios-arrow-right"></button>
 		</ion-slide>
 	</ion-slide-box>
+	
 
-	<button class="ion-ios-heart subscribe" ng-click="subscribe()"></button>
+	<button class="ion-ios-heart subscribe" ng-class="{active: company.subscribed}" ng-click="subscribe()">
+	</button>
 
 	<div class="title">
 		<h2>{{company.name}}</h2>

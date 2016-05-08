@@ -14,8 +14,7 @@ pydmCtrl.CompaniesDetailCtrl = function ($rootScope, $scope, $http, $stateParams
         var res = result;
         if (!res.error) {       
             $scope.company = res.data;    
-            $scope.services = res.data.services;
-            //console.log(res.data.services);
+            $scope.services = res.data.services;            
             $scope.reviews = res.data.review;
             $scope.schedule = $scope.orderSchedule(res.data.scheduleActivity);            
             $scope.prepareGraphic();
@@ -282,6 +281,16 @@ pydmCtrl.CompaniesDetailCtrl = function ($rootScope, $scope, $http, $stateParams
             }
         });
 
+      }else{
+        CustomerService.unSubscribe().update({"id": idCompany}, {} , function(result){
+            var res = result;
+            console.log(res);
+            if (!res.error) {
+              $(".subscribe").removeClass("active");
+            } else {
+              $scope.openModal(res.error.message);
+            }
+        });
       }
 
     }

@@ -189,7 +189,7 @@ pydmCtrl.CalendarCtrl = function ($rootScope, $scope, $http, $stateParams, Custo
             $(".cal-day-hour-part").removeClass("selected");
             $(".createEvent").remove();
 
-            $scope.closeModal();
+            $scope.closeModalEvent();
 
           } else {
             $scope.error = res.error;

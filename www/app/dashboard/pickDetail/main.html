@@ -15,7 +15,13 @@
       </div>
 
       <div class="subtitle">
-        <span class="price">{{currentPick.service.price}} €</span>
+        <div class="price_container">
+            <span class="price" ng-class="{oldPrice: currentPick.service.promotion}">
+              {{ currentPick.service.price}} €
+            </span>
+            <span ng-if="currentPick.service.promotion" class="price newPrice">{{  currentPick.service.priceDiscounted}} €</span> 
+        </div>
+        <!-- <span class="price">{{currentPick.service.price}} €</span> -->
         <h4>{{ currentPick.service.metadata.name }}</h4>
         <p ng-if="currentPick.service.description != ''">{{currentPick.service.description}}</p>
       </div>

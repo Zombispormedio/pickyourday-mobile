@@ -39,7 +39,7 @@ pydmCtrl.ProfileCtrl = function ($rootScope, $scope, $http, ngFB, CustomerServic
     $scope.updateProfile = function(){
       
       var obj = {};
-      console.log($scope.user);
+      //console.log($scope.user);
 
       if(Object.size($scope.user.location.geolocation) >0 || $scope.user.location.direction)
         obj.location = {};
@@ -56,7 +56,7 @@ pydmCtrl.ProfileCtrl = function ($rootScope, $scope, $http, ngFB, CustomerServic
         obj.birthDate = $scope.user.birthDate;
 
 
-      console.log(obj);
+     //console.log(obj);
 
       if(Object.size(obj) > 0){
           CustomerService.register().update({}, obj , function(result){
@@ -65,7 +65,7 @@ pydmCtrl.ProfileCtrl = function ($rootScope, $scope, $http, ngFB, CustomerServic
             if (!res.error) {
               $scope.openModal("Tus datos se han modificado correctamente");
             } else {
-              console.log(res);
+              //console.log(res);
               $scope.openModal(res.error.message);
             }
           });
@@ -96,8 +96,8 @@ pydmCtrl.ProfileCtrl = function ($rootScope, $scope, $http, ngFB, CustomerServic
     $scope.getProfile();
 
     $scope.locationChanged = function (location, ll) {
-      console.log(location);
-      console.log(ll);
+      //console.log(location);
+      //console.log(ll);
 
       var latlng = ll.replace("(", "").replace(")", "").replace(" ", ""); 
       var currentLat = latlng.split(',')[0];
@@ -105,8 +105,8 @@ pydmCtrl.ProfileCtrl = function ($rootScope, $scope, $http, ngFB, CustomerServic
 
       $scope.user.location.geolocation =  
       {
-        "lat": currentLat, 
-        "lng": currentLng
+        "latitude": currentLat, 
+        "longitude": currentLng
       };
 
       $scope.user.location.direction = location;
@@ -120,7 +120,7 @@ pydmCtrl.ProfileCtrl = function ($rootScope, $scope, $http, ngFB, CustomerServic
        setTimeout(function(){
           $(".profile .ion-place-tools-autocomplete input").keyup(function(e) {
               e.preventDefault();
-              console.log("EH");
+              //console.log("EH");
               if($(this).val() != "") {
                   $(".ion-place-tools-autocomplete-dropdown").slideDown();
               }

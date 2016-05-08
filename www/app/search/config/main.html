@@ -1,4 +1,4 @@
-<ion-modal-view>
+<ion-modal-view >
 
     <ion-header-bar class="bar-positive" align-title="center">
         <button class="button button-icon icon ion-arrow-left-c" ng-click="closeModal()"></button>
@@ -16,10 +16,9 @@
 		    <div class="input-label">
 		      Ordenar por
 		    </div>
-		    <select>
-		      <option>Precio</option>
-		      <option selected>Valoración</option>
-		      <option>Proximidad</option>
+		    <select ng-model="order">
+		      <option value="price">Precio</option>
+		      <option value="review">Valoración</option>
 		    </select>
 		  </label>
 		</div>

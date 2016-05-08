@@ -3,11 +3,13 @@
 		
 		<ion-list class="services" ng-if="services.length > 0">
 
-			<div ng-repeat="service in services | orderBy:['-avgRating','promotion']"
-				class="service item" ng-class="{promotion: service.promotion}">  
+			<div ng-repeat="service in services | orderBy:['services.priceDiscounted','services.promotion', 'services.price']"
+				class="service item" ng-class="{promotion: service.services.promotion}">  
+
 				<div class="service_title">
-				      <h2>{{ service.services.id_name.name }}</h2>
-				      <p>{{ service.services.description}}</p>
+				      <h2 ng-if="service.services.description">{{ service.services.description}}</h2>
+				      <p ng-if="service.services.description">{{ service.services.id_name.name }}</p>
+				      <h2 ng-if="!service.services.description">{{ service.services.id_name.name }}</h2>
 				      <p>{{ service.name}}</p>
 				      <p>Duración: <span class="bold">{{service.services.duration}} min</span></p>		
 				</div>
@@ -18,13 +20,13 @@
 					<span class="reviews">{{service.services.rating.length}} reviews</span>
 				</div>
 
-				<p class="ratingContainer" ng-if="service.services.rating.length == 0">No tiene reviews</p>
+				<p class="ratingContainer" ng-if="false && service.services.rating.length == 0">No tiene reviews</p>
 
 			    <div class="price_container">
-				    <span class="price" ng-class="{oldPrice: service.promotion}">
-				    	{{ service.price | currency : ""}} €
+				    <span class="price" ng-class="{oldPrice: service.services.promotion}">
+				    	{{ service.services.price | currency : ""}} €
 				    </span>
-				   	<span ng-if="service.promotion" class="price newPrice">{{ service.priceDiscounted | currency : ""}} €</span>
+				   	<span ng-if="service.services.promotion" class="price newPrice">{{  service.services.priceDiscounted | currency : ""}} €</span> 
 				</div>
 			    <div class="pick ion-android-add" ng-click="newPick(service._id, service.services._id)"></div>
 

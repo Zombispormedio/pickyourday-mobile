@@ -1,9 +1,29 @@
 <ion-view>
 	<ion-content class="search_companies has-tabs-top padding">
 
-		<ion-list ng-if="companies.length > 0">
-		    <ion-item ng-repeat="company in companies" class="my-item" ng-click="goDetail(company._id)">
-		        <p>{{ company.name }}</p>
+		<ion-list class="companies-list" ng-if="companies.length > 0">
+		    <ion-item ng-repeat="company in companies | orderBy:['-review_ratings.avg']"
+		    class="my-item" ng-click="goDetail(company._id)">
+
+				<div class="image">
+					<div class="iconCat" style="background-color: {{company.category.color}};">
+				   		<img ng-src="{{company.category.icon.src}}" alt="{{ company.category.icon.alt }}">
+					</div>
+				</div>
+
+				<div class="text">
+					<h3>{{ company.name }}</h3>
+					<p>{{ company.description}}</p>
+				</div>
+
+				<div class="ratingContainer" ng-if="company.review.length > 0">
+					<span class="rate">{{company.review_ratings.avg}}</span>
+					<rating readonly="true" ng-model="company.review_ratings.avg" max="5"></rating>
+					<span class="reviews">({{company.review.length}} reviews)</span>
+				</div>
+
+				<p class="no-reviews" ng-if="company.review.length == 0">No tiene reviews</p>
+
 		    </ion-item>
 		</ion-list>
 

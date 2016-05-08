@@ -90,6 +90,11 @@ pydmFtry.CustomerService = function(ApiService){
             return ApiService.rest(this.base + "/subscribe/:id",{
                 update: {method:"PUT", params:{id:"@id"}},
             });
+        },
+        unSubscribe : function(){
+            return ApiService.rest(this.base + "/unSubscribe/:id",{
+                update: {method:"PUT", params:{id:"@id"}},
+            });
         }
 
     };

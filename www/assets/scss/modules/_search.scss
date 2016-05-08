@@ -217,7 +217,12 @@
     .search_prepicks, .search_services, .search_companies{
     	top: 95px;
     }
-
+    
+    .search_companies{
+        .padding{
+            padding: 5px 0;
+        }
+    }
 
     .services{
         .service{
@@ -227,11 +232,30 @@
             margin: 20px 10px;
             overflow: visible;
 
+            &.promotion{
+                &:before{
+                    content: "%";
+                    display: inline-block;
+                    position: absolute;
+                    font-size: 14px;
+                    line-height: 25px;
+                    left: -10px;
+                    background: $green;
+                    color: #FFF;
+                    border-radius: 50%;
+                    width: 25px;
+                    height: 25px;
+                    text-align: center;
+                    top: -10px;
+                }
+            }
+
             .service_title{
                 text-align: left;
+                width: 80%;
                 background-color: transparent;
-                border-bottom: 1px solid #ccc;
-                padding-bottom: 10px;
+                //border-bottom: 1px solid #ccc;
+                //padding-bottom: 10px;
 
                 h2,p{
                     text-align: left;
@@ -243,7 +267,7 @@
                 }
 
                 h2{
-                    font-size: 18px;
+                    font-size: 16px;
                 }
             }
 
@@ -275,11 +299,10 @@
             }
 
             .oldPrice{
-                right: 70px;
                 font-size: 14px;
                 text-decoration: line-through;
                 color: #666;
-                margin-right: 5px;
+                display: block;
             }
 
 
@@ -300,6 +323,50 @@
                 }
             }
             
+        }
+    }
+
+
+    //Companies
+    .companies-list{
+        .item{
+            @include flex-wrap(wrap);
+
+            .text{
+                width: calc(100% - 70px);
+            }
+
+            .no-reviews{
+                margin-left: 70px;
+            }
+
+            .ratingContainer{
+                margin: 5px 0;
+                display: inline-block;
+                display: flex;
+                align-items: center;
+                margin-left: 70px;
+                color: #666;
+                font-size: 14px;
+
+                .rate{
+                    margin-right: 5px;
+                    vertical-align: middle;
+                }
+
+                .reviews{
+                    margin-left: 10px;
+                    vertical-align: middle;
+                }
+
+                .rating{
+                    @include flexbox();
+                    i {
+                        color: $orange;
+                        margin: 0 2px;
+                    }
+                }
+            }
         }
     }
 }

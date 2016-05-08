@@ -9892,6 +9892,49 @@ h2 {
   .popup-container .popup .popup-body {
     font-size: 16px; }
 
+.companies-list .item {
+  display: -webkit-box;
+  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+  display: -ms-flexbox;
+  /* TWEENER - IE 10 */
+  display: -webkit-flex;
+  /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+  display: flex;
+  /* NEW, Spec - Firefox, Chrome, Opera */
+  align-items: center;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  justify-content: flex-start;
+  -webkit-justify-content: flex-start;
+  -moz-justify-content: flex-start;
+  -ms-justify-content: flex-start;
+  -webkit-justify-items: flex-start;
+  -moz-justify-items: flex-start;
+  -ms-justify-items: flex-start;
+  border: 0;
+  margin: 5px 0;
+  border-bottom: 1px solid #ddd; }
+  .companies-list .item:first-child {
+    border-top: 1px solid #ddd; }
+  .companies-list .item .iconCat {
+    padding: 5px;
+    height: 50px;
+    width: 50px;
+    margin-right: 15px; }
+    .companies-list .item .iconCat img {
+      width: auto;
+      height: 80%;
+      max-width: 100%; }
+  .companies-list .item h3 {
+    margin-bottom: 0; }
+  .companies-list .item p {
+    white-space: pre-line; }
+
 .scale-in {
   -webkit-transform: scale(0);
   transform: scale(0);
@@ -10329,51 +10372,10 @@ h2 {
   margin: 10px 0; }
   .companies .list {
     margin-top: 20px; }
-  .companies .item {
-    display: -webkit-box;
-    /* OLD - iOS 6-, Safari 3.1-6, BB7 */
-    display: -ms-flexbox;
-    /* TWEENER - IE 10 */
-    display: -webkit-flex;
-    /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
-    display: flex;
-    /* NEW, Spec - Firefox, Chrome, Opera */
-    align-items: center;
-    -webkit-box-pack: center;
-    -moz-box-pack: center;
-    -ms-flex-pack: center;
-    -webkit-box-align: center;
-    -moz-box-align: center;
-    -ms-flex-align: center;
-    -webkit-align-items: center;
-    justify-content: flex-start;
-    -webkit-justify-content: flex-start;
-    -moz-justify-content: flex-start;
-    -ms-justify-content: flex-start;
-    -webkit-justify-items: flex-start;
-    -moz-justify-items: flex-start;
-    -ms-justify-items: flex-start;
-    border: 0;
-    margin: 5px 0;
-    border-bottom: 1px solid #ddd; }
-    .companies .item:first-child {
-      border-top: 1px solid #ddd; }
-    .companies .item .iconCat {
-      padding: 5px;
-      height: 50px;
-      width: 50px;
-      margin-right: 15px; }
-      .companies .item .iconCat img {
-        width: auto;
-        height: 80%;
-        max-width: 100%; }
-    .companies .item h3 {
-      margin-bottom: 0; }
-    .companies .item p {
-      white-space: pre-line; }
 
 .company {
   text-align: left;
+  padding: 5px;
   /*INFO*/
   /* SERVICES */
   /*REVIEWS*/ }
@@ -10540,8 +10542,20 @@ h2 {
     padding: 15px;
     margin: 20px 10px;
     overflow: visible; }
-    .company .services .service.promotion {
-      border: 2px dashed #009688; }
+    .company .services .service.promotion:before {
+      content: "%";
+      display: inline-block;
+      position: absolute;
+      font-size: 14px;
+      line-height: 25px;
+      left: -10px;
+      background: #4CAF50;
+      color: #FFF;
+      border-radius: 50%;
+      width: 25px;
+      height: 25px;
+      text-align: center;
+      top: -10px; }
     .company .services .service .service_title {
       text-align: left;
       background-color: transparent;
@@ -11166,24 +11180,39 @@ h2 {
     max-width: 180px; }
   .search-tabs .search_prepicks, .search-tabs .search_services, .search-tabs .search_companies {
     top: 95px; }
+  .search-tabs .search_companies .padding {
+    padding: 5px 0; }
   .search-tabs .services .service {
     text-align: left;
     position: relative;
     padding: 15px;
     margin: 20px 10px;
     overflow: visible; }
+    .search-tabs .services .service.promotion:before {
+      content: "%";
+      display: inline-block;
+      position: absolute;
+      font-size: 14px;
+      line-height: 25px;
+      left: -10px;
+      background: #4CAF50;
+      color: #FFF;
+      border-radius: 50%;
+      width: 25px;
+      height: 25px;
+      text-align: center;
+      top: -10px; }
     .search-tabs .services .service .service_title {
       text-align: left;
-      background-color: transparent;
-      border-bottom: 1px solid #ccc;
-      padding-bottom: 10px; }
+      width: 80%;
+      background-color: transparent; }
       .search-tabs .services .service .service_title h2, .search-tabs .services .service .service_title p {
         text-align: left;
         white-space: pre-line; }
       .search-tabs .services .service .service_title p {
         font-size: 15px; }
       .search-tabs .services .service .service_title h2 {
-        font-size: 18px; }
+        font-size: 16px; }
     .search-tabs .services .service .pick {
       position: absolute;
       right: 10px;
@@ -11206,11 +11235,10 @@ h2 {
       top: 10px;
       font-weight: bold; }
     .search-tabs .services .service .oldPrice {
-      right: 70px;
       font-size: 14px;
       text-decoration: line-through;
       color: #666;
-      margin-right: 5px; }
+      display: block; }
     .search-tabs .services .service .review {
       padding-top: 10px; }
     .search-tabs .services .service .ratingContainer .rate {
@@ -11218,6 +11246,42 @@ h2 {
       font-weight: bold; }
     .search-tabs .services .service .ratingContainer .rating i {
       color: #FF9800; }
+  .search-tabs .companies-list .item {
+    -moz-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    -o-flex-wrap: wrap;
+    flex-wrap: wrap; }
+    .search-tabs .companies-list .item .text {
+      width: calc(100% - 70px); }
+    .search-tabs .companies-list .item .no-reviews {
+      margin-left: 70px; }
+    .search-tabs .companies-list .item .ratingContainer {
+      margin: 5px 0;
+      display: inline-block;
+      display: flex;
+      align-items: center;
+      margin-left: 70px;
+      color: #666;
+      font-size: 14px; }
+      .search-tabs .companies-list .item .ratingContainer .rate {
+        margin-right: 5px;
+        vertical-align: middle; }
+      .search-tabs .companies-list .item .ratingContainer .reviews {
+        margin-left: 10px;
+        vertical-align: middle; }
+      .search-tabs .companies-list .item .ratingContainer .rating {
+        display: -webkit-box;
+        /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+        display: -ms-flexbox;
+        /* TWEENER - IE 10 */
+        display: -webkit-flex;
+        /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+        display: flex;
+        /* NEW, Spec - Firefox, Chrome, Opera */ }
+        .search-tabs .companies-list .item .ratingContainer .rating i {
+          color: #FF9800;
+          margin: 0 2px; }
 
 .ion-place-tools-autocomplete {
   position: relative;

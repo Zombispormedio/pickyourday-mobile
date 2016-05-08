@@ -12,6 +12,8 @@ pydmCtrl.ProfileCtrl = function ($rootScope, $scope, $http, ngFB, CustomerServic
             var res = result;
             if (!res.error) {       
               $scope.user = res.data;
+              if($scope.user.birthDate)
+                $scope.user.birthDate = new Date($scope.user.birthDate);
               //console.log("USEEER");
               //console.log($scope.user);
             } else {
@@ -92,97 +94,40 @@ pydmCtrl.ProfileCtrl = function ($rootScope, $scope, $http, ngFB, CustomerServic
     }
    
     $scope.getProfile();
-    var id = "maps";
-    var id2 = "localizacion";
 
-    $scope.initMap = function(){
+    $scope.locationChanged = function (location, ll) {
+      console.log(location);
+      console.log(ll);
+
+      var latlng = ll.replace("(", "").replace(")", "").replace(" ", ""); 
+      var currentLat = latlng.split(',')[0];
+      var currentLng = latlng.split(',')[1];
+
+      $scope.user.location.geolocation =  
+      {
+        "lat": currentLat, 
+        "lng": currentLng
+      };
+
+      $scope.user.location.direction = location;
       
-      var map;
-      var marker;
-      var loc = "";
-      var latIni = "";
-      var lngIni = "";
+      $(".ion-place-tools-autocomplete-dropdown").slideUp();
 
-      if(latIni == "" || lngIni == ""){
-          latIni = "38.5374075";
-          lngIni = "-0.1299955";
-      }
+    };
 
+    $(document).ready(function(){
 
-      $(function() {
-          function initialize() {
-              if($('#' +id2).val() != "") {
-                  var latlng = $('#'+id2).val().replace("(", "").replace(")", "").replace(" ", ""); 
-                  $('#'+id2).trigger("change");
-                  var currentLat = latlng.split(',')[0];
-                  var currentLng = latlng.split(',')[1];
+       setTimeout(function(){
+          $(".profile .ion-place-tools-autocomplete input").keyup(function(e) {
+              e.preventDefault();
+              console.log("EH");
+              if($(this).val() != "") {
+                  $(".ion-place-tools-autocomplete-dropdown").slideDown();
               }
-          }
-
-          google.maps.event.addDomListener(window, 'load', initialize);
-      });
-    }
-    
-    var autocomplete1, geocoder1;
-
-        function initialize1() {
-            // Create the autocomplete object, restricting the search
-            // to geographical location types.
-            autocomplete1 = new google.maps.places.Autocomplete(
-                    (document.getElementById(id)),
-                    {
-                        types: ["geocode"], componentRestrictions: {
-                            country: "es"}
-                    });
-                             
-            geocoder1 = new google.maps.Geocoder();
-        }
-
-        function codeAddress1() {
-            var address = document.getElementById(id).value;
-            geocoder1.geocode( {
-                "address": address+", ESPAÑA", "region": "es" }, function(results, status) {
-                if (status == google.maps.GeocoderStatus.OK) {
-
-                    document.getElementById(id2).value = results[0].geometry.location;
-                   
-                    $("#" + id2).trigger("change");
-
-                    var localizacion = results[0].geometry.location;
-
-                    var latlng = $("#" +id2).val().replace("(", "").replace(")", "").replace(" ", ""); 
-                    var currentLat = latlng.split(",")[0];
-                    var currentLng = latlng.split(",")[1];
-
-                    $scope.user.location.geolocation =  
-                    {
-                      "lat": currentLat, 
-                      "lng": currentLng
-                    };
-              
-                    $scope.user.location.direction = results[0].formatted_address;
-
-                } else {}
-            });
-        }
-        
-    $("#" + id).keyup(function(e) {
-        e.preventDefault();
-        
-        if($(this).val() != "") {
-            codeAddress1();
-        }
+          });
+       }, 300);
+       
+       
     });
-        
-    $scope.initMap();
-    initialize1();
-    /*
-
-      name
-      birthDate
-      gender: male o female
-      
-
-    */
 
 }

@@ -11,7 +11,9 @@ pydmDrctv.ionGooglePlace = function($ionicTemplateLoader, $ionicPlatform, $q, $t
         },
         link: function(scope, element, attrs, ngModel) {
             scope.dropDownActive = true;
+            scope.ll = "";
             var service = new google.maps.places.AutocompleteService();
+
             var searchEventTimeout = undefined;
             var latLng = null;
 
@@ -24,9 +26,20 @@ pydmDrctv.ionGooglePlace = function($ionicTemplateLoader, $ionicPlatform, $q, $t
             scope.selectLocation = function(location) {
                 scope.dropDownActive = true;
                 scope.searchQuery = location.description;
-                if (scope.locationChanged) {
-                    scope.locationChanged()(location.description);
-                }
+
+                googlePlacesService = new google.maps.places.PlacesService(document.getElementById("map"));
+                googlePlacesService.getDetails({
+                    reference: location.reference
+                }, function(details, status){
+                    if(details){
+                        scope.ll = details.geometry.location.toString();
+                        if (scope.locationChanged) {
+                            scope.locationChanged()(location.description, scope.ll);
+                        }
+                    }
+                });
+
+                
             };
             if (!scope.radius) {
                 scope.radius = 1500000;
@@ -53,14 +66,29 @@ pydmDrctv.ionGooglePlace = function($ionicTemplateLoader, $ionicPlatform, $q, $t
                         req.location = latLng;
                         req.radius = scope.radius;
                     }
+
+                    //service.getPlacePredictions(req, callbackPlaces);
+
                     service.getQueryPredictions(req, function (predictions, status) {
                         if (status == google.maps.places.PlacesServiceStatus.OK) {
                             scope.locations = predictions;
+                            callbackPlaces(predictions, status);
                             scope.$apply();
                         }
                     });
+
                 }, 350); // we're throttling the input by 350ms to be nice to google's API
             });
+
+            function callbackPlaces(predictions, status) {
+                if (status != google.maps.places.PlacesServiceStatus.OK) {
+                    console.log(status);
+                    return;
+                }
+
+                scope.locations = predictions;
+                
+            };
 
             var onClick = function(e) {
                 e.preventDefault();

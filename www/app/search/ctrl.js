@@ -146,7 +146,8 @@ pydmCtrl.SearchCtrl = function ($rootScope, $scope, $http, ngFB, CustomerService
       $scope.location_popup.hide();
   };
 
-  $scope.locationChanged = function (location) {
+  $scope.locationChanged = function (location, ll) {
+    console.log(location);
     var aux = location.split(",");
     var i1 = aux.length - 1;
     var i2 = aux.length - 2;

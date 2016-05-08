@@ -31,10 +31,11 @@
         <div class="list">
           <label class="item item-input item-stacked-label">
             <span class="input-label">Localización</span>
-            <input type="text" id="maps">
+            <div id="map"></div>
+            <ion-google-place placeholder="Dirección" ng-model="user.location.direction" name="address" location-changed="locationChanged"/>
           </label>          
         </div>
-        <input disabled type="text" id="localizacion" value="" style="display:none;">
+       
 
          <button type="submit" class="button button-block button-positive">Guardar</button>
     </form>

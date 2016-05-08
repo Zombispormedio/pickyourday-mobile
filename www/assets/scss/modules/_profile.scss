@@ -51,4 +51,37 @@
 			@include flex(1);
 		}
 	}
+
+	.ion-place-tools-autocomplete{
+		border: 0;
+		padding: 0;
+		i{
+			display: none;
+		}
+	}
+
+	.item-stacked-label{
+		overflow: visible;
+	}
+
+	.ion-place-tools-autocomplete-dropdown{
+		display: block;
+	    position: absolute;
+	    top: 115%;
+	    left: -15px;
+	    width: 105%;
+	    z-index: 9999999;
+	    border-left: 1px solid #ddd;
+	    border-right: 1px solid #ddd;
+
+	    .item{
+	    	padding: 5px 15px;
+		    font-size: 14px;
+		    text-align: left;
+
+		    &:first-child{
+		    	border-top: 0;
+		    }
+	    }
+	}
 }

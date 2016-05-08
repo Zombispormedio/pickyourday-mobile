@@ -10955,6 +10955,28 @@ h2 {
       /* IE 10 */
       flex: 1;
       /* NEW, Spec - Firefox, Chrome, Opera */ }
+  .profile .ion-place-tools-autocomplete {
+    border: 0;
+    padding: 0; }
+    .profile .ion-place-tools-autocomplete i {
+      display: none; }
+  .profile .item-stacked-label {
+    overflow: visible; }
+  .profile .ion-place-tools-autocomplete-dropdown {
+    display: block;
+    position: absolute;
+    top: 115%;
+    left: -15px;
+    width: 105%;
+    z-index: 9999999;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd; }
+    .profile .ion-place-tools-autocomplete-dropdown .item {
+      padding: 5px 15px;
+      font-size: 14px;
+      text-align: left; }
+      .profile .ion-place-tools-autocomplete-dropdown .item:first-child {
+        border-top: 0; }
 
 .preference h2 {
   font-weight: bold; }

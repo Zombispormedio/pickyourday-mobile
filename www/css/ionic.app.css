@@ -10758,18 +10758,11 @@ h2 {
   margin-top: 10px;
   padding: 0 10px;
   position: relative; }
-  .newPick .datos span.oldPrice {
-    -webkit-transform: translate(0, -25px);
-    -moz-transform: translate(0, -25px);
-    -o-transform: translate(0, -25px);
-    transform: translate(0, -25px);
-    background: 0;
-    text-decoration: line-through;
-    color: #000; }
-  .newPick .datos span.price {
+  .newPick .datos .price_container {
     position: absolute;
     right: 10px;
-    top: 0;
+    top: -20px; }
+  .newPick .datos span.price {
     background-color: #8BC34A;
     color: #fff;
     display: flex;
@@ -10777,6 +10770,10 @@ h2 {
     justify-content: center;
     padding: 5px 10px;
     border-radius: 2px; }
+  .newPick .datos span.oldPrice {
+    background: transparent;
+    text-decoration: line-through;
+    color: #000; }
   .newPick .datos span.strong {
     text-transform: uppercase; }
 

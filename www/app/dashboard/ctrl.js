@@ -13,6 +13,7 @@ pydmCtrl.DashboardCtrl = function ($rootScope, $scope, $state, $http, $ionicHist
             if (!res.error) {       
               	var picksAux = res.data;
         				$scope.picks = picksAux;		
+                //console.log(picksAux);
                 if(picksAux.length == 0)
                  $scope.msg = "No tienes picks activos";               
         				$scope.$broadcast('scroll.refreshComplete');	
@@ -35,10 +36,9 @@ pydmCtrl.DashboardCtrl = function ($rootScope, $scope, $state, $http, $ionicHist
 
     CustomerService.promotion().list({}, {} , function(result){
       var res = result;
-      console.log(res);
+      //console.log(res);
       if (!res.error) {       
           $scope.promotions = res.data;    
-          console.log(res.data);
       } else {
           $scope.error=res.error;
       }
@@ -100,7 +100,7 @@ pydmCtrl.DashboardCtrl = function ($rootScope, $scope, $state, $http, $ionicHist
 
     CustomerService.cancelPick().cancel({"id": id}, {} , function(result){
         var res = result;
-        console.log(res);
+        //console.log(res);
         if (!res.error) {       
            $scope.closePickDetail();
            $state.go($state.current, {}, {reload: true});

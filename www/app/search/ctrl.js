@@ -24,7 +24,7 @@ pydmCtrl.SearchCtrl = function ($rootScope, $scope, $http, ngFB, CustomerService
       CustomerService.search().list({"name": $scope.searchText, "category": category, "location.city": $scope.city, "location.country": $scope.country}, {}, function(result){
           var res = result;
           if (!res.error) {       
-              console.log(res);
+              //console.log(res);
               $scope.companies = res.data.companies;    
               if($scope.companies.length == 0)
                 $scope.msgC = "No se han encontrado resultados.";

@@ -15,17 +15,14 @@
 		padding: 0 10px;
 		position: relative;
 
-		span.oldPrice{
-			@include trf(translate(0,-25px));
-		    background: 0;
-		    text-decoration: line-through;
-		    color: #000;
+
+		.price_container{
+			position: absolute;
+		    right: 10px;
+		    top: -20px;
 		}
 
 		span.price{
-			position: absolute;
-		    right: 10px;
-		    top: 0;
 		    background-color: $lightGreen;
 		    color: #fff;
 		    display: flex;
@@ -35,6 +32,11 @@
 		    border-radius: 2px;
 		}
 		
+		span.oldPrice{
+		    background: transparent;
+		    text-decoration: line-through;
+		    color: #000;
+		}
 		span.strong{
 			text-transform: uppercase;
 		}

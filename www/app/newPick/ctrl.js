@@ -139,7 +139,7 @@ pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams,$ionicH
 		html += obj.date;
 
 	   var confirmPopup = $ionicPopup.confirm({
-	     title: 'Cancelar Pick',
+	     title: 'Crear Pick',
 	     template: html
 	   });
 
@@ -218,7 +218,9 @@ pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams,$ionicH
 	           	$scope.formatPicks(res.data[0].picks, "info");
               	$scope.formatEvents(res.data[1].events, "warning");
               	$.when($scope.formatAvailables(res.data[2].availables, "important")).then(function( x ) {
-				 $scope.hideLoading();
+				 setTimeout(function(){
+				 	$scope.hideLoading();
+				 },200);
 				});
 	        }else{	        	
 	        	$scope.hideLoading();

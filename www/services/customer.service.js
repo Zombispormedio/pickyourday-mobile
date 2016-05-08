@@ -4,6 +4,7 @@ pydmFtry.CustomerService = function(ApiService){
         register:function(){
             return ApiService.rest(this.base,{
                 create:{method:"POST", params:{}},
+                update:{method:"PUT", params:{}},
             });
         },
         pick:function(){
@@ -83,6 +84,11 @@ pydmFtry.CustomerService = function(ApiService){
         promotion: function(){
             return ApiService.rest(this.base + "/promotion",{                
                 list: {method: "GET", params:{} }
+            });
+        },
+        subscribe : function(){
+            return ApiService.rest(this.base + "/subscribe/:id",{
+                update: {method:"PUT", params:{id:"@id"}},
             });
         }
 

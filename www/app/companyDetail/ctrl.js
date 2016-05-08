@@ -15,7 +15,7 @@ pydmCtrl.CompaniesDetailCtrl = function ($rootScope, $scope, $http, $stateParams
         if (!res.error) {       
             $scope.company = res.data;    
             $scope.services = res.data.services;
-            console.log(res.data.services);
+            //console.log(res.data.services);
             $scope.reviews = res.data.review;
             $scope.schedule = $scope.orderSchedule(res.data.scheduleActivity);            
             $scope.prepareGraphic();
@@ -147,7 +147,7 @@ pydmCtrl.CompaniesDetailCtrl = function ($rootScope, $scope, $http, $stateParams
 
   $(document).ready(function(){
     var nums = $(".detail .left .barFilled").data("val");
-    console.log(nums);
+    //console.log(nums);
   })
 
    $scope.ratingsObject = {
@@ -193,13 +193,13 @@ pydmCtrl.CompaniesDetailCtrl = function ($rootScope, $scope, $http, $stateParams
         $scope.userRate = rating;
         $scope.openNewReview();  
         $scope.colourStars(rating); 
-        console.log('Selected rating is : ', rating);
+        //console.log('Selected rating is : ', rating);
     };
 
     $scope.ratingsCallback2 = function(rating) {      
         $scope.userRate = rating;
         $scope.colourStars(rating); 
-        console.log('Selected rating 2 is : ', rating);
+        //console.log('Selected rating 2 is : ', rating);
     };
 
     $ionicModal.fromTemplateUrl('app/companyDetail/reviews/newReview/main.html', {
@@ -222,7 +222,7 @@ pydmCtrl.CompaniesDetailCtrl = function ($rootScope, $scope, $http, $stateParams
     $scope.sendReview = function(){
       var msg = $("#textReview").val();
       var rate = $scope.userRate;
-      console.log(msg + " - " + rate);
+      //console.log(msg + " - " + rate);
 
       var obj = {
           "company_id" : idCompany, 
@@ -232,7 +232,7 @@ pydmCtrl.CompaniesDetailCtrl = function ($rootScope, $scope, $http, $stateParams
 
       CustomerService.review().create({}, obj, function(result){
             var res = result;
-            console.log(res);
+            //console.log(res);
             if (!res.error) {       
                 $scope.prepareGraphic();
                 $scope.closeNewReview();
@@ -253,10 +253,9 @@ pydmCtrl.CompaniesDetailCtrl = function ($rootScope, $scope, $http, $stateParams
 
       CustomerService.review().list({"company": idCompany}, {}, function(result){
           var res = result;
-          console.log(res);
+          //console.log(res);
           if (!res.error) {       
             $scope.userReview = res.data;
-            console.log($scope.userReview.length);
           } else {
              $scope.error=res.error;           
           }
@@ -270,7 +269,21 @@ pydmCtrl.CompaniesDetailCtrl = function ($rootScope, $scope, $http, $stateParams
     $scope.getUserReview();
 
     $scope.subscribe = function(){
-      $(".subscribe").toggleClass("active");
+
+      if(!$(".subscribe").hasClass("active")){
+
+        CustomerService.subscribe().update({"id": idCompany}, {} , function(result){
+            var res = result;
+            console.log(res);
+            if (!res.error) {
+              $(".subscribe").addClass("active");
+            } else {
+              $scope.openModal(res.error.message);
+            }
+        });
+
+      }
+
     }
    
 

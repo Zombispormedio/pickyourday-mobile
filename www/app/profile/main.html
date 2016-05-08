@@ -15,10 +15,18 @@
             <input type="text" placeholder="John" ng-model="user.name">
           </label>
         </div>
+
         <ion-list class="gender list">
           <ion-radio ng-model="user.gender" ng-value="'male'">Hombre</ion-radio>
           <ion-radio ng-model="user.gender" ng-value="'female'">Mujer</ion-radio>
         </ion-list>
+
+        <div class="list">
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Fecha de nacimiento</span>
+            <input type="date" ng-model="user.birthDate">
+          </label>
+        </div>
         
         <div class="list">
           <label class="item item-input item-stacked-label">
@@ -26,8 +34,7 @@
             <input type="text" id="maps">
           </label>          
         </div>
-
-        <input disabled type="text" id="localizacion" value="" style="width:100%;">
+        <input disabled type="text" id="localizacion" value="" style="display:none;">
 
          <button type="submit" class="button button-block button-positive">Guardar</button>
     </form>

@@ -22,7 +22,7 @@ pydmCtrl.SearchCtrl = function ($rootScope, $scope, $http, ngFB, CustomerService
 
 
 
-      CustomerService.search().list({"name": $scope.searchText, "category": category, "location.city": $scope.city, "location.country": $scope.country}, {}, function(result){
+      CustomerService.search().list({"name": $scope.searchText, "category": category, "location.city": $scope.city}, {}, function(result){
           var res = result;
           if (!res.error) {       
               console.log(res);

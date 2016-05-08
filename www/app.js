@@ -350,7 +350,7 @@ var app = angular.module('starter', ['ionic', 'ngOpenFB', "ngResource", 'ui.boot
         }
 
         if(window.cordova && window.cordova.plugins.backgroundMode){
-            console.log("Bien");
+            //console.log("Bien");
             //window.cordova.plugins.backgroundMode.enable();
         }
 
@@ -393,6 +393,8 @@ var app = angular.module('starter', ['ionic', 'ngOpenFB', "ngResource", 'ui.boot
                 }, function(err) {
                     console.log(err);
                 });
+             }else{
+                console.log("no registramos de nuevo");
              }
           } else {
              console.log(res.error);
@@ -402,7 +404,7 @@ var app = angular.module('starter', ['ionic', 'ngOpenFB', "ngResource", 'ui.boot
         });
 
         $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
-    
+        console.log(notification);
         switch(notification.event) {
             case 'registered':
               if (notification.regid.length > 0 ) {
@@ -423,7 +425,6 @@ var app = angular.module('starter', ['ionic', 'ngOpenFB', "ngResource", 'ui.boot
             case 'message':
               // this is the actual push notification. its format depends on the data model from the push server
               //alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
-              console.log(notification);
                $cordovaLocalNotification.schedule({
                 id: 1,
                 title: notification.message ,
@@ -447,18 +448,18 @@ var app = angular.module('starter', ['ionic', 'ngOpenFB', "ngResource", 'ui.boot
         });
 
 
-        // WARNING: dangerous to unregister (results in loss of tokenID)
+        /*// WARNING: dangerous to unregister (results in loss of tokenID)
         $cordovaPush.unregister().then(function(result) {
           // Success!
           console.log(result);
         }, function(err) {
           // Error
           console.log(err);
-        })
+        })*/
 
 
        
 
-  }, false);
+  }, true);
 
 })

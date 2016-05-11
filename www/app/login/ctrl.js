@@ -183,7 +183,7 @@ pydmCtrl.LoginCtrl = function ($rootScope, $scope, $http, $ionicModal, ngFB, $io
   	$scope.errorR = "";
   	$scope.rememberPass = function(){
   		if($scope.user.email){
-  			OauthService.forgotPassword().set($scope.user.email, function(result){
+  			OauthService.forgotPassword().set($scope.user, function(result){
 				if(result.error)
 					console.log(result.error);
 				else{

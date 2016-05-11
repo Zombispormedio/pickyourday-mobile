@@ -3,7 +3,7 @@ pydmFtry.ApiService= function($resource, $location){
         //env:$location.absUrl().indexOf("localhost")==-1?"prod":"dev",
         env: "prod",
         prod:{
-            protocol:"http",
+            protocol:"https",
             host:"pickyourday.herokuapp.com",
             port:"",
             root:"api"

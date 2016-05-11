@@ -20,7 +20,11 @@
               </div>
               <button type="submit" class="button button-block button-positive">Login</button>
           </form>
+          <button ng-click="rememberPass()" class="button button-block">¿Has olvidado tu contraseña?</button>
           <p>¿No tienes usuario? <span ng-click="nextSlide()">Regístrate</span></p>
+
+
+          <p>{{errorR}}</p>
           
           <div class="loginWith">
             <p>O entra con:</p>

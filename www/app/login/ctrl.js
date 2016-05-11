@@ -180,4 +180,21 @@ pydmCtrl.LoginCtrl = function ($rootScope, $scope, $http, $ionicModal, ngFB, $io
   		$ionicSlideBoxDelegate.previous();
   	}
 
+  	$scope.errorR = "";
+  	$scope.rememberPass = function(){
+  		if($scope.user.email){
+  			OauthService.forgotPassword().set($scope.user.email, function(result){
+				if(result.error)
+					console.log(result.error);
+				else{
+					console.log(result);
+				}
+			}, function(){
+			});
+  		}else{
+  			$scope.errorR = "Introduce tu email";
+  			console.log($scope.errorR);
+  		}
+  	}
+
 }

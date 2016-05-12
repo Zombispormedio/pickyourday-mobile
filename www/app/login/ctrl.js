@@ -39,19 +39,19 @@ pydmCtrl.LoginCtrl = function ($rootScope, $scope, $http, $ionicModal, ngFB, $io
 
 	}
 
-	function existsUser(id, email, name){
+	function existsUser(id, email, name, social){
 		if (email !== "") {
 			OauthService.check().list({email: email}, {} , function(result){
 	            var res = result;
 	            $scope.exists = res.data;
-				$scope.register(id, email, name);
+				$scope.register(id, email, name, social);
 	        }, function(){
 				$scope.openModal("Server not found");
 	        });
 		}
 	}
 
-	$scope.register = function (id, email, name){
+	$scope.register = function (id, email, name, social){
 		if ( ($scope.userR.email  && $scope.userR.password && $scope.userR.password2 ) || (id && email) ) {
 
 			if(id && email){
@@ -62,7 +62,8 @@ pydmCtrl.LoginCtrl = function ($rootScope, $scope, $http, $ionicModal, ngFB, $io
 				var obj = {
 					"email" : email,
 					"password" : id,
-					"name" : name
+					"name" : name,
+					"social" : social
 				}
 
 			}else if($scope.userR.password != $scope.userR.password2 ){
@@ -103,7 +104,7 @@ pydmCtrl.LoginCtrl = function ($rootScope, $scope, $http, $ionicModal, ngFB, $io
 
  		$http.get("https://graph.facebook.com/v2.2/me", {params: {access_token: token, fields: "email,age_range,name,gender,location,picture.width(400)", format: "json" }}).then(function(result) {
     		saveLocal("facebook", $scope.accessToken);
-    		existsUser(result.data.id, result.data.email, result.data.name);
+    		existsUser(result.data.id, result.data.email, result.data.name, "Facebook");
     		console.log(result.data);	
 	    }, function(error) {
 	        $scope.openModal("Error: " + error);
@@ -150,7 +151,7 @@ pydmCtrl.LoginCtrl = function ($rootScope, $scope, $http, $ionicModal, ngFB, $io
 	    		var googleEmail = data.emails[0].value;
 
 	 			saveLocal("google", $scope.accessToken);
-	    		existsUser(id, data.emails[0].value, data.displayName);
+	    		existsUser(id, data.emails[0].value, data.displayName, "Google");
 	    	})
 	    	.error(function(data, status) {
 	    		$scope.openModal(data);
@@ -187,7 +188,7 @@ pydmCtrl.LoginCtrl = function ($rootScope, $scope, $http, $ionicModal, ngFB, $io
   		if($scope.user.email){
   			OauthService.forgotPassword().set($scope.user, function(result){
 				if(result.error){
-					$scope.errorR = "Email incorrecto";
+					$scope.errorR = result.error;
 					console.log(result.error);
 				}else{
 					$scope.msg = "Recibirás un email con tu código, no cierres esta ventana";

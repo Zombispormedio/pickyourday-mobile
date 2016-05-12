@@ -24,15 +24,17 @@ pydmCtrl.LoginCtrl = function ($rootScope, $scope, $http, $ionicModal, ngFB, $io
 
 	            if (!res.error) {       	       
 	            	saveLocal("user", res.data);       
+	            	$scope.errorR = "";
 					$rootScope.go("app.dashboard");
-	            } else {
-	               	$scope.error=res.error;
+	            } else {	               	
 					$scope.openModal(res.error);
 	            }
 
 	        }, function(){
 
 	        });
+		}else{
+			$scope.errorR = "Rellena tus datos";
 		}
 
 	}
@@ -184,9 +186,12 @@ pydmCtrl.LoginCtrl = function ($rootScope, $scope, $http, $ionicModal, ngFB, $io
   	$scope.rememberPass = function(){
   		if($scope.user.email){
   			OauthService.forgotPassword().set($scope.user, function(result){
-				if(result.error)
+				if(result.error){
+					$scope.errorR = "Email incorrecto";
 					console.log(result.error);
-				else{
+				}else{
+					$scope.msg = "Recibirás un email con tu código, no cierres esta ventana";
+					$scope.openModalPass();
 					console.log(result);
 				}
 			}, function(){
@@ -196,5 +201,41 @@ pydmCtrl.LoginCtrl = function ($rootScope, $scope, $http, $ionicModal, ngFB, $io
   			console.log($scope.errorR);
   		}
   	}
+
+  	$scope.userP = {};
+
+  	$scope.resetPassword = function(){
+        OauthService.resetPassword().reset($scope.userP,function(result){
+            if(result.error){
+              $scope.openModal(result.error);
+            }
+          	else{
+            	console.log(result);
+            	$scope.openModal("Contraseña cambiada correctamente.");
+            	$scope.closeModalPass();
+            	$scope.errorR = "";
+            	$scope.userP = {};
+          	}
+        }, function(){
+
+        });
+    }
+
+
+  	//Search preferences
+	$ionicModal.fromTemplateUrl('app/login/forgotPassword/main.html', {
+	    scope: $scope,
+	    animation: 'slide-in-right'
+	}).then(function(modal) {
+	    $scope.modalPass = modal;
+	});
+
+	$scope.openModalPass = function() {
+	    $scope.modalPass.show();
+	};
+
+	$scope.closeModalPass = function() {
+	    $scope.modalPass.hide();
+	};
 
 }

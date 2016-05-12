@@ -1,0 +1,21 @@
+ <ion-modal-view class="popup">
+
+    <ion-content class="forgotPasswod padding">
+    
+    <h2>Reestablecer Contraseña</h2>
+    <p>{{msg}}</p>
+
+    <form ng-submit="resetPassword()">
+        <div class="list">
+            <label class="item item-input">
+                <input type="text" placeholder="Código" ng-model="userP.code">
+            </label>
+            <label class="item item-input">
+                <input type="password" placeholder="Password" ng-model="userP.password">
+            </label>
+        </div>
+        <button type="submit" class="button button-block button-positive">Reestablecer Contraseña</button>
+    </form>        
+
+    </ion-content>
+</ion-modal-view>

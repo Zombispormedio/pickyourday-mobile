@@ -364,48 +364,67 @@ pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams,$ionicH
   	//CAMBIO DE MES
     vm.viewChangeClicked = function(date, nextView) {
 
+      var month = moment($scope.currentDate).month();
       $scope.currentView = nextView;
       $scope.currentDate = date;
 
-      $scope.sendDates();
+      var month2 = moment($scope.currentDate).month();
+
+      if(month != month2)
+        $scope.sendDates();
 
       return vm.viewChangeEnabled;
     };
 
     $(".button.month").on("click", function(){
         $scope.currentView = 'month';
-        $scope.sendDates();
+        //$scope.sendDates();
     });
 
     $(".button.day").on("click", function(){
         $scope.currentView = 'day';
-        $scope.sendDates();
+        //$scope.sendDates();
     });
 
     $(".button.ion-ios-arrow-right").on("click", function(){
+    	var month = moment($scope.currentDate).month();
         $scope.currentDate = moment($scope.currentDate).add(1, $scope.currentView).toDate();
-        $scope.sendDates();
+        var month2 = moment($scope.currentDate).month();
+
+        if(month != month2)
+        	$scope.sendDates();
     });
 
     $(".button.ion-ios-arrow-left").on("click", function(){
+    	var month = moment($scope.currentDate).month();
         $scope.currentDate = moment($scope.currentDate).subtract(1, $scope.currentView).toDate();
-        $scope.sendDates();
+        var month2 = moment($scope.currentDate).month();
+
+        if(month != month2)
+        	$scope.sendDates();
     });
 
     $(".button.today").on("click", function(){
+    	var month = moment($scope.currentDate).month();
         $scope.currentDate = new Date();
-        $scope.sendDates();
+        var month2 = moment($scope.currentDate).month();
+
+        if(month != month2)
+       	 $scope.sendDates();
     })
 
     $scope.sendDates = function(){
         var startDate = moment($scope.currentDate).startOf($scope.currentView);
         var endDate = moment(startDate).endOf($scope.currentView);
 
-        if($scope.currentView == "month")
+
+
+        if($scope.currentView == "month"){
        		vm.events = [];
+        }
 
         $scope.getPicks(startDate.toDate(), endDate.toDate());
-        //console.log(startDate.toDate() + "," + endDate.toDate());
+       // console.log(startDate.toDate() + "," + endDate.toDate());
     }
 
 	$scope.getScrollPosition = function(){

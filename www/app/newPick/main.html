@@ -5,11 +5,11 @@
 <ion-view>
   <ion-content class="newPick has-header" on-scroll="getScrollPosition()">
 	
-	<h2>New pick</h2>
+	<h2>Nuevo pick</h2>
 
 	<div class="datos">
 		<p><span class="strong">Compañía:</span> {{company.name}}</p>
-		<p><span class="strong">Servicio:</span> {{service.id_name.name}}</p>   
+		<p><span class="strong">Servicio:</span> {{service.name | service.id_name.name}}</p>   
 		<div class="price_container">
 		    <span class="price" ng-class="{oldPrice: service.promotion}">
 		    	{{ service.price | currency : ""}} €

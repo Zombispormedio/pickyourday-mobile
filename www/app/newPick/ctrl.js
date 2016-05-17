@@ -111,8 +111,11 @@ pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams,$ionicH
 				console.log(res);
 				if (!res.error) {		
 					var date = new Date(obj.initDate);
+					var nameService = $scope.service.name;
+					if(!nameService || nameService=="")
+						nameService = $scope.service.id_name.name;
 					var objData = {
-						"service" : $scope.service.id_name.name,
+						"service" : nameService,
 						"company": $scope.company.name,
 						"date":  moment(date).format('DD/MM/YYYY HH:mm'),
 						"id": res.data._id

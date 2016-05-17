@@ -39,8 +39,11 @@ pydmCtrl.CalendarCtrl = function ($rootScope, $scope, $http, $stateParams, Custo
     $scope.formatPicks = function(picks, type){
    
     	picks.forEach(function(pick){
+          var nameService = pick.pick.service.name;
+          if(!nameService || nameService == "")
+            nameService = pick.pick.service.metadata.name;
       		var obj = {
-      			title : pick.pick.service.metadata.name,
+      			title : nameService,
       			type : type,
       			startsAt : moment(pick.init).toDate(),
       			endsAt : moment(pick.end).toDate(),

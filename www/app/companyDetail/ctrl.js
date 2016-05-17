@@ -9,12 +9,15 @@ pydmCtrl.CompaniesDetailCtrl = function ($rootScope, $scope, $http, $stateParams
   $scope.reviews = [];
   $scope.schedule = [];
   $scope.msg = "Cargando ...";
+  $scope.msgServices = "Cargando ...";
 
   CustomerService.company().getByID({"id": idCompany}, {}, function(result){
         var res = result;
         if (!res.error) {       
             $scope.company = res.data;    
-            $scope.services = res.data.services;            
+            $scope.services = res.data.services;  
+            if(res.data.services == null || res.data.services.length <= 0)  
+              $scope.msgServices = "No tiene servicios";        
             $scope.reviews = res.data.review;
             $scope.schedule = $scope.orderSchedule(res.data.scheduleActivity);            
             $scope.prepareGraphic();

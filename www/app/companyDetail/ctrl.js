@@ -16,6 +16,7 @@ pydmCtrl.CompaniesDetailCtrl = function ($rootScope, $scope, $http, $stateParams
         if (!res.error) {       
             $scope.company = res.data;    
             $scope.services = res.data.services;  
+            console.log($scope.services);
             if(res.data.services == null || res.data.services.length <= 0)  
               $scope.msgServices = "No tiene servicios";        
             $scope.reviews = res.data.review;

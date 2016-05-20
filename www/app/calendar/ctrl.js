@@ -80,42 +80,42 @@ pydmCtrl.CalendarCtrl = function ($rootScope, $scope, $http, $stateParams, Custo
     vm.endDateEvent = "";
 
     vm.timespanClicked = function(date) {
-      console.log(date);
+        console.log(date);
 
-      var obj = $(".cal-day-hour-part.activated");
+        var obj = $(".cal-day-hour-part.activated");
 
-      var aux = vm.events;
-      var res = aux.filter(function (e) { 
-        var d1 = new Date(e.startsAt);
-        var d2 = new Date(date);
-        var d3 = new Date(e.endsAt);
-        return ( d1.getTime() === d2.getTime() || (d2 > d1 && d2 < d3)) && (e.type === "warning");
-      });
+        var aux = vm.events;
+        var res = aux.filter(function (e) { 
+          var d1 = new Date(e.startsAt);
+          var d2 = new Date(date);
+          var d3 = new Date(e.endsAt);
+          return ( d1.getTime() === d2.getTime() || (d2 > d1 && d2 < d3)) && (e.type === "warning");
+        });
 
-      console.log(res);
- 
-      if(res.length > 0){
-        console.log("No cabe");
-        $(".cal-day-hour-part").removeClass("selected");
-        $(".createEvent").remove();
-      }else if($(obj).hasClass("selected")){
-        vm.endDateEvent = vm.lastDateClicked;
-        $scope.openModalEvent();
-      }else{
+        console.log(res);
+   
+        if(res.length > 0){
+          console.log("No cabe");
+          $(".cal-day-hour-part").removeClass("selected");
+          $(".createEvent").remove();
+        }else if($(obj).hasClass("selected")){
+          vm.endDateEvent = vm.lastDateClicked;
+          $scope.openModalEvent();
+        }else{
 
-        $(".cal-day-hour-part").removeClass("selected");
-        $(obj).addClass("selected");
-        $(".createEvent").remove();
+          $(".cal-day-hour-part").removeClass("selected");
+          $(obj).addClass("selected");
+          $(".createEvent").remove();
 
-        var html = "";
-        html += "<div class='createEvent' id='newEvent'>Crear Evento</div>";
+          var html = "";
+          html += "<div class='createEvent' id='newEvent'>Crear Evento</div>";
 
-        $(obj).append(html);
+          $(obj).append(html);
 
-        vm.lastDateClicked = date;
+          vm.lastDateClicked = date;
 
-      }
-
+        }
+      
     };
 
     $ionicModal.fromTemplateUrl('app/calendar/newEvent/main.html', {
@@ -265,8 +265,10 @@ pydmCtrl.CalendarCtrl = function ($rootScope, $scope, $http, $stateParams, Custo
         var startDate = moment($scope.currentDate).startOf($scope.currentView);
         var endDate = moment(startDate).endOf($scope.currentView);
         vm.events = [];
+
         $scope.getPicks(startDate.toDate(), endDate.toDate());
-        console.log(startDate.toDate() + "," + endDate.toDate());
+        
+        //console.log(startDate.toDate() + "," + endDate.toDate());
     }
 
     $ionicModal.fromTemplateUrl('app/dashboard/pickDetail/main.html', {

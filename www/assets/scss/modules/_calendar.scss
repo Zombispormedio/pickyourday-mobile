@@ -56,6 +56,19 @@
 
 	.cal-month-box [class*=cal-cell], .cal-year-box [class*=span]{
 		min-height: 70px;
+		position: relative;
+
+		span[data-cal-date]{
+			margin: 0;
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			text-align: right;
+			right: 0;
+			top: 0;
+			padding: 10px;
+		}
+
 	}
 	.cal-month-box .cal-day-today span[data-cal-date] {
 	    font-size: 1.5em;

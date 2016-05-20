@@ -6,8 +6,10 @@
 				class="service item"  ng-class="{promotion: service.promotion}"> 
 
 			  <div class="service_title">
-			      <h2>{{ service.default.name }}</h2>
-			      <p>{{ service.description}}</p>
+			      <h2 ng-if="service.name">{{ service.name}}</h2>
+			      <p ng-if="service.name">{{ service.default.name }}</p>
+			      <h2 ng-if="!service.name">{{ service.default.name }}</h2>
+			      
 			      <p>Duración: <span class="bold">{{service.duration}} min</span></p>		
 			  </div>
 				

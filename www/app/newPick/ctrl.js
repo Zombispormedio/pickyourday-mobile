@@ -40,6 +40,7 @@ pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams,$ionicH
 	        //console.log(result);
 	        if (!res.error) {       
 	            $scope.service = res.data;    
+	            console.log($scope.service);
 	        } else {
 	           $scope.error=res.error;
 	        }
@@ -66,6 +67,7 @@ pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams,$ionicH
 			var res = result;
 			if (!res.error) {								
 				$rootScope.go("app.dashboard");
+				console.log(res);
 			} else {
 				$scope.error=res.error;
 				$scope.openModal($scope.error.message);
@@ -111,11 +113,8 @@ pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams,$ionicH
 				console.log(res);
 				if (!res.error) {		
 					var date = new Date(obj.initDate);
-					var nameService = $scope.service.name;
-					if(!nameService || nameService=="")
-						nameService = $scope.service.id_name.name;
 					var objData = {
-						"service" : nameService,
+						"service" : $scope.service.id_name.name,
 						"company": $scope.company.name,
 						"date":  moment(date).format('DD/MM/YYYY HH:mm'),
 						"id": res.data._id
@@ -150,6 +149,7 @@ pydmCtrl.NewPickCtrl = function ($rootScope, $scope, $http, $stateParams,$ionicH
 	     if(res) {
 	       $scope.activatePick(obj.id);
 	     }else {
+	     	$scope.deletePick(obj.id);
 	       console.log('Delete pick');
 	     }
 	   });

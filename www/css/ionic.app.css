@@ -9813,9 +9813,6 @@ h2 {
 
 .iconCat {
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  padding: 2%;
   display: -webkit-box;
   /* OLD - iOS 6-, Safari 3.1-6, BB7 */
   display: -ms-flexbox;
@@ -9838,9 +9835,15 @@ h2 {
   -ms-justify-content: center;
   -webkit-justify-items: center;
   -moz-justify-items: center;
-  -ms-justify-items: center; }
+  -ms-justify-items: center;
+  padding: 5px;
+  height: 50px;
+  width: 50px;
+  margin-right: 15px; }
   .iconCat img {
-    width: 80%; }
+    width: auto;
+    height: 80%;
+    max-width: 100%; }
 
 .ion-nifty-modal {
   top: 0;
@@ -9921,15 +9924,6 @@ h2 {
   border-bottom: 1px solid #ddd; }
   .companies-list .item:first-child {
     border-top: 1px solid #ddd; }
-  .companies-list .item .iconCat {
-    padding: 5px;
-    height: 50px;
-    width: 50px;
-    margin-right: 15px; }
-    .companies-list .item .iconCat img {
-      width: auto;
-      height: 80%;
-      max-width: 100%; }
   .companies-list .item h3 {
     margin-bottom: 0; }
   .companies-list .item p {
@@ -10174,9 +10168,7 @@ h2 {
       height: 100%; }
       .login .scroll-content .scroll .slider .slider-pager .slider-pager-page {
         color: #fff; }
-      .login .scroll-content .scroll .slider .box {
-        height: 100%;
-        padding: 0 10px;
+      .login .scroll-content .scroll .slider .slider-slide {
         display: -webkit-box;
         /* OLD - iOS 6-, Safari 3.1-6, BB7 */
         display: -ms-flexbox;
@@ -10185,25 +10177,29 @@ h2 {
         /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
         display: flex;
         /* NEW, Spec - Firefox, Chrome, Opera */
-        align-items: center;
-        -webkit-box-pack: center;
-        -moz-box-pack: center;
-        -ms-flex-pack: center;
-        -webkit-box-align: center;
-        -moz-box-align: center;
-        -ms-flex-align: center;
-        -webkit-align-items: center; }
+        -ms-flex-direction: column;
+        -webkit-flex-direction: column;
+        flex-direction: column;
+        justify-content: center;
+        -webkit-justify-content: center;
+        -moz-justify-content: center;
+        -ms-justify-content: center;
+        -webkit-justify-items: center;
+        -moz-justify-items: center;
+        -ms-justify-items: center; }
+      .login .scroll-content .scroll .slider .box {
+        overflow-y: scroll;
+        padding: 0 10px;
+        vertical-align: middle; }
         .login .scroll-content .scroll .slider .box label {
           margin: 10px 0; }
         .login .scroll-content .scroll .slider .box .container {
-          -webkit-box-flex: 1;
-          /* OLD - iOS 6-, Safari 3.1-6 */
-          -webkit-flex: 1;
-          /* Safari 6.1+. iOS 7.1+, BB10 */
-          -ms-flex: 1;
-          /* IE 10 */
-          flex: 1;
-          /* NEW, Spec - Firefox, Chrome, Opera */ }
+          height: auto;
+          margin: 0;
+          padding: 0;
+          /* @include flexbox();
+						@include flex-direction(column);
+						@include flex-justify(center); */ }
           .login .scroll-content .scroll .slider .box .container p {
             text-align: center; }
             .login .scroll-content .scroll .slider .box .container p span {
@@ -10350,7 +10346,8 @@ h2 {
     position: absolute;
     opacity: 0.5;
     left: 0;
-    top: 0; }
+    top: 0;
+    z-index: -1; }
     .categories .item .overlay.gray {
       background-color: #000;
       opacity: 0.7 !important; }
@@ -10571,10 +10568,12 @@ h2 {
       text-align: left;
       background-color: transparent;
       border-bottom: 1px solid #ccc;
-      padding-bottom: 10px; }
+      padding-bottom: 10px;
+      padding-top: 15px; }
       .company .services .service .service_title h2, .company .services .service .service_title p {
         text-align: left;
-        white-space: pre-line; }
+        white-space: pre-line;
+        width: 100%; }
       .company .services .service .service_title p {
         font-size: 15px; }
       .company .services .service .service_title h2 {
@@ -10783,6 +10782,8 @@ h2 {
   margin-top: 10px;
   padding: 0 10px;
   position: relative; }
+  .newPick .datos > p {
+    width: 80%; }
   .newPick .datos .price_container {
     position: absolute;
     right: 10px;
@@ -10829,7 +10830,17 @@ h2 {
   margin-right: 10px; }
 
 .newPick .cal-month-day {
-  height: 60px; }
+  height: 60px;
+  position: relative; }
+  .newPick .cal-month-day span[data-cal-date] {
+    margin: 0 !important;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    text-align: right;
+    right: 0;
+    top: 0;
+    padding: 10px; }
 
 .newPick .events-list {
   max-height: 29px;
@@ -11411,7 +11422,17 @@ h2 {
   white-space: nowrap; }
 
 .calendar .cal-month-box [class*=cal-cell], .calendar .cal-year-box [class*=span] {
-  min-height: 70px; }
+  min-height: 70px;
+  position: relative; }
+  .calendar .cal-month-box [class*=cal-cell] span[data-cal-date], .calendar .cal-year-box [class*=span] span[data-cal-date] {
+    margin: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    text-align: right;
+    right: 0;
+    top: 0;
+    padding: 10px; }
 
 .calendar .cal-month-box .cal-day-today span[data-cal-date] {
   font-size: 1.5em; }

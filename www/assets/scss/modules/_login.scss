@@ -25,24 +25,35 @@
     		height: 100%;
 
     		.slider{
-    			height: 100%;
+    			height: 100%;    			
 
 				.slider-pager .slider-pager-page{
 					color: #fff;
 				}
-
-    			.box{
-    				height: 100%;					
-					padding: 0 10px;
+				
+				.slider-slide{
 					@include flexbox();
-					@include flex-align(center);
+				    @include flex-direction(column);
+				   	@include flex-justify(center);
+				}
+    			.box{
+				    overflow-y: scroll;
+				    padding: 0 10px;
+				    vertical-align: middle;
+				  
 
 					label{
 						margin: 10px 0;
 					}
 
 					.container{
-						@include flex(1);
+						//@include flex(1);
+						height: auto;
+						margin: 0;
+						padding: 0;
+						/* @include flexbox();
+						@include flex-direction(column);
+						@include flex-justify(center); */
 
 						p{
 							text-align: center;

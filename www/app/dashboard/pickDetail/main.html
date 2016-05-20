@@ -22,7 +22,8 @@
             <span ng-if="currentPick.service.promotion" class="price newPrice">{{  currentPick.service.priceDiscounted}} €</span> 
         </div>
         <!-- <span class="price">{{currentPick.service.price}} €</span> -->
-        <h4>{{ currentPick.service.metadata.name }}</h4>
+        <h4 ng-if="currentPick.service.name">{{ currentPick.service.name }}</h4>
+        <h4 ng-if="!currentPick.service.name">{{ currentPick.service.metadata.name }}</h4>
         <p ng-if="currentPick.service.description != ''">{{currentPick.service.description}}</p>
       </div>
       

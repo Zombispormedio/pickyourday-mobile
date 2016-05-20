@@ -17,10 +17,10 @@ pydmCtrl.SearchCtrl = function ($rootScope, $scope, $http, ngFB, CustomerService
     $scope.msgC = "Cargando ...";
 
     var category = "";
+    $scope.services = [];
+    $scope.companies = [];
     if($scope.data.selCategory)
       category = $scope.data.selCategory._id;
-
-
 
       CustomerService.search().list({"name": $scope.searchText, "category": category, "location.city": $scope.city}, {}, function(result){
           var res = result;

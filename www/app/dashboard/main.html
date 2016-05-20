@@ -17,7 +17,8 @@
               <img ng-src="{{ pick.company.category.icon.src}}" alt="{{ pick.company.category.icon.alt}}">
             </div>
             <div class="title">
-              <h3>{{ pick.service.metadata.name }}</h3>
+              <h3 ng-if="pick.service.name">{{ pick.service.name }}</h3>
+              <h3 ng-if="!pick.service.name">{{ pick.service.metadata.name }}</h3>
               <p class="date">{{ pick.initDate | formatDate}}</p>
               <p>{{ pick.company.name }}</p>
             </div>
